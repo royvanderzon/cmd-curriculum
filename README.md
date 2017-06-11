@@ -61,5 +61,5 @@ All the inserted data will be converted to a fully responsive curriculum. The cu
 ## Data life cycle
 ### Login
 - User register
-  Mail
+	- Mail
 - Form
