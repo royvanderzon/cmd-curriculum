@@ -1,0 +1,48 @@
+{
+  "name": "zoncms",
+  "version": "0.0.1",
+  "description": "zoncms",
+  "private": true,
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "latest",
+    "body-parser": "~1.10.0",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.0.0",
+    "csurf": "^1.9.0",
+    "dotenv": "^4.0.0",
+    "ejs": "~0.8.5",
+    "express": "~4.9.0",
+    "express-myconnection": "^1.0.4",
+    "express-session": "~1.9.3",
+    "file-system": "2.2.2",
+    "instagram-node": "0.5.8",
+    "method-override": "~1.0.0",
+    "moment": "^2.17.1",
+    "morgan": "~1.0.0",
+    "multer": "1.2.0",
+    "mysql": "^2.13.0",
+    "node-schedule": "1.2.0",
+    "nodemailer": "2.7.2",
+    "passport": "~0.1.17",
+    "passport-facebook": "~1.0.2",
+    "passport-google-oauth": "~0.1.5",
+    "passport-local": "~0.1.6",
+    "passport-twitter": "~1.0.2",
+    "path": "0.12.7",
+    "sitemap": "^1.5.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "@glimpse/glimpse": "^0.20.8"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "Widesi",
+  "license": "MIT"
+}

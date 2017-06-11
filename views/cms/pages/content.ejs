@@ -1,0 +1,226 @@
+<!-- HEAD -->
+<%- include ../parts/head.ejs %>
+
+<!-- MAIN NAV -->
+<%- include ../parts/nav.ejs %>
+
+<!-- BODY CONTENT -->
+<main>
+
+    <%- include ../parts/header.ejs %>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m10">
+                    <div class="row">
+                        <div class="col s12 m6 l4 col-center">
+                            <select name="search_content" id="search_content">
+                                <% for(var ii = 0;ii<category.length;ii++){ %>
+                                    <% if(category[ii].ID == show_category){ %>
+                                    <option value="/cms/content/cat/<%= category[ii].ID %>" selected><%= category[ii].name %></option>
+                                    <% }else{ %>
+                                    <option value="/cms/content/cat/<%= category[ii].ID %>"><%= category[ii].name %></option>
+                                    <% }; %>
+                                <% }; %>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m10">
+                        <% if(content.length < 1){ %>
+                        <ul class="collection popout">
+                            <li class="collection-item"><strong>There are no content blocks,</strong> make one <a href="#!" data-target="new_content" class="secondary-content"><i class="material-icons">add</i></a></li>
+                        </ul>
+                        <% }else{ %>
+
+                        <ul class="collapsible popout" data-collapsible="accordion">
+                            <% for(var i = 0;i<content.length;i++){ %>
+                            <li>
+                                <div class="collapsible-header">
+                                    <!-- <i class="material-icons">open_with</i> -->
+                                    <span class="level-badge content-badge">
+                                    <%= content[i].category_name %>
+                                    </span>
+                                    <strong><%= content[i].content_name %></strong>
+                                </div>
+                                <div class="collapsible-body">
+                                    <form method="post" action="/cms/content/edit_content" id="remove_content_form_<%= i %>">
+                                        <input type="hidden" class="hide none" value="<%= content[i].content_ID %>" name="content_ID">
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <span class="level-badge content-badge">
+                                                    category: <%= content[i].category_name %> <strong>ID(<%= content[i].category_ID %>)</strong>
+                                                </span>
+                                                <span class="level-badge brown content-badge">
+                                                    content: <%= content[i].content_name %> <strong>ID(<%= content[i].content_ID %>)</strong>
+                                                </span> 
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <hr>
+                                                <i>Print with this shortcut:</i>
+<xmp>
+<%- ('<%= the_content.content_block_'+content[i].content_ID) %> %>
+</xmp>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12 m6">
+                                                <label for="name_content">Name</label>
+                                                <input id="name_content_<%= i %>" type="text" name="name_content" class="validate" value="<%= content[i].content_name %>">
+                                            </div>
+                                            <div class="input-field col s12 m6">
+                                                <select required name="content_category" id="content_category_<%= i %>">
+                                                    <option value="" disabled selected>Choose your option</option>
+                                                    <% for(var ii = 0;ii<category.length;ii++){ %>
+                                                        <% if(category[ii].ID == content[i].category_ID){ %>
+                                                        <option value="<%= category[ii].ID %>" selected><%= category[ii].name %></option>
+                                                        <% }else{ %>
+                                                        <option value="<%= category[ii].ID %>"><%= category[ii].name %></option>
+                                                        <% }; %>
+                                                    <% }; %>
+                                                </select>
+                                                <label for="content_category">Category</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <label for="textarea_content">Content</label>
+                                                <textarea id="textarea_content_<%= i %>" name="textarea_content" class="materialize-textarea"><%= content[i].content %></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <div class="left waves-effect waves-red white-text red btn-flat remove_content" data-order="<%= i %>">Remove</div>
+                                                <button type="submit" class="right waves-effect waves-green white-text green btn-flat">Save</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+
+                            <% }; %>
+                        </ul>
+
+                        <% }; %>
+                </div>
+                <div class="col s12 m10">
+                    <a class="btn-floating btn-large waves-effect waves-light red right" data-target="new_content"><i class="material-icons">add</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+</main>
+
+<!-- Modal Structure -->
+<div id="new_content" class="modal modal-fixed-footer">
+    <form action="/cms/content/new_content" method="post">
+        <div class="modal-content">
+            <h4>New content</h4>
+            <div class="row">
+                <div class="col s12 m8 l4 input-field">
+                    <label for="new_content_name" required>Name</label>
+                    <input type="text" class="new_content_name" id="new_content_name" name="new_content_name" placeholder="content">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="new_content_textarea">Textarea</label>
+                    <textarea id="new_content_textarea" name="new_content_textarea" class="materialize-textarea">Lorem ipsum.</textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select required name="new_content_category" id="new_content_category">
+                        <option value="" disabled selected>Choose your option</option>
+                        <% for(var i = 0;i<category.length;i++){ %>
+                            <% if(category[i].ID == show_category){ %>
+                            <option value="<%= category[i].ID %>" selected><%= category[i].name %></option>
+                            <% }else{ %>
+                            <option value="<%= category[i].ID %>"><%= category[i].name %></option>
+                            <% }; %>
+                        <% }; %>
+                    </select>
+                    <label for="new_content_category">Category</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="modal-action waves-effect waves-green btn-flat">Add</button>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="remove_content" class="modal">
+    <form method="post" action="/cms/content/remove_content" id="remove_content_form">
+        <div class="modal-content">
+            <h4>Delete content (<span class="content_id"></span>)</h4>
+            <p>Are you sure you want to delete <i><span class="html_name"></span></i> permanently?</p>
+            <p class="red-text"><strong>This can't be undone.</strong></p>
+            <input type="hidden" id="remove_input_ID" class="insert_content_id" name="remove_input_ID">
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class=" modal-action modal-close waves-effect waves-red red white-text btn-flat">Delete</button>
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- FOOTER -->
+<%- include ../parts/footer.ejs %>
+
+<!-- SCRIPTS -->
+<%- include ../parts/scripts.ejs %>
+
+<script>
+    $(document).ready(function(){
+
+        var content = <%- JSON.stringify(content) %>;
+        var this_content = content[0];
+
+        $('textarea').trigger('autoresize');
+        $('select').material_select();
+
+        $('.remove_content').click(function(e){
+            e.preventDefault();
+
+            this_content = content[$(this).attr('data-order')];
+            $('.content_id').html(this_content.content_ID);
+            $('.html_name').html(this_content.content_name);
+            $('.insert_content_id').val(this_content.content_ID);
+            $('.content_name').val(this_content.content_name);
+
+            $('#remove_content').modal('open');
+
+        })
+
+        $('#search_content').on('change',function(e){
+            e.preventDefault();
+            window.location.href = $(this).val();
+        })
+
+        $('.modal').modal();
+        $('.collapsible').collapsible();
+
+    });
+</script>
+
+<!-- END -->
+<%- include ../parts/end.ejs %>
+

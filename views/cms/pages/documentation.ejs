@@ -1,0 +1,233 @@
+<!-- HEAD -->
+<%- include ../parts/head.ejs %>
+
+<!-- MAIN NAV -->
+<%- include ../parts/nav.ejs %>
+
+<!-- BODY CONTENT -->
+<main>
+    
+    <%- include ../parts/header.ejs %>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m9">
+                    <div class="row" id="introductie" class="scrollspy">
+                        <div class="col s12">
+                            <h2 class="header">ZONCMS Module</h2>
+                            <p>De zoncms module kan door de hele applicatie worden aangeroepen. Dit dient bovenaan de <i>routes</i> pagina's te gebeuren. De module moet per pagina <i>required</i> worden. Dit kan met de volgende code:</p>
+<xmp>
+var zoncms = require(appRoot+'/zoncms');
+</xmp>
+                            <p>Alle functies zijn vanaf dan aan te roepen met bijv:</p>
+<xmp>
+//application title
+zoncms.settings.options.application_name
+
+//server start command
+zoncms.init.start(app,3000);
+</xmp>
+
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row" id="settings" class="scrollspy">
+                        <div class="col s12">
+                            <h3 class="header">zoncms.settings</h3>
+                            <p>In het settings object zijn verschillende objecten te vinden:</p>
+                            <ul>
+                                <li><strong>options</strong>, dit object wordt iedere keer uit de database opgehaald (standaard settings op <i>init</i>).</li>
+                                <li><strong>vars</strong>, hierin staan variabelen die op de achtergrond nodig zijn.</li>
+                                <li><strong>db_settings</strong>, de connectie instellingen van de <i>mysql</i> database.</li>
+                                <li><strong>smtpConfig</strong>, de connectie instellingen van de mail.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row" id="init" class="scrollspy">
+                        <div class="col s12">
+                            <h3 class="header">zoncms.init</h3>
+                            <p>In het init object zijn verschillende functies te vinden:</p>
+                            <ul>
+                                <li><strong>start(app, port)</strong>, deze functie start de applicatie, prameters zijn app (afkomstig van express) en port (bijv. 3000 of 8080)</li>
+                                <li><strong>build_options()</strong>, deze functie laad de standaard setting.options in zodra ze niet defined zijn. Als ze wel defined zijn worden ze uit de database opgehaald.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row" id="general" class="scrollspy">
+                        <div class="col s12">
+                            <h3 class="header">zoncms.general</h3>
+                            <p>In het general object zijn verschillende functies te vinden:</p>
+                            <ul>
+                                <li><strong>random_key()</strong>, deze functie returned een random gegenereerde key. De eerste reeks cijfers is de <i>timestamp</i> in ms.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row" id="mail" class="scrollspy">
+                        <div class="col s12">
+                            <h3 class="header">zoncms.mail</h3>
+                            <p>In het mail object zijn verschillende functies te vinden:</p>
+                            <ul>
+                                <li><strong>send(obj,cb)</strong>, met deze functie kan een mail worden verzonden. Op success wordt de cb() uitgevoerd.</li>
+                                <li>
+<xmp>
+//mail object
+var obj = {
+    to : 'test@gmail.com'
+    subject : 'Hello world!',
+    text : 'Lorem ipsum',
+    html : '<p>Lorem ipsum</p>'
+}
+</xmp>                        
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row" id="db" class="scrollspy">
+                        <div class="col s12">
+                            <h3 class="header">zoncms.db</h3>
+                            <p>In het db object zijn verschillende functies te vinden:</p>
+                            <ul>
+                                <li><strong>test_connection()</strong>, test de connectie met de database. Returned <i>true</i> of <i>false</i>.</li>
+                                <li><strong>users(cb)</strong>, returned <strong>alles</strong> uit de users tabel</li>
+                                <li>
+<xmp>
+zoncms.db.users(function(result){
+    console.log(result);
+})
+</xmp>                        
+                                </li>
+                                <li><strong>update_user(obj,cb)</strong>, update gegevens van een gebruiker.</li>
+                                <li>
+<xmp>
+var obj = {
+    update : {
+        firstname : 'John',
+        lastname : 'Doe'
+    },
+    id : 4
+}
+
+zoncms.db.update_user(obj,function(result){
+    console.log(result);
+})
+</xmp>                        
+                                </li>
+                                <li><strong>remove_user(id,cb)</strong>, verwijder een gebruiker.</li>
+                                <li>
+<xmp>
+zoncms.db.remove_user(10,function(result){
+    console.log(result);
+})
+</xmp>                        
+                                </li>
+                                <li><strong>add_user(obj,cb)</strong>, voeg een gebruiker toe.</li>
+                                <li>
+<xmp>
+var obj = {
+    query : {
+        email : 'test@gmail.com'
+    }
+}
+zoncms.db.add_user(obj,function(result){
+    console.log(result);
+})
+</xmp>                        
+                                </li>
+                                <li><strong>find_user(obj,cb)</strong>, vindt een gebruiker.</li>
+                                <li>
+<xmp>
+var obj = {
+    by : 'username | email | firstname | etc.',
+    query : 'query'
+}
+zoncms.db.find_user(obj,function(result){
+    console.log(result);
+})
+</xmp>                        
+                                </li>
+                                <li><strong>find_user_multi(obj,cb)</strong>, vindt een gebruiker op username of email.</li>
+                                <li>
+<xmp>
+var obj = {
+    query : 'query'
+}
+zoncms.db.find_user_multi(obj,function(result){
+    console.log(result);
+})
+</xmp>                        
+                                </li>
+                                <li><strong>roles(cb)</strong>, returned alle rollen uit de database.</li>
+                                <li>
+<xmp>
+zoncms.db.roles(function(result){
+    console.log(result);
+})
+</xmp>                        
+                                </li>
+                                <li><strong>get(obj,cb)</strong>, vraag gegevens op van de database <strong>(query wordt niet ge-escaped)</strong>.</li>
+                                <li>
+<xmp>
+var obj = {
+    search : '*',
+    db : 'user'
+    query : ''
+}
+
+// connection.query('SELECT '+obj.search+' FROM ' +obj.db+obj.query, function(err, result) {});
+
+zoncms.db.get(obj,function(result){
+    console.log(result);
+})
+</xmp>                        
+                                </li>
+                                <li><strong>update_setting(settings,cb)</strong>, verander een setting in de database.</li>
+                                <li>
+<xmp>
+var obj = {
+    application_name : 'ZONMEDIA CMS'
+}
+
+zoncms.db.update_setting(obj,function(result){
+    console.log(result);
+})
+</xmp>                        
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col hide-on-small-only m3 l2">
+                    <ul class="section table-of-contents">
+                        <li><a href="#introductie">Introductie</a></li>
+                        <li><a href="#settings">Settings</a></li>
+                        <li><a href="#init">Init</a></li>
+                        <li><a href="#general">General</a></li>
+                        <li><a href="#mail">Mail</a></li>
+                        <li><a href="#db">Database</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>   
+
+<!-- FOOTER -->
+<%- include ../parts/footer.ejs %>
+
+<!-- SCRIPTS -->
+<%- include ../parts/scripts.ejs %>
+
+<script>
+    $(document).ready(function(){
+        $('.scrollspy').scrollSpy();
+    });
+</script>
+
+<!-- END -->
+<%- include ../parts/end.ejs %>
+

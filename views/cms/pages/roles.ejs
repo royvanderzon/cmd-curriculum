@@ -1,0 +1,303 @@
+<!-- HEAD -->
+<%- include ../parts/head.ejs %>
+
+<!-- MAIN NAV -->
+<%- include ../parts/nav.ejs %>
+
+<!-- BODY CONTENT -->
+<main>
+
+    <%- include ../parts/header.ejs %>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m10">
+                    <ul class="collection with-header">
+                        <li class="collection-header"><h4>Roles list</h4></li>
+                        <% // console.log(roles) %>
+                        <% for(var i = 0;i<roles.length;i++){ %>
+                        <li class="collection-item tooltipped" data-position="left" data-delay="50" data-tooltip="ID(<%= roles[i].ID %>)">
+                            <div>
+                                <!-- <span class="level-badge">
+                                    level <%= roles[i].level %>
+                                </span> -->
+                                <strong><%= roles[i].name %></strong>
+                                <a href="#" class="secondary-content edit_role" data-order="<%= i %>"><i class="material-icons">edit</i></a>
+                            </div>
+                        </li>
+                        <% }; %>
+                    </ul>
+                </div>
+                <div class="col s12 m10">
+                    <a class="btn-floating btn-large waves-effect waves-light red right" data-target="new_role"><i class="material-icons">add</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+</main>  
+
+<!-- Modal Structure -->
+<div id="edit_role" class="modal">
+    <form action="/cms/settings/roles/edit_role" method="post">
+        <div class="modal-content">
+            <h4>Edit role ID(<span class="role_id"></span>)</h4>
+            <div class="row">
+                <div class="col s12 m8 l4">
+                    <input type="text" hidden class="hidden hide none insert_role_id" id="role_id" name="role_id">
+                    <input type="text" class="role_name" id="role_name" name="role_name">
+                    <input type="number" class="role_level" id="role_level" name="role_level">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-green btn-flat left" data-target="remove_role">Remove</a>
+            <a class="modal-action modal-close waves-effect waves-green btn-flat left edit_permission" data-target="edit_permission">Edit permissions</a>
+            <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="edit_permission" class="modal">
+    <form action="/cms/settings/roles/edit_permission" id="form_edit_permission" method="post">
+        <div class="modal-content">
+            <h4>Edit permissions of role ID(<span class="role_id"></span>)</h4>
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col s12">
+                            <p>Permissions</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <% for(var i = 0;i<permission.length;i++){ %>
+                            <div class="col s6 m4 l3">
+                                <input type="checkbox" class="filled-in check_permission" id="check_permission_<%= permission[i].ID %>" name="<%= permission[i].ID %>" />
+                                <label for="check_permission_<%= permission[i].ID %>"><%= permission[i].name %></label>
+                            </div>
+                        <% }; %>
+                            
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="modal-action waves-effect waves-green btn-flat">Save</button>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="new_role" class="modal">
+    <form action="/cms/settings/roles/new_role" method="post">
+        <div class="modal-content">
+            <h4>New role</h4>
+            <div class="row">
+                <div class="col s12 m8 l4">
+                    <input type="text" class="new_role_name" id="new_role_name" name="new_role_name" placeholder="user">
+                    <input type="number" class="new_role_level" id="new_role_level" name="new_role_level" placeholder="5">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Add</button>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="remove_role" class="modal">
+    <form method="post" action="/cms/settings/roles/remove_role" id="remove_role_form">
+        <div class="modal-content">
+            <h4>Delete role (<span class="role_id"></span>)</h4>
+            <p>Are you sure you want to delete <i><span class="html_name"></span></i> permanently?</p>
+            <p class="red-text"><strong>This can't be undone.</strong></p>
+            <input type="hidden" id="remove_input_ID" class="insert_role_id" name="remove_input_ID">
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class=" modal-action modal-close waves-effect waves-red red white-text btn-flat">Delete</button>
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="move_role" class="modal modal-fixed-footer">
+    <form method="post" action="/cms/settings/roles/move_role" id="move_role_form">
+        <div class="modal-content">
+            <h4>Move role (<span class="role_id"></span>)</h4>
+            <p>Are you sure you want to move the user that use <i><span class="html_name"></span></i> permanently and remove the role?</p>
+            <p><strong>Move to:</strong></p>
+            <div class="input-field col s12 m6">
+                <select id="move_user_to" name="move_user_to">
+                </select>
+                <label for="move_user_to">Role</label>
+            </div>
+            <p class="red-text"><strong>This can't be undone.</strong></p>
+            <input type="hidden" id="move_remove_input_ID" class="insert_role_id" name="move_remove_input_ID">
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class=" modal-action waves-effect waves-red red white-text btn-flat">Delete</button>
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- FOOTER -->
+<%- include ../parts/footer.ejs %>
+
+<!-- SCRIPTS -->
+<%- include ../parts/scripts.ejs %>
+
+<script>
+
+    $(document).ready(function(){
+
+        $('.modal').modal();
+        var roles = <%- JSON.stringify(roles) %>;
+        var permission = <%- JSON.stringify(permission) %>;
+
+        var this_role = roles[0];
+
+        $('.edit_role').click(function(e){
+            e.preventDefault();
+
+            this_role = roles[$(this).attr('data-order')];
+            $('.role_id').html(this_role.ID);
+            $('.html_name').html(this_role.name);
+            $('.insert_role_id').val(this_role.ID);
+            $('.role_name').val(this_role.name);
+            $('.role_level').val(this_role.level);
+            $('#edit_role').modal('open');
+
+        })
+
+        $('.edit_permission').click(function(e){
+            e.preventDefault();
+            console.log(this_role)
+            var obj = {
+                link : '/cms/settings/roles/get_permissions'
+            }
+            var data = {
+                role_ID : this_role.ID
+            }
+
+            zoncms.ajax.sendData(obj,data,function(response){
+                // success
+                console.log(response);
+
+                // $('.check_permission').each(function(index,value){
+                //     console.log('/////////')
+                //     console.log(index)
+                //     console.log(value)
+                // })
+                $('.check_permission').prop( "checked", false );
+                $('.check_permission').attr( "checked", false );
+
+                $(response).each(function(index,value){
+                    $('#check_permission_'+value.permission_ID).prop( "checked", true );
+                    $('#check_permission_'+value.permission_ID).attr( "checked", true );
+                })
+
+                $('#edit_permission').modal('open');
+
+                
+            },function(){
+                // failure
+                console.log('Error with ajax request!');
+            });
+
+        })
+
+        $('#form_edit_permission').submit(function(e){
+            e.preventDefault();
+            console.log(permission);
+
+            var obj = {
+                link : '/cms/settings/roles/edit_permission'
+            }
+            var data = {
+                permissions : $(this).serializeArray(),
+                role_ID : this_role.ID
+            }
+
+            zoncms.ajax.sendData(obj,data,function(response){
+                // success
+                console.log(response);
+                window.location.reload();
+
+            },function(){
+                // failure
+                console.log('Error with ajax request!');
+            });
+
+        })
+
+        //sendData post:
+        //1# obj
+        // var obj = {
+        //     link : '/post'
+        // }
+        //2# data
+        //3# succes callback
+        //4# failure callback
+
+        var request_delete = function(){
+
+            var obj = {
+                link : '/cms/settings/roles/remove_role'
+            }
+
+            var data = {
+                remove_input_ID : $('#remove_input_ID').val()
+            }
+
+            zoncms.ajax.sendData(obj,data,function(response){
+                // success
+                console.log(response);
+
+                if(response == 'ok'){
+                    window.location.reload();
+                }else{
+
+                    var option_html = '';
+                    for(var i = 0;i<response.length;i++){
+                        if(Number(data.remove_input_ID) != Number(response[i].ID)){
+                            option_html += '<option value="'+response[i].ID+'" name="'+response[i].ID+'">'+response[i].name+'</option>';
+                        }
+                    }
+                    $('#move_user_to').html(option_html);
+                    $('#move_user_to').material_select();
+                    $('#move_role').modal('open');
+                }
+            },function(){
+                // failure
+                console.log('Error with ajax request!');
+            });
+            
+        }
+
+        $('#remove_role_form').submit(function(e){
+            e.preventDefault();
+            request_delete();
+        })
+
+        $('select').material_select();
+
+    });
+</script>
+
+<!-- END -->
+<%- include ../parts/end.ejs %>
+

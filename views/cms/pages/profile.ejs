@@ -1,0 +1,91 @@
+<!-- HEAD -->
+<%- include ../parts/head.ejs %>
+
+<!-- MAIN NAV -->
+<%- include ../parts/nav.ejs %>
+
+<!-- BODY CONTENT -->
+<main>
+    
+    <%- include ../parts/header.ejs %>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+    <div class="container">
+  <!--       <div class="row">
+            <div class="col s12 m8 offset-m2 l6 offset-l3">
+                <div class="card-panel grey lighten-5 z-depth-1">
+                  <div class="row valign-wrapper full-flex-height">
+                      <div alt="" class="col s2 circle background-image responsive-img" style="background-image: url('https://s-media-cache-ak0.pinimg.com/236x/ef/00/cf/ef00cfe932c0c5c71b7b4aecffce5955.jpg');"></div> 
+                    <div class="col s10">
+                      <span class="black-text">
+                        This is a square image. Add the "circle" class to it to make it appear circular.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div> -->
+        <!-- <div class="row">
+            <div class="col s12 col-center">
+                <img src="https://s-media-cache-ak0.pinimg.com/236x/ef/00/cf/ef00cfe932c0c5c71b7b4aecffce5955.jpg" class="responsive-img circle col-center" alt="" style="width:350px;height: 350px; display: block;">
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col s12 m10 l8 col-center">
+                <table class="striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th data-field="id">Profile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Role</strong></td>
+                            <td><%= user.name %></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email</strong></td>
+                            <td><%= user.email %></td>
+                        </tr>
+                        <% if(user.username != null){ %>
+                        <tr>
+                            <td><strong>Username</strong></td>
+                            <td><%= user.username %></td>
+                        </tr>
+                        <% }; %>
+                        <% if(user.firstname != null){ %>
+                        <tr>
+                            <td><strong>Firstname</strong></td>
+                            <td><%= user.firstname %></td>
+                        </tr>
+                        <% }; %>
+                        <% if(user.lastname != null){ %>
+                        <tr>
+                            <td><strong>Lastname</strong></td>
+                            <td><%= user.lastname %></td>
+                        </tr>
+                        <% }; %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+</main>  
+
+<!-- FOOTER -->
+<%- include ../parts/footer.ejs %>
+
+<!-- SCRIPTS -->
+<%- include ../parts/scripts.ejs %>
+
+<!-- END -->
+<%- include ../parts/end.ejs %>
+

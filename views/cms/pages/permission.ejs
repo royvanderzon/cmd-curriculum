@@ -1,0 +1,134 @@
+<!-- HEAD -->
+<%- include ../parts/head.ejs %>
+
+<!-- MAIN NAV -->
+<%- include ../parts/nav.ejs %>
+
+<!-- BODY CONTENT -->
+<main>
+
+    <%- include ../parts/header.ejs %>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m10">
+                    <ul class="collection with-header">
+                        <li class="collection-header"><h4>Permission list</h4></li>
+                        <% for(var i = 0;i<permission.length;i++){ %>
+                        <li class="collection-item tooltipped" data-position="left" data-delay="50" data-tooltip="ID(<%= permission[i].ID %>)">
+                            <div>
+                                <span class="level-badge">
+                                    level <%= permission[i].level %>
+                                </span>
+                                <strong><%= permission[i].name %></strong>
+                                <a href="#" class="secondary-content edit_permission" data-order="<%= i %>"><i class="material-icons">edit</i></a>
+                            </div>
+                        </li>
+                        <% }; %>
+                    </ul>
+                </div>
+                <div class="col s12 m10">
+                    <a class="btn-floating btn-large waves-effect waves-light red right" data-target="new_permission"><i class="material-icons">add</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+</main>  
+
+<!-- Modal Structure -->
+<div id="edit_permission" class="modal">
+    <form action="/cms/settings/permissions/edit_permission" method="post">
+        <div class="modal-content">
+            <h4>Edit permission ID(<span class="permission_id"></span>)</h4>
+            <div class="row">
+                <div class="col s12 m8 l4">
+                    <input type="text" hidden class="hidden hide none insert_permission_id" id="permission_id" name="permission_id">
+                    <input type="text" class="permission_name" id="permission_name" name="permission_name">
+                    <input type="number" class="permission_level" id="permission_level" name="permission_level">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-green btn-flat left" data-target="remove_permission">Remove</a>
+            <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="new_permission" class="modal">
+    <form action="/cms/settings/permissions/new_permission" method="post">
+        <div class="modal-content">
+            <h4>New permission</h4>
+            <div class="row">
+                <div class="col s12 m8 l4">
+                    <input type="text" class="new_permission_name" id="new_permission_name" name="new_permission_name" placeholder="permission name">
+                    <input type="number" class="new_permission_level" id="new_permission_level" name="new_permission_level" placeholder="5">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Add</button>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="remove_permission" class="modal">
+    <form method="post" action="/cms/settings/permissions/remove_permission" id="remove_permission_form">
+        <div class="modal-content">
+            <h4>Delete permission (<span class="permission_id"></span>)</h4>
+            <p>Are you sure you want to delete <i><span class="html_name"></span></i> permanently?</p>
+            <p class="red-text"><strong>This can't be undone.</strong></p>
+            <input type="hidden" id="remove_input_ID" class="insert_permission_id" name="remove_input_ID">
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class=" modal-action modal-close waves-effect waves-red red white-text btn-flat">Delete</button>
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- FOOTER -->
+<%- include ../parts/footer.ejs %>
+
+<!-- SCRIPTS -->
+<%- include ../parts/scripts.ejs %>
+
+<script>
+
+    $(document).ready(function(){
+
+        $('.modal').modal();
+        var permission = <%- JSON.stringify(permission) %>;
+
+        $('.edit_permission').click(function(e){
+            e.preventDefault();
+            var this_permission = permission[$(this).attr('data-order')];
+            $('.permission_id').html(this_permission.ID);
+            $('.html_name').html(this_permission.name);
+            $('.insert_permission_id').val(this_permission.ID);
+            $('.permission_name').val(this_permission.name);
+            $('.permission_level').val(this_permission.level);
+            $('#edit_permission').modal('open');
+
+        })
+
+        $('select').material_select();
+
+    });
+</script>
+
+<!-- END -->
+<%- include ../parts/end.ejs %>
+

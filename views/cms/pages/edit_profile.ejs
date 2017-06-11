@@ -1,0 +1,90 @@
+<!-- HEAD -->
+<%- include ../parts/head.ejs %>
+
+<!-- MAIN NAV -->
+<%- include ../parts/nav.ejs %>
+
+<!-- BODY CONTENT -->
+<main>
+    
+    <%- include ../parts/header.ejs %>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col s12 m10 l8 col-center">
+                <form action="/cms/profile/edit" method="post">
+                    <table class="striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th data-field="id">Profile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Role</strong></td>
+                                <td><%= user.name %></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email</strong></td>
+                                <td><%= user.email %></td>
+                            </tr>
+                            <% if(user.username != null){ %>
+                            <tr>
+                                <td><strong>Username</strong></td>
+                                <td><%= user.username %></td>
+                            </tr>
+                            <% }; %>
+                            <tr>
+                                <td><strong>Firstname</strong></td>
+                                <% if(user.firstname != null){ %>
+                                    <td><input name="firstname" id="firstname" type="text" value="<%= user.firstname %>" required></td>
+                                <% }else{ %>
+                                    <td><input name="firstname" id="firstname" type="text" value="" required></td>
+                                <% }; %>
+                            </tr>
+                            <tr>
+                                <td><strong>Lastname</strong></td>
+                                <% if(user.lastname != null){ %>
+                                    <td><input name="lastname" id="lastname" type="text" value="<%= user.lastname %>" required></td>
+                                <% }else{ %>
+                                    <td><input name="lastname" id="lastname" type="text" value="" required></td>
+                                <% }; %>
+                            </tr>
+                            <tr>
+                                <td><strong>Mobile</strong></td>
+                                <% if(user.mobile != null){ %>
+                                    <td><input name="mobile" id="mobile" type="text" value="<%= user.mobile %>" required></td>
+                                <% }else{ %>
+                                    <td><input name="mobile" id="mobile" type="text" value="" required></td>
+                                <% }; %>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" class="waves-effect waves-light btn right">save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+</main>  
+
+<!-- FOOTER -->
+<%- include ../parts/footer.ejs %>
+
+<!-- SCRIPTS -->
+<%- include ../parts/scripts.ejs %>
+
+<!-- END -->
+<%- include ../parts/end.ejs %>
+

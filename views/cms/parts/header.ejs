@@ -1,0 +1,18 @@
+<% if(typeof page.title === 'string' || typeof page.under_title === 'string'){ %>
+
+<div class="section" id="index-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m9">
+            	<% if(page.title){ %>
+                <h1 class="header lighten-3 center-on-small-only"><%= page.title %></h1>
+                <% }; %>
+                <% if(page.under_title){ %>
+                <h4 class ="light text-lighten-1 center-on-small-only header-small <% if(!page.title){%>banner-title-only<%};%>"><%= page.under_title %></h4>
+                <% }; %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% }; %>

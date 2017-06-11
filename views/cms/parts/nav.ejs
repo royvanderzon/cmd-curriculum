@@ -1,0 +1,65 @@
+<header id="main-nav">
+    <div class="container">
+        <a class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only" data-activates="nav-mobile" href="#">
+            <i class="material-icons">
+                menu
+            </i>
+        </a>
+    </div>
+    <ul class="side-nav fixed" id="nav-mobile">
+        <li class="logo">
+            <a class="brand-logo" href="#" id="logo-container">
+                <img alt="" id="font-page-logo" src="/cms/images/logo.png">
+                </img>
+            </a>
+        </li>
+        <li>
+            <div class="divider">
+            </div>
+        </li>
+
+        <%
+            for(var i = 0;i<menu.length;i++){
+                if(menu[i].type == 'head'){
+        %>
+
+                <li class="bold <%= menu[i].class %>">
+                    <a class="waves-effect waves-teal" href="<%= menu[i].href %>"><%= menu[i].title %></a>
+                </li>
+        <%
+                }else if(menu[i].type == 'sub'){
+        %>
+
+                    <li class="no-padding <%= menu[i].class %>">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold">
+                                <a class="collapsible-header waves-effect waves-teal">
+                                    <%= menu[i].title %>
+                                </a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <% for(var ii = 0;ii<menu[i].menus.length;ii++){ %>
+
+                                        <li><a href="<%= menu[i].menus[ii].href %>"><%= menu[i].menus[ii].title %></a></li>
+                                        
+                                        <% } %>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+        <%
+                }
+            }
+        %>
+
+
+        <!-- <li class="search">
+          <div class="search-wrapper card">
+            <input id="search"><i class="material-icons">search</i>
+            <div class="search-results"></div>
+          </div>
+        </li> -->
+
+    </ul>
+</header>

@@ -1,0 +1,103 @@
+<!-- HEAD -->
+<%- include ../parts/head.ejs %>
+
+<!-- MAIN NAV -->
+<%- include ../parts/nav.ejs %>
+
+<!-- BODY CONTENT -->
+<main>
+
+    
+    <%- include ../parts/header.ejs %>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+     <div class="container">
+        <div class="row">
+            <form class="col s12 m8 l4 col-center" id="login_form" method="post" action="/cms/signup">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">email</i>
+                        <input id="email" type="email" name="email" class="validate" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-field col s12 password_input">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <input id="password" name="password" type="password" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="input-field col s12 password_input">
+                        <i class="material-icons passwordstatus prefix red-text"></i>
+                        <input id="re_password" name="re_password" type="password" class="validate" required>
+                        <label for="re_password">Retype password</label>
+                    </div>
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="row">
+                    <button type='submit' name='btn_login' id="submitbtn" class='col s12 m8 l4 waves-effect waves-light right btn blue'>Signup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+</main>  
+
+<!-- FOOTER -->
+<%- include ../parts/footer.ejs %>
+
+<!-- SCRIPTS -->
+<%- include ../parts/scripts.ejs %>
+
+<script>
+    $(document).ready(function(){
+
+        var can_submit = false;
+        $('.password_input input').keyup(function(){
+            if($('#password').val().length > 6){
+                if($('#re_password').val() == $('#password').val()){
+                    $('.passwordstatus').addClass('green-text');
+                    $('.passwordstatus').removeClass('red-text');
+                    $('.passwordstatus').html('checkmark');
+                    can_submit = true;
+                }else{
+                    if($('#re_password').val().length > 3){
+                        $('.passwordstatus').addClass('red-text');
+                        $('.passwordstatus').removeClass('green-text');
+                        $('.passwordstatus').html('close');
+                        can_submit = false;
+                    }
+                }
+            }else{
+                $('.passwordstatus').removeClass('green-text');
+                $('.passwordstatus').removeClass('red-text');
+                $('.passwordstatus').html('');
+                can_submit = false;
+            }
+        });
+
+        $('#login_form').submit(function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            if(can_submit){
+                $(this)[0].submit();
+            }else{
+                Materialize.toast('Please fill in the form correctly', 4000, 'red')
+            }
+        })
+
+    })
+</script>
+
+<!-- END -->
+<%- include ../parts/end.ejs %>
+

@@ -1,0 +1,63 @@
+<!-- HEAD -->
+<%- include ../parts/head.ejs %>
+
+<!-- MAIN NAV -->
+<%- include ../parts/nav.ejs %>
+
+<!-- BODY CONTENT -->
+<main>
+
+    
+    <%- include ../parts/header.ejs %>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+    <div class="container">
+        <div class="row">
+            <form class="col s12 m8 l4 col-center" id="login_form" method="post" action="/cms/login">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="email" type="email" name="email" class="validate" required>
+                        <label for="email">Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <input id="password" name="password" type="password" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="row">
+                    <% if(toast.length > 0){ %>
+                    <div class="col s12 m4 l8">
+                        <div class="col s12"><a href="/cms/forgot_password">forgot password?</a></div>
+                    </div>
+                    <% }; %>
+                    <button type='submit' name='btn_login' id="submitbtn" class='col s12 m8 l4 waves-effect waves-light right btn blue'>Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+</main>  
+
+<!-- FOOTER -->
+<%- include ../parts/footer.ejs %>
+
+<!-- SCRIPTS -->
+<%- include ../parts/scripts.ejs %>
+
+<!-- END -->
+<%- include ../parts/end.ejs %>
+

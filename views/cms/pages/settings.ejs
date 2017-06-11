@@ -1,0 +1,198 @@
+<!-- HEAD -->
+<%- include ../parts/head.ejs %>
+
+<!-- MAIN NAV -->
+<%- include ../parts/nav.ejs %>
+
+<!-- BODY CONTENT -->
+<main>
+
+    <%- include ../parts/header.ejs %>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m10 l6">
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">perm_identity</i>
+                        <span class="title">Signup</span>
+                        <p>New users can signup.</p>
+                        <div class="secondary-content">
+                            <div class="switch">
+                                <label>Off<input type="checkbox" data-name="mode_signup" <% if(settings.mode_signup == 'true'){%>checked<% }; %>><span class="lever"></span>On</label>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">info_outline</i>
+                        <span class="title">Documentation</span>
+                        <p>Activate documentation.</p>
+                        <div class="secondary-content">
+                            <div class="switch">
+                                <label>Off<input type="checkbox" data-name="mode_documentation" <% if(settings.mode_documentation == 'true'){%>checked<% }; console.log(settings.mode_documentation) %>><span class="lever"></span>On</label>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">assignment_ind</i>
+                        <span class="title">Edit profile</span>
+                        <p>Allow users to edit profile.</p>
+                        <div class="secondary-content">
+                            <div class="switch">
+                                <label>Off<input type="checkbox" data-name="allow_profile_edit" <% if(settings.allow_profile_edit == 'true'){%>checked<% }; console.log(settings.allow_profile_edit) %>><span class="lever"></span>On</label>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="collection-item avatar live-text">
+                        <i class="material-icons circle">folder</i>
+
+                        <div class="input-field col s11 password_input">
+                            <input id="application_name" name="application_name" value="<%= settings.application_name %>" data-name="application_name" type="text" class="validate">
+                            <label for="application_name">Site title</label>
+                        </div>
+                        <div class="input-field col s1">
+                            <!-- <i id="status_application_name" class="material-icons tooltipped input_save_status prefix" data-position="right" data-delay="50" data-tooltip="Saved">checkmark</i> -->
+                            <i id="status_application_name" class="material-icons tooltipped input_save_status prefix"></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- <div class="divider"></div> -->
+        <div class="section"></div>
+        <div class="row">
+            <div class="col s12 m10 l6">
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">perm_identity</i>
+                        <span class="title">Signup</span>
+                        <p>New users can signup</p>
+                        <div class="secondary-content">
+                            <div class="switch">
+                                <label>Off<input type="checkbox"><span class="lever"></span>On</label>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">info_outline</i>
+                        <span class="title">Documentation</span>
+                        <p>Activate documentation</p>
+                        <div class="secondary-content">
+                            <div class="switch">
+                                <label>Off<input type="checkbox"><span class="lever"></span>On</label>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">folder</i>
+                        <span class="title">Title</span>
+                        <p>Lorem ipsum</p>
+                        <div class="secondary-content">
+                            <div class="switch">
+                                <label>Off<input type="checkbox"><span class="lever"></span>On</label>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+</main>  
+
+<!-- FOOTER -->
+<%- include ../parts/footer.ejs %>
+
+<!-- SCRIPTS -->
+<%- include ../parts/scripts.ejs %>
+
+<script>
+    $(document).ready(function(){
+
+        $(".switch input").change(function(e) {
+
+            var data = {};
+            data._this = this,
+            data.key = String($(this).attr('data-name'));
+            data.value = String(this.checked);
+            //sendData post:
+            //1# data
+            //2# succes callback
+            //3# failure callback
+            sendData(data,function(response){
+                // success
+                $(data._this).prop("checked", data._this.checked);
+            },function(){
+                // failure
+                $(data._this).prop("checked", ! data._this.checked);
+            });
+        });
+
+        $('.live-text input').keyup(function(){
+
+            var data = {};
+            data.key = $(this).attr('data-name');
+            data.value = String($(this).val());
+
+            //sendData post:
+            //1# data
+            //2# succes callback
+            //3# failure callback
+            sendData(data,function(){
+                // success
+                $('#status_'+data.key).removeClass('red-text');
+                $('#status_'+data.key).addClass('green-text');
+                $('#status_'+data.key).html('checkmark');
+
+                $('#status_'+data.key).tooltip({
+                    delay : 50,
+                    tooltip : 'Saved',
+                    position : 'right'
+                });
+            },function(){
+                // failure
+                $('#status_'+data.key).removeClass('green-text');
+                $('#status_'+data.key).addClass('red-text');
+                $('#status_'+data.key).html('close');
+
+                $('#status_'+data.key).tooltip({
+                    delay : 50,
+                    tooltip : 'No connection',
+                    position : 'right'
+                });
+            });
+        });
+
+        var sendData = function(data,cbSucces,cbFailure){
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                url: '/cms/settings/change_setting',                      
+                success: function(data) {
+                    // console.log(JSON.stringify(data));
+                    if(typeof cbSucces === "function"){
+                        cbSucces(data);
+                    }
+                },
+                error: function(data) {
+                    if(typeof cbFailure === "function"){
+                        cbFailure(data);
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+<!-- END -->
+<%- include ../parts/end.ejs %>
+
