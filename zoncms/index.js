@@ -524,6 +524,28 @@ var zoncms = {
 	            }
 			});
 	    },
+	    getP : function(obj){
+    		var query = new Promise(
+			    function(resolve, reject) {
+			        if (typeof obj === 'object') {
+            	    	if(typeof obj.query != 'string'){
+				    		obj.query = '';
+				    	}
+						connection.query('SELECT '+obj.search+' FROM ' +obj.db+obj.query, function(err, result) {
+							if (err) {
+				                console.log(err);
+				                return false;
+				            } else {
+			            		resolve(result)
+				            }
+						});
+			        } else {
+			            reject(reason); // reject
+			        }
+			    }
+			);
+			return query
+	    },
 	    get : function(obj,cb){
 
 	    	// var obj = {
