@@ -9,7 +9,7 @@ _Comming soon_
 This app is a CMS where with a frontview where all intrested user can see the whole curriculum for a study. In the back-end users can add new years, make custom labels, and make years that will automatically will be rendered to the front-view of the appliation.
 All the inserted data will be converted to a fully responsive curriculum. The curriculum is designed for all devices. The font-view is touch friendly, fast, responsive and works on every device.
 
-![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/images/Back-end.png)
+![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/blob/master/images/Back-end.png)
 
 ## MoSCoW
 ### Must haves
