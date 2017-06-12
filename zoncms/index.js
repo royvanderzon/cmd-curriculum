@@ -31,7 +31,15 @@ var db_settings = {
     port: process.env.MYSQL_PORT
 }
 
-var connection = mysql.createConnection(db_settings);
+var connection = {
+	query : function(p1,p2,p3){
+		if(arguments.length == 2){
+			return mysql.createConnection(db_settings).query(p1,p2)
+		}else if(arguments.length == 3){
+			return mysql.createConnection(db_settings).query(p1,p2,p3)
+		}
+	}
+}
 
 var zoncms = {
 

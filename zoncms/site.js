@@ -28,6 +28,16 @@ var db_settings = {
     port: process.env.MYSQL_PORT
 }
 
+var connection = {
+    query : function(p1,p2,p3){
+        if(arguments.length == 2){
+            return mysql.createConnection(db_settings).query(p1,p2)
+        }else if(arguments.length == 3){
+            return mysql.createConnection(db_settings).query(p1,p2,p3)
+        }
+    }
+}
+
 // var test = new Promise(
 //     function(resolve, reject) {
 //         if (true) {
@@ -44,8 +54,6 @@ var db_settings = {
 //     .then(function(ding) {
 //         console.log(ding)
 //     })
-
-var connection = mysql.createConnection(db_settings);
 
 var site = {
 	query : {
