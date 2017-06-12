@@ -35,4 +35,8 @@ router.get('/', function(req, res) {
     res.render('site/pages/home');
 });
 
+// router.get('/:jaar',function(req,res){
+// 	res.render('site/pages/jaar')
+// })
+
 module.exports = router;
