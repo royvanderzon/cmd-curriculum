@@ -38,8 +38,8 @@ router.get('/', function(req, res) {
         		menu : zoncms.menu.cms(req,res),
         		page : {
                     global : zoncms.settings.options,
-                    title : 'ZONMEDIA CMS',
-                    under_title : 'A simple node.js content management system.',
+                    title : 'CMD AMSTERDAM',
+                    under_title : 'A simple node.js content management system for displaying your curriculum.',
                     title_head : 'Home'
                 },
                 content : content[0]
