@@ -11,7 +11,7 @@ All the inserted data will be converted to a fully responsive curriculum. The cu
 
 __Data modal__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/data.png)
-__First design__
+__Front-end design__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/ontwerp.jpg)
 __Back-end design__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/Back-end.png)
