@@ -1,0 +1,168 @@
+body {
+    background-color: $white;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+    /*display: block;*/
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper > nav {
+    min-height: 100%;
+    min-height: 100vh;
+    width: 100%;
+    display: block;
+    float: left;
+    background-color: $orange;
+}
+
+.wrapper > main {
+    min-height: 100%;
+    min-height: 100vh;
+    width: 100%;
+    display: block;
+    float: left;
+    background-color: $white;
+}
+
+.wrapper > nav {
+    .logo {
+        padding: 25px 10px 0px 10px;
+		margin: 0 auto;
+    }
+    ul {
+        display: block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {
+            display: block;
+            max-width: 100%;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            position: relative;
+            transition: 200ms all ease-in;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0) 50%);
+            background-size: 200% 100%;
+            background-position: right bottom;
+            &:hover {
+                /*background-color: rgba(0,0,0,0.1);*/
+                background-position: left bottom;
+            }
+            &:first-child {
+                border-top: 1px solid rgba(0, 0, 0, 0.2);
+            }
+            &.active {
+                background-position: left bottom;
+            }
+            .nav-item {
+                padding-left: 15px;
+                padding-right: 15px;
+                &:after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                }
+                img {
+                    display: block;
+                    max-width: 100%;
+                    max-height: 80px;
+                    width: auto;
+                    max-width: 20%;
+                    float: left;
+                    padding: 15px;
+                }
+                a {
+                    display: block;
+                    text-transform: normal;
+                    font-size: 1.5em;
+                    text-decoration: none;
+                    line-height: 70px;
+                    width: 80%;
+                    font-weight: 100;
+                    color: $black;
+                    float: left;
+                    &:after {
+                        display: block;
+                        content: '';
+                        position: absolute;
+                        height: 100%;
+                        width: 100%;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*.wrapper > nav > ul > li .nav-item {
+    padding-left: 15px;
+    padding-right: 15px;
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+.wrapper > nav > ul > li .nav-item img {
+    display: block;
+    max-width: 100%;
+    max-height: 80px;
+    width: auto;
+    max-width: 20%;
+    float: left;
+}
+
+.wrapper > nav > ul > li .nav-item a {
+    padding-left: 15px;
+    display: block;
+    text-transform: uppercase;
+    font-weight: bold;
+	text-decoration: none;
+    line-height: 70px;
+    width: 80%;
+    color: $black;
+    float: left;
+}
+*/
+
+@media (max-width: $screen-sm-max) {
+    .wrapper nav {
+        position: fixed;
+        z-index: 9999;
+        height: 100%;
+        width: 100%;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+}
+
+@media (min-width: $screen-md-min) {
+    .wrapper nav {
+        width: 25%;
+    }
+    .wrapper main {
+        width: 75%;
+    }
+}
+
+@media (min-width: $screen-lg-min) {
+    .wrapper nav {
+        width: 20%;
+    }
+    .wrapper main {
+        width: 80%;
+    }
+}
+
+@media (min-width: $screen-xl-min) {}
