@@ -229,7 +229,7 @@ $(document).ready(function() {
         if ($('#block_image_' + id).html() == 'undefined' || $('#block_image_' + id).html().length < 1) {
             $('.image-header').css('backgroundImage', 'url(\'/cms/images/noimg.png\')')
         } else {
-            console.log($('#block_image_' + id).html())
+            // console.log($('#block_image_' + id).html())
             $('.image-header').css('backgroundImage', 'url(\'' + $('#block_image_' + id).html() + '\')')
         }
         $("#color_choise").val($('#block_color_' + currentEditId).html());

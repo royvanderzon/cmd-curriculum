@@ -1,3 +1,25 @@
+<%
+function getContrastYIQ(hexcolor){
+    var r = parseInt(hexcolor.substr(0,2),16);
+    var g = parseInt(hexcolor.substr(2,2),16);
+    var b = parseInt(hexcolor.substr(4,2),16);
+    var yiq = ((r*299)+(g*587)+(b*114))/1000;
+    return (yiq >= 128) ? 'black' : 'white';
+}
+function getContrast50(hexcolor){
+    if(hexcolor){
+        return (parseInt(hexcolor, 16) > 0xffffff/2) ? 'black':'white';
+    }else{
+        return 'black'
+    }
+}
+function getExcerpt(string){
+    if(string.length >= 30){
+        string = string.slice(0,30) + '...'
+    }
+    return string
+}
+%>
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -40,12 +62,12 @@
                     </div>
                 </div>
                 <ul>
-                    <% years.forEach(function(el){ %>
+                    <% years.forEach(function(year){ %>
                     <li>
                         <div class="nav-item">
                             <img src="/site/images/icon.png" alt="link icon">
-                            <!-- <%= JSON.stringify(el) %> -->
-                            <a href="#<%= el.ID %>"><%= el.title %></a>
+                            <!-- <%= JSON.stringify(year) %> -->
+                            <a href="#<%= year.ID %>"><%= year.title %></a>
                         </div>
                     </li>
                     <% }) %>
@@ -53,17 +75,45 @@
             </nav>
 
             <main>
-                <div class="container">
+                <div class="container max-container">
                     <div class="row">
                         <div class="col-xs-12">
                             
-                            <div class="curriculem-container">
-                                <div class="curriculem-row">
-                                    <div class="curriculem-item">
-                                    
+                            <% years.forEach(function(year,index){ %>
+                                <% year.data = JSON.parse(year.data) %>
+                                <div class="curriculem-container" id="<%= year.ID %>">
+
+                                    <script>
+                                        var json_<%= index %>
+                                        console.log(<%- JSON.stringify(year) %>)
+                                    </script>
+
+                                    <% year.data.rows.forEach(function(row){ %>
+                                    <div class="curriculem-row">
+
+                                        <% row.forEach(function(column){ %>
+                                            
+                                            <div class="curriculem-column">
+                                                <%
+                                                var totalItems = column.column.length
+                                                var percentHeight = 100 * 1 / totalItems
+                                                %>
+                                                <% column.column.forEach(function(item){ %>
+
+
+                                                    <div class="curriculem-item color-<%= getContrast50(item.color) %>" style="height:<%= percentHeight %>%;background-color:#<%= item.color %>;">
+                                                        <span><%= getExcerpt(item.title) %></span>
+                                                    </div>
+                                                <% }) %>
+                                            </div>
+
+                                        <%}) %>
+
                                     </div>
+                                    <% }) %>
+
                                 </div>
-                            </div>
+                            <% }) %>
 
                         </div>
                     </div>
@@ -73,9 +123,11 @@
     </div>
 
     <!-- SCRIPTS -->
-    <script src="/site/js/jquery.js"></script>
-    <script src="/site/js/bootstrap.min.js"></script>
+    <!-- <script src="/site/js/jquery.js"></script> -->
+    <!-- <script src="/site/js/bootstrap.min.js"></script> -->
+    <script src="/site/js/wiquery.js"></script>
     <script src="/site/js/main.js"></script>
+    <!-- <script src="/site/js/app.bundle.js"></script> -->
 
 </body>
 

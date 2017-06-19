@@ -38,14 +38,16 @@
     },
     "devDependencies": {
         "@glimpse/glimpse": "^0.20.8",
+        "node-sass": "^4.5.3",
         "onchange": "^3.2.1",
-        "node-sass": "^4.5.3"
+        "webpack": "^2.6.1"
     },
     "scripts": {
         "start": "node app.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "sass-site": "node-sass src/site/scss/main.scss --output public/site/css --source-map-embed --source-map-contents --output-style compressed",
         "watch-site": "onchange src/site/scss/*.scss -- npm run sass-site",
+        "webpack" : "webpack src/site/js/index.js public/site/js/app.bundle.js",
         "dev-site": "onchange src/site/scss/*.scss -- npm run sass-site | nodemon app.js"
     },
     "keywords": [],
