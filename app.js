@@ -1,6 +1,5 @@
 // server.js
 global.__base = __dirname + '/';
-
 require('dotenv').config()
 
 // set up ======================================================================
@@ -33,15 +32,9 @@ var moment = require('moment');
 
 global.appRoot = path.resolve(__dirname);
 
-// var configDB = require('./config/database.js');
-
 // set router ================================================================
 var cms_routes = require('./routes/cms/home');
 var site_routes = require('./routes/site/home');
-
-
-// var pjson = require('./package.json');
-// console.log(pjson.version);
 
 // Uploaden
 var upload = multer({ dest: 'public/uploads/' });
@@ -52,8 +45,6 @@ app.use(express.static('public')); // to add CSS
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
-// app.use( bodyParser.json() );
-// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
@@ -67,21 +58,11 @@ app.use(session({
     saveUninitialized: process.env.SESSION_SAVEUNINITIALIZED,
     key: process.env.SESSION_KEY,
     resave: process.env.SESSION_RESAVE,
-    // cookie: {
-    //     httpOnly: true,
-    //     // secure: true,
-    //     domain: 'localhost',
-    //     path: '/',
-    //     // Cookie will expire in 1 hour from when it's generated 
-    //     expires: new Date(Date.now() + 60 * 60 * 100000000)
-    //     // expires: new Date(Date.now() + 60 * 60 * 1000)
-    // }
 }));
 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
-
 
 app.use('/', site_routes);
 app.use('/cms', cms_routes);
@@ -90,7 +71,6 @@ require('./routes/auth.js')(app, passport);
 
 app.use(function(err, req, res, next) {
     if (err.code !== 'EBADCSRFTOKEN') return next(err);
-
     // handle CSRF token errors here 
     res.status(403);
     res.send('Wrong token. If this happens a lot, please reset your browser cache!');

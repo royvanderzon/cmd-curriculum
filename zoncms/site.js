@@ -28,16 +28,6 @@ var db_settings = {
     port: process.env.MYSQL_PORT
 }
 
-var connection = {
-    query : function(p1,p2,p3){
-        if(arguments.length == 2){
-            return mysql.createConnection(db_settings).query(p1,p2)
-        }else if(arguments.length == 3){
-            return mysql.createConnection(db_settings).query(p1,p2,p3)
-        }
-    }
-}
-
 // var test = new Promise(
 //     function(resolve, reject) {
 //         if (true) {
@@ -56,28 +46,45 @@ var connection = {
 //     })
 
 var site = {
-	query : {
-		build : {
-			categories : function(idArray){
-				
-			}
-		}
-	},
+    connection: {
+        new: function() {
+            connectionCount++
+            console.log(connectionCount)
+            var connection = mysql.createConnection(db_settings)
+            return connection
+        },
+        connect: function(connection) {
+            connection.connect()
+        },
+        end: function(connection) {
+            connection.end()
+        }
+    },
+    query: {
+        build: {
+            categories: function(idArray) {
+
+            }
+        }
+    },
     db: {
         //promise
         getCategory: function(id, cb) {
             var queryPromise = new Promise(
                 function(resolve, reject) {
                     if (true) {
-                        connection.query('SELECT * FROM category', function(err,result) {
+                        var connection = site.connection.new()
+                        site.connection.connect(connection)
+                        connection.query('SELECT * FROM category', function(err, result) {
                             if (err) {
                                 reject(err);
                                 return;
                             } else {
-                            	resolve(result);
+                                resolve(result);
                                 return;
                             }
                         });
+                        site.connection.end(connection)
                     } else {
                         reject(reason); // reject
                     }
@@ -89,10 +96,10 @@ var site = {
         getCategoriesContent: function(idArray, cb) {
             //make function where idArray is set to addQuery --> WHERE AND .. WHERE AND .. etc.....
             var addQuery = ''
-            idArray.forEach(function(value, index){
-                if(index < 1){
+            idArray.forEach(function(value, index) {
+                if (index < 1) {
                     addQuery += ' ID = ' + value.id
-                }else{
+                } else {
                     addQuery += ' OR ID = ' + value.id
                 }
             })
@@ -100,7 +107,9 @@ var site = {
             var queryPromise = new Promise(
                 function(resolve, reject) {
                     if (true) {
-                        connection.query('SELECT * FROM category WHERE' + addQuery, function(err,result) {
+                        var connection = site.connection.new()
+                        site.connection.connect(connection)
+                        connection.query('SELECT * FROM category WHERE' + addQuery, function(err, result) {
                             if (err) {
                                 reject(err);
                                 return;
@@ -109,6 +118,7 @@ var site = {
                                 return;
                             }
                         });
+                        site.connection.end(connection)
                     } else {
                         reject(reason); // reject
                     }
