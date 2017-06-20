@@ -1,5 +1,5 @@
 body {
-    background-color: $white;
+    background-color: $grey;
     font-size: 14px;
     font-family: 'Open Sans', sans-serif;
 }
@@ -10,6 +10,14 @@ body {
 
 .color-white {
     color: $white;
+}
+
+.bg-color-black {
+    background-color: $black;
+}
+
+.bg-color-white {
+    background-color: $white;  
 }
 
 .wrapper {
@@ -35,6 +43,38 @@ body {
     width: 100%;
     display: block;
     float: left;
+    background-color: $transparent;
+    &:before {
+        content: '';
+        display: block;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        opacity: .75;
+        background-color: $grey;
+        background-image: url('/site/images/bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    &:after {
+        content: '';
+        display: block;
+        position: fixed;
+        z-index: -2;
+        background-color: $grey;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
 }
 
 .modal {

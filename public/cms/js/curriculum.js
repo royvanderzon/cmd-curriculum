@@ -39,7 +39,6 @@ function imageHandler(image, callback) {
             if (response.status === 200 && response.success) {
                 callback(response.link);
             } else {
-                console.log('yoho')
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     callback(e.target.result);

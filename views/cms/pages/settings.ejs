@@ -59,43 +59,14 @@
                             <i id="status_application_name" class="material-icons tooltipped input_save_status prefix"></i>
                         </div>
                     </li>
-                </ul>
-            </div>
-        </div>
-        <!-- <div class="divider"></div> -->
-        <div class="section"></div>
-        <div class="row">
-            <div class="col s12 m10 l6">
-                <ul class="collection">
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle">perm_identity</i>
-                        <span class="title">Signup</span>
-                        <p>New users can signup</p>
-                        <div class="secondary-content">
-                            <div class="switch">
-                                <label>Off<input type="checkbox"><span class="lever"></span>On</label>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle">info_outline</i>
-                        <span class="title">Documentation</span>
-                        <p>Activate documentation</p>
-                        <div class="secondary-content">
-                            <div class="switch">
-                                <label>Off<input type="checkbox"><span class="lever"></span>On</label>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle">folder</i>
-                        <span class="title">Title</span>
-                        <p>Lorem ipsum</p>
-                        <div class="secondary-content">
-                            <div class="switch">
-                                <label>Off<input type="checkbox"><span class="lever"></span>On</label>
-                            </div>
-                        </div>
+                    <li class="collection-item avatar live-text">
+                        <i class="material-icons circle">image</i>
+
+                        <form action="" id="formContent" method="post" enctype="multipart/form-data">
+                            <label for="application_logo">Header image</label>
+                            <input type="file" name="application_logo" required="" id="application_logo">
+                            <!-- <button class="submitI" >Upload Image</button>  -->
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -116,6 +87,56 @@
 
 <script>
     $(document).ready(function(){
+
+        $("#application_logo").change(function() {
+            console.log('uploaddinggg')
+            $('#formContent').submit()
+                // return false;
+        });
+
+        $("#formContent").submit(function(e) {
+            e.preventDefault();
+
+            var formdata = new FormData(this);
+
+            $.ajax({
+                url: "/cms/storage/upload_simple",
+                type: "POST",
+                data: formdata,
+                mimeTypes: "multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+
+                    var response = JSON.parse(data)
+                    // $('#block_image_' + currentEditId).html(response.link)
+                    console.log(response)
+                    var data = {};
+                    data.key = 'application_logo';
+                    data.value = response.link;
+
+                    //sendData post:
+                    //1# data
+                    //2# succes callback
+                    //3# failure callback
+                    sendData(data,function(){
+                        // success
+                        console.log(data)
+                        $('#font-page-logo').attr('src',data.value)
+                        Materialize.toast('Upload success!', 3000, 'green')
+                        console.log('uploading success')
+                    },function(){
+                        // failure
+                        Materialize.toast('Upload failed..', 3000, 'red')
+                        console.log('uploading failed')
+                    });
+                },
+                error: function() {
+                    console.log('something went wrong uploading...')
+                }
+            });
+        });
 
         $(".switch input").change(function(e) {
 

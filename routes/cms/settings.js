@@ -28,6 +28,26 @@ router.get('/',zoncms.user.isLoggedIn,zoncms.user.checkLevel([120]), function(re
 
 });
 
+router.post('/save', zoncms.user.isLoggedIn, zoncms.user.checkLevel([121]), function(req, res) {
+
+    var data = req.body;
+    var obj = {
+        id: req.params.id,
+        db: 'setting',
+        update: {
+            data: JSON.stringify(req.body)
+        }
+    }
+
+    console.log(obj)
+
+    res.redirect('/cms/settings')
+    // zoncms.db.set(obj, function() {
+    //     res.send('ok')
+    // })
+
+});
+
 //##POST TO CHANGE SETTINGS (AJAX CALL FROM CLIENT)
 router.post('/change_setting',zoncms.user.isLoggedIn,zoncms.user.checkLevel([121]), function(req, res) {
 

@@ -12,10 +12,10 @@
         flex-wrap: wrap;
     }
     .curriculem-row {
-        background-color: $lightgrey;
+        background-color: $transparent;
         padding: 5px;
-        border-top: 7.5px solid $white;
-        border-bottom: 7.5px solid $white;
+        border-top: 7.5px solid $transparent;
+        border-bottom: 7.5px solid $transparent;
         flex-basis: 100%;
         width: 100%;
         display: flex;
@@ -25,8 +25,9 @@
             padding: 10px;
             padding-top: 0px;
             padding-bottom: 0px;
-            border-top: 7.5px $lightgrey solid;
-            border-bottom: 7.5px $lightgrey solid;
+            border-top: 7.5px $transparent solid;
+            border-bottom: 7.5px $transparent solid;
+            background-color: $white;
             .item-modal {
                 cursor: pointer;
                 /*transition: 200ms all ease-in;*/
@@ -41,12 +42,12 @@
                 /*margin-bottom: 5px;*/
                 /*margin-top: 5px;*/
                 padding: 10px;
-                border-top: 2.5px solid $lightgrey;
-                border-bottom: 2.5px solid $lightgrey;
+                border-top: 2.5px solid $white;
+                border-bottom: 2.5px solid $white;
                 position: relative;
                 .info-icon {
                     position: absolute;
-                    background-color: $white;
+                    opacity: .5;
                     display: block;
                     color: $black;
                     font-family: serif;
@@ -55,7 +56,7 @@
                     height: 15px;
                     width: 15px;
                     line-height: 15px;
-                    box-shadow: $shadow;
+                    /*box-shadow: $shadow;*/
                     cursor: pointer;
                     text-align: center;
                     right: 10px;
@@ -65,13 +66,18 @@
         }
     }
     .curriculum-header {
-        padding: 1.5em;
         display: block;
-        h2,p{
-        	margin: 0;
+        padding: 5px;
+        .header-inner {
+            background-color: $white;
+            padding: 1.5em;
         }
-        h2{
-        	margin-bottom: 10px;
+        h2,
+        p {
+            margin: 0;
+        }
+        h2 {
+            margin-bottom: 10px;
         }
     }
 }

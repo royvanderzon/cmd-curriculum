@@ -75,11 +75,11 @@ function hasContent(item){
                 <ul>
                     <% years.forEach(function(year,index){ %>
                     <% if(year.active == 'false') return; %>
-                    <li id="menu_item_<%= year.ID %>" class="menu-item <% if(index == 0){ %>active<% } %>">
+                    <li id="menu_item_<%= year.ID %>" class="menu-item">
                         <div class="nav-item">
                             <img src="/site/images/icon.png" alt="link icon">
                             <!-- <%= JSON.stringify(year) %> -->
-                            <a href="#<%= year.ID %>"><%= year.title %></a>
+                            <a href="#year_container_<%= year.ID %>"><%= year.title %></a>
                         </div>
                     </li>
                     <% }) %>
@@ -95,16 +95,19 @@ function hasContent(item){
                                 <% console.log(year.active) %>
                                 <% if(year.active == 'false') return; %>
                                 <% year.data = JSON.parse(year.data) %>
-                                <div class="curriculem-container" id="<%= year.ID %>">
+                                <div class="curriculem-container" id="year_container_<%= year.ID %>">
 
                                     <div class="curriculum-inner">
                                         <div class="curriculem-row curriculum-header">
-                                            <h2><%= year.title %></h2>
-                                            <p><%= year.description %></p>
+                                            <div class="header-inner">
+                                                <h2><%= year.title %></h2>
+                                                <p><%= year.description %></p>
+                                            </div>
                                         </div>
 
                                         <% year.data.rows.forEach(function(row,indexRow){ %>
                                         <div class="curriculem-row">
+
 
                                             <% row.forEach(function(column,indexColumn){ %>
                                                 
@@ -119,7 +122,7 @@ function hasContent(item){
 
                                                         <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
                                                             <span><%= getExcerpt(item.title) %></span>
-                                                            <% if(hasContent(item)){ %><span class="info-icon">i</span><% } %>
+                                                            <% if(hasContent(item)){ %><a class="info-icon bg-color-<%= getContrast50(item.color) %>" style="color:#<%= item.color %>;">i</a><% } %>
                                                         </div>
                                                     <% }) %>
                                                 </div>
@@ -160,6 +163,7 @@ function hasContent(item){
     <!-- SCRIPTS -->
     <!-- <script src="/site/js/jquery.js"></script> -->
     <!-- <script src="/site/js/bootstrap.min.js"></script> -->
+    <script src="/site/js/smoothscroll.js"></script>
     <script src="/site/js/wiquery.js"></script>
     <script src="/site/js/main.js"></script>
     <!-- <script src="/site/js/app.bundle.js"></script> -->
