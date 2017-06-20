@@ -51,8 +51,22 @@ body {
         background-color: rgba(0, 0, 0, 0.4);
         overflow: hidden;
     }
+    img {
+        display: block;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 1em;
+    }
+    iframe {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        padding: 1em;
+        margin: 0 auto;
+    }
     > main {
         display: block;
+        padding: 1.5em;
         position: fixed;
         max-height: 90vh;
         overflow-y: auto;
@@ -63,9 +77,27 @@ body {
         top: 50%;
         transform: translateY(-50%);
         max-width: 90%;
-        width: 700px;
+        width: 40em;
         background-color: white;
         box-shadow: $shadow;
+        header {
+            background-image: url("/cms/images/noimg.png");
+            background-size: cover;
+            background-position: center;
+            display: block;
+            min-height: 200px;
+            position: relative;
+            h2 {
+                color: $white;
+                background-color: rgba(0, 0, 0, 0.75);
+                padding: 1em;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: 0;
+            }
+        }
     }
 }
 
@@ -185,7 +217,7 @@ body {
 
 @media (min-width: $screen-xl-min) {}
 
-.hide{
+.hide {
     display: none;
     visibility: hidden;
 }

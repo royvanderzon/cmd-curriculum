@@ -1,13 +1,19 @@
 .curriculem-container {
     padding: 10px;
-    height: 100%;
-    height: 100vh;
-    /*border-top: 7.5px solid $white;*/
-    /*border-bottom: 7.5px solid $white;*/
-    display: flex;
+    min-height: 100%;
+    min-height: 100vh;
+    /*display: flex;*/
     flex-wrap: wrap;
+    .curriculum-inner {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
     .curriculem-row {
-        background-color: #eee;
+        background-color: $lightgrey;
+        padding: 5px;
         border-top: 7.5px solid $white;
         border-bottom: 7.5px solid $white;
         flex-basis: 100%;
@@ -17,17 +23,17 @@
             flex-basis: 100%;
             display: block;
             padding: 10px;
-            /*padding-top: 0px;*/
-            /*padding-bottom: 0px;*/
-            border-top: 5px #eee solid;
-            border-bottom: 5px #eee solid;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            border-top: 7.5px $lightgrey solid;
+            border-bottom: 7.5px $lightgrey solid;
             .item-modal {
                 cursor: pointer;
-                transition: 200ms all ease-in;
-                box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+                /*transition: 200ms all ease-in;*/
+                /*box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);*/
             }
             .item-modal:hover {
-                box-shadow: $shadow;
+                /*box-shadow: $shadow;*/
             }
             .curriculem-item {
                 display: block;
@@ -35,6 +41,8 @@
                 /*margin-bottom: 5px;*/
                 /*margin-top: 5px;*/
                 padding: 10px;
+                border-top: 2.5px solid $lightgrey;
+                border-bottom: 2.5px solid $lightgrey;
                 position: relative;
                 .info-icon {
                     position: absolute;
@@ -54,6 +62,16 @@
                     top: 10px;
                 }
             }
+        }
+    }
+    .curriculum-header {
+        padding: 1.5em;
+        display: block;
+        h2,p{
+        	margin: 0;
+        }
+        h2{
+        	margin-bottom: 10px;
         }
     }
 }

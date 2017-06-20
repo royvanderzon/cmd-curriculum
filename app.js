@@ -80,3 +80,5 @@ app.use(function(err, req, res, next) {
 zoncms.db.test_connection();
 // launch ======================================================================
 zoncms.init.start(app, port);
+
+// https://stackoverflow.com/questions/28973453/mysql2error-incorrect-string-value-xe2-x80-xa8-x09

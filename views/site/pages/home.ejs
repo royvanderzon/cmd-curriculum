@@ -42,7 +42,7 @@ function hasContent(item){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><%= settings.page.application_name %></title>
+    <title><%= settings.options.application_name %></title>
 
     <link rel="stylesheet" href="/site/css/font-awesome.min.css">
     <!-- Bootstrap Core CSS -->
@@ -68,13 +68,14 @@ function hasContent(item){
                     <div class="row">
                         <div class="col-xs-12">
                             <img src="/site/images/logo.png" alt="" class="responsive logo">
-                            <h1 class="text-center">CMD CURRICULEM</h1>
+                            <h1 class="text-center"><%= settings.options.application_name %></h1>
                         </div>
                     </div>
                 </div>
                 <ul>
-                    <% years.forEach(function(year){ %>
-                    <li>
+                    <% years.forEach(function(year,index){ %>
+                    <% if(year.active == 'false') return; %>
+                    <li id="menu_item_<%= year.ID %>" class="menu-item <% if(index == 0){ %>active<% } %>">
                         <div class="nav-item">
                             <img src="/site/images/icon.png" alt="link icon">
                             <!-- <%= JSON.stringify(year) %> -->
@@ -90,40 +91,45 @@ function hasContent(item){
                     <div class="row">
                         <div class="col-xs-12">
                             
-                            <% years.forEach(function(year,index){ %>
+                            <% years.forEach(function(year,indexYear){ %>
+                                <% console.log(year.active) %>
+                                <% if(year.active == 'false') return; %>
                                 <% year.data = JSON.parse(year.data) %>
                                 <div class="curriculem-container" id="<%= year.ID %>">
 
-                                    <script>
-                                        var json_<%= index %>
-                                        console.log(<%- JSON.stringify(year) %>)
-                                    </script>
+                                    <div class="curriculum-inner">
+                                        <div class="curriculem-row curriculum-header">
+                                            <h2><%= year.title %></h2>
+                                            <p><%= year.description %></p>
+                                        </div>
 
-                                    <% year.data.rows.forEach(function(row){ %>
-                                    <div class="curriculem-row">
+                                        <% year.data.rows.forEach(function(row,indexRow){ %>
+                                        <div class="curriculem-row">
 
-                                        <% row.forEach(function(column){ %>
-                                            
-                                            <div class="curriculem-column">
-                                                <%
-                                                var totalItems = column.column.length
-                                                var percentHeight = 100 * 1 / totalItems
-                                                %>
-                                                <% column.column.forEach(function(item,index){ %>
+                                            <% row.forEach(function(column,indexColumn){ %>
+                                                
+                                                <div class="curriculem-column">
+                                                    <%
+                                                    var totalItems = column.column.length
+                                                    var percentHeight = 100 * 1 / totalItems
+                                                    %>
+                                                    <% column.column.forEach(function(item,indexItem){ %>
+                                                        <!-- height:<%= percentHeight %>%; -->
 
 
-                                                    <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %>" data-id="<%= index %>" style="height:<%= percentHeight %>%;background-color:#<%= item.color %>;">
-                                                        <span><%= getExcerpt(item.title) %></span>
-                                                        <% if(hasContent(item)){ %><span class="info-icon">i</span><% } %>
-                                                    </div>
-                                                <% }) %>
-                                            </div>
+                                                        <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
+                                                            <span><%= getExcerpt(item.title) %></span>
+                                                            <% if(hasContent(item)){ %><span class="info-icon">i</span><% } %>
+                                                        </div>
+                                                    <% }) %>
+                                                </div>
 
-                                        <%}) %>
+                                            <%}) %>
+
+                                        </div>
+                                        <% }) %>
 
                                     </div>
-                                    <% }) %>
-
                                 </div>
                             <% }) %>
 
@@ -137,9 +143,19 @@ function hasContent(item){
     <div class="modal hide">
         <div class="overlay"></div>
         <main>
-            
+            <header>
+                <h2>Modal title</h2>
+            </header>
+            <div class="content"></div>
         </main>
     </div>
+
+    <script>
+        var years = <%- JSON.stringify(years) %>
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/jackmu95/52b82e3ec79a2e2a30ddf37e71846711/raw/e1742e6e1b7ab73807c313c04e7b63f96f15c43b/quill.min.js"></script>
+
+    <dialog 
 
     <!-- SCRIPTS -->
     <!-- <script src="/site/js/jquery.js"></script> -->
