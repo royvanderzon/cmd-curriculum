@@ -4,10 +4,11 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.color-black{
+.color-black {
     color: $black;
 }
-.color-white{
+
+.color-white {
     color: $white;
 }
 
@@ -24,7 +25,7 @@ body {
     display: block;
     float: left;
     background-color: $orange;
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: $shadow;
     overflow-y: auto;
 }
 
@@ -34,6 +35,38 @@ body {
     width: 100%;
     display: block;
     float: left;
+}
+
+.modal {
+    position: fixed;
+    z-index: 9999;
+    .overlay {
+        position: fixed;
+        z-index: -1;
+        display: block;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+    }
+    > main {
+        display: block;
+        position: fixed;
+        max-height: 90vh;
+        overflow-y: auto;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        min-height: 100px;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 90%;
+        width: 700px;
+        background-color: white;
+        box-shadow: $shadow;
+    }
 }
 
 .wrapper > nav {
@@ -135,7 +168,7 @@ body {
         top: 0;
         bottom: 0;
     }
-    .wrapper main {
+    .wrapper > main {
         width: 75%;
         float: right;
     }
@@ -145,9 +178,14 @@ body {
     .wrapper nav {
         width: 20%;
     }
-    .wrapper main {
+    .wrapper > main {
         width: 80%;
     }
 }
 
 @media (min-width: $screen-xl-min) {}
+
+.hide{
+    display: none;
+    visibility: hidden;
+}

@@ -32,7 +32,7 @@ function $(selector) {
         $(this).attr('data-position')
     })
     */
-    if(typeof self.element === 'undefined'){
+    if (typeof self.element === 'undefined') {
         self.element = selector
     }
 
@@ -53,20 +53,20 @@ function $(selector) {
         return self
     }
 
-    self.unvisible = function(){
+    self.unvisible = function() {
         self.element.style.visibility = 'hidden'
         return self
     }
 
-    self.visible = function(){
+    self.visible = function() {
         self.element.style.visibility = 'visible'
         return self
     }
 
-    self.hide = function(speed) {
+    self.hide = function(speed, cb) {
         if (typeof speed === 'number') {
             self.element.style.display = 'block'
-            // self.element.style.opacity = 1;
+            self.element.style.opacity = 1;
 
             var last = +new Date();
             var tick = function() {
@@ -75,14 +75,20 @@ function $(selector) {
 
                 if (+self.element.style.opacity > 0) {
                     (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
-                }else{
+                } else {
                     self.element.style.visibility = 'hidden'
+                    if (typeof cb === 'function') {
+                        cb()
+                    }
                 }
             };
             tick();
             return self
         } else {
             self.element.style.display = 'none'
+            if (typeof cb === 'function') {
+                cb()
+            }
             return self
         }
     }
@@ -91,7 +97,7 @@ function $(selector) {
         if (typeof speed === 'number') {
             self.element.style.display = 'block'
             self.element.style.visibility = 'visible'
-            // self.element.style.opacity = 0;
+                // self.element.style.opacity = 0;
 
             var last = +new Date();
             var tick = function() {
@@ -110,7 +116,7 @@ function $(selector) {
         }
     }
 
-    self.find = function(value){
+    self.find = function(value) {
         return document.querySelector(selector).querySelector(value)
     }
 
@@ -165,19 +171,19 @@ function $(selector) {
     }
 
     // $('ul').on('click',function(){})
-    self.on = function(value,cb){
-        if(self.element.length > 0 && typeof self.element !== 'string'){
-            if(!Array.isArray(self.element)){
+    self.on = function(value, cb) {
+        if (self.element.length > 0 && typeof self.element !== 'string') {
+            if (!Array.isArray(self.element)) {
                 self.element.addEventListener(value, cb)
-            }else{
-                self.element.forEach(function(el,i){
+            } else {
+                self.element.forEach(function(el, i) {
                     el.addEventListener(value, cb)
                 })
             }
-        }else if(typeof self.element == 'string'){
+        } else if (typeof self.element == 'string') {
             console.log(value)
             self.element.addEventListener(value, cb)
-        }else{
+        } else {
             self.element.addEventListener(value, cb)
         }
         return self
@@ -199,26 +205,26 @@ function $(selector) {
         }
     }
 
-    self.template = function(parts){
+    self.template = function(parts) {
 
         var html = ''
         var template = self.element.innerHTML
         var htmlArray = String(template).split('{')
         console.log(htmlArray)
-        htmlArray.forEach(function(el,index){
-            if(index > 0){
+        htmlArray.forEach(function(el, index) {
+            if (index > 0) {
                 console.log(el)
                 var cutString = String(el).split('}')
-                html += cutString[0] = parts[index-1]
+                html += cutString[0] = parts[index - 1]
                 html += cutString[1]
-            }else{
+            } else {
                 html += el
             }
         })
         return html
     }
 
-    self.extend = function(value){
+    self.extend = function(value) {
         return JSON.parse(JSON.stringify(value))
     }
 
@@ -249,10 +255,10 @@ function $(selector) {
                 }
             }
         };
-        if(typeof requestObj.jsonData === 'object'){
+        if (typeof requestObj.jsonData === 'object') {
             request.setRequestHeader("Content-Type", "application/json");
             request.send(JSON.stringify(requestObj.jsonData));
-        }else{
+        } else {
             request.send();
         }
     }

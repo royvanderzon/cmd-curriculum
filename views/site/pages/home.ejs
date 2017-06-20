@@ -19,6 +19,17 @@ function getExcerpt(string){
     }
     return string
 }
+function hasContent(item){
+    if(typeof item.content === 'undefined') return false
+    var content = JSON.parse(item.content)
+    if(typeof content.ops === 'undefined') return false
+
+    if(content.ops[0].insert == '\n'){
+        return false
+    }else{
+        return true
+    }
+}
 %>
 <!DOCTYPE html>
 <html lang="nl">
@@ -31,11 +42,11 @@ function getExcerpt(string){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bare - Start Bootstrap Template</title>
+    <title><%= settings.page.application_name %></title>
 
     <link rel="stylesheet" href="/site/css/font-awesome.min.css">
     <!-- Bootstrap Core CSS -->
-    <link href="/site/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="/site/css/bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -98,11 +109,12 @@ function getExcerpt(string){
                                                 var totalItems = column.column.length
                                                 var percentHeight = 100 * 1 / totalItems
                                                 %>
-                                                <% column.column.forEach(function(item){ %>
+                                                <% column.column.forEach(function(item,index){ %>
 
 
-                                                    <div class="curriculem-item color-<%= getContrast50(item.color) %>" style="height:<%= percentHeight %>%;background-color:#<%= item.color %>;">
+                                                    <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %>" data-id="<%= index %>" style="height:<%= percentHeight %>%;background-color:#<%= item.color %>;">
                                                         <span><%= getExcerpt(item.title) %></span>
+                                                        <% if(hasContent(item)){ %><span class="info-icon">i</span><% } %>
                                                     </div>
                                                 <% }) %>
                                             </div>
@@ -120,6 +132,13 @@ function getExcerpt(string){
                 </div>
             </main>
         </div>
+    </div>
+
+    <div class="modal hide">
+        <div class="overlay"></div>
+        <main>
+            
+        </main>
     </div>
 
     <!-- SCRIPTS -->

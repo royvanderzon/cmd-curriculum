@@ -12,9 +12,11 @@ router.get('/', function(req, res) {
 	    db: 'year',
 	    query: ''
     }
+
  	zoncms.db.getP(objYear).then(function(years){
 	    res.render('site/pages/home',{
-	    	years : years
+	    	years : years,
+	    	settings : zoncms.settings
 	    });
  	})
 

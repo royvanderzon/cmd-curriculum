@@ -7,6 +7,8 @@
 	var app = {
 		init : function(){
 			self = this
+			self.event.modal.init()
+			self.event.item.init()
 			// self.dom.setSameHeight('.curriculem-item')
 		},
 		dom : {
@@ -21,6 +23,27 @@
 				$(domEl).element.forEach(function(el){
 					$(el).height(biggestHeight)
 				})
+			}
+		},
+		event : {
+			item : {
+				init : function(){
+					$('.item-modal').element.forEach(function(item){
+						console.log($(item))
+						$(item).on('click',function(){
+							$(this).attr('data-id')
+							$('.modal').show(200)
+						})
+					})
+				}
+			},
+			modal : {
+				init : function(){
+
+					$('.overlay').on('click',function(){
+						$('.modal').hide(200)
+					})
+				}
 			}
 		}
 	}

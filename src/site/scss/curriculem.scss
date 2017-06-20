@@ -7,19 +7,52 @@
     display: flex;
     flex-wrap: wrap;
     .curriculem-row {
-	    background-color: #eee;
-    	border-top: 7.5px solid $white;
-	    border-bottom: 7.5px solid $white;
-    	flex-basis: 100%;
-    	width: 100%;
+        background-color: #eee;
+        border-top: 7.5px solid $white;
+        border-bottom: 7.5px solid $white;
+        flex-basis: 100%;
+        width: 100%;
         display: flex;
         .curriculem-column {
             flex-basis: 100%;
             display: block;
             padding: 10px;
+            /*padding-top: 0px;*/
+            /*padding-bottom: 0px;*/
+            border-top: 5px #eee solid;
+            border-bottom: 5px #eee solid;
+            .item-modal {
+                cursor: pointer;
+                transition: 200ms all ease-in;
+                box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+            }
+            .item-modal:hover {
+                box-shadow: $shadow;
+            }
             .curriculem-item {
                 display: block;
+                max-height: 50px;
+                /*margin-bottom: 5px;*/
+                /*margin-top: 5px;*/
                 padding: 10px;
+                position: relative;
+                .info-icon {
+                    position: absolute;
+                    background-color: $white;
+                    display: block;
+                    color: $black;
+                    font-family: serif;
+                    font-weight: bold;
+                    border-radius: 100%;
+                    height: 15px;
+                    width: 15px;
+                    line-height: 15px;
+                    box-shadow: $shadow;
+                    cursor: pointer;
+                    text-align: center;
+                    right: 10px;
+                    top: 10px;
+                }
             }
         }
     }
