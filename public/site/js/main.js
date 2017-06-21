@@ -21,6 +21,20 @@
             menuItems: []
         },
         function: {
+            initSlider: function() {
+                if (slideActive) {
+                    var slides = document.querySelectorAll('#slides .slide');
+                    var currentSlide = 0;
+                    var slideInterval = setInterval(nextSlide, 10000);
+
+                    function nextSlide() {
+                        slides[currentSlide].className = 'slide';
+                        currentSlide = (currentSlide + 1) % slides.length;
+                        slides[currentSlide].className = 'slide showing';
+                    }
+                    nextSlide()
+                }
+            },
             initNavPos: function() {
                 var menuItems = []
                 years.forEach(function(year) {
@@ -46,6 +60,7 @@
             },
             getClosestCurriculumContainer: function() {
                 var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
                 function getNearestNumber(a, n) {
                     if ((l = a.length) < 2)
                         return l - 1;
@@ -54,10 +69,10 @@
                             break;
                     return l + 1;
                 }
-                var array = self.options.menuItems.sort(function(a, b){
-					return a.top - b.top;
-				});
-                var closest = getNearestNumber(array,scrollTop)
+                var array = self.options.menuItems.sort(function(a, b) {
+                    return a.top - b.top;
+                });
+                var closest = getNearestNumber(array, scrollTop)
                 self.function.setNavActive(self.options.menuItems[closest].id)
             },
             offset: function(el) {
@@ -95,7 +110,7 @@
                     $(window).on('hashchange', function() {
                         var hash = window.location.hash
                         var hashArray = hash.split('#')
-                        // self.function.setNavActive(hashArray[1])
+                            // self.function.setNavActive(hashArray[1])
                     })
                 }
             },

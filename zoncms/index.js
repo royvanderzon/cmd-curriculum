@@ -967,6 +967,7 @@ var zoncms = {
                         obj.menus.push(menus.sub_menu_curriculum_years);
                         obj.menus.push(menus.sub_menu_curriculum_view);
                         obj.menus.push(menus.sub_menu_curriculum_type);
+                        obj.menus.push(menus.sub_menu_curriculum_slider);
 
                         //add to return insert_menu
                         if (!_.contains(insert_menu, menus.curriculum)) {
@@ -1034,8 +1035,7 @@ var zoncms = {
                 insert_menu = insert_menu.concat(menus.logout);
 
             }
-
-
+            
             //add documentation
             if (zoncms.settings.options.mode_documentation == 'true') {
                 insert_menu = insert_menu.concat(menus.menu_documentation);
@@ -1044,36 +1044,7 @@ var zoncms = {
             var hrefs = req.originalUrl.split('/');
             hrefs[0] = '/';
 
-            // for(var i = 0;i<insert_menu.length;i++){
-            // 	var this_active_found = false;
-            // 	if(insert_menu[i].type == 'sub'){
-
-            // 		for(var ii = 0;ii<insert_menu[i].menus.length;ii++){
-            // 			// console.log(insert_menu[i].menus[ii].href)
-            // 			if(insert_menu[i].menus[ii].href == req.baseUrl){
-            // 				// console.log('MATCH')
-            // 				if(!this_active_found){
-            // 					insert_menu[i].class = ' active';
-            // 					this_active_found = true;
-            // 				}
-            // 			}
-            // 		}
-
-            // 	}
-            // 	if(insert_menu[i].href == req.baseUrl){
-            // 		if(!this_active_found){
-            // 			insert_menu[i].class = ' active';
-            // 			this_active_found = true;
-            // 		}
-            // 	}else{
-            // 		if(!this_active_found){
-            // 			insert_menu[i].class = '';
-            // 			this_active_found = true;
-            // 		}
-            // 	}
-            // }
             return insert_menu;
-            // return JSON.parse(JSON.stringify(insert_menu));
         }
     }
 

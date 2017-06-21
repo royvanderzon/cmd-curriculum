@@ -13,6 +13,7 @@ var cms_documentation = require('../../routes/cms/documentation');
 var cms_forgot_password = require('../../routes/cms/forgot_password');
 var cms_curriculum = require('../../routes/cms/curriculum');
 var cms_storage = require('../../routes/cms/storage');
+var cms_slider = require('../../routes/cms/slider');
 
 //All routes after www.domain.com/cms/..
 router.use('/login', cms_login);
@@ -25,6 +26,7 @@ router.use('/documentation', cms_documentation);
 router.use('/forgot_password', cms_forgot_password);
 router.use('/curriculum', cms_curriculum);
 router.use('/storage', cms_storage);
+router.use('/slider', cms_slider);
 
 router.get('/', function(req, res) {
 

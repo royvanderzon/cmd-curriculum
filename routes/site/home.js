@@ -16,8 +16,35 @@ router.get('/', function(req, res) {
  	zoncms.db.getP(objYear).then(function(years){
 	    res.render('site/pages/home',{
 	    	years : years,
-	    	settings : zoncms.settings
+	    	settings : zoncms.settings,
+	    	slider : []
 	    });
+ 	})
+
+});
+
+router.get('/slider', function(req, res) {
+
+    var objYear = {
+	    search: '*',
+	    db: 'year',
+	    query: ''
+    }
+
+    var objSlider = {
+	    search: '*',
+	    db: 'slider',
+	    query: ''
+    }
+
+ 	zoncms.db.getP(objYear).then(function(years){
+	 	zoncms.db.getP(objSlider).then(function(slider){
+		    res.render('site/pages/home',{
+		    	years : years,
+		    	settings : zoncms.settings,
+		    	slider : slider
+		    });
+	 	})
  	})
 
 });

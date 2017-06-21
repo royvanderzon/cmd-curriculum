@@ -1,8 +1,13 @@
 module.exports = {
     menu_default: [{
-        title: 'Site',
+        title: 'Curriculum (no slider)',
         type: 'head',
         href: '/',
+        class: ''
+    },{
+        title: 'Curriculum (slider)',
+        type: 'head',
+        href: '/slider',
         class: ''
     }, {
         title: 'Home',
@@ -112,6 +117,11 @@ module.exports = {
     sub_menu_curriculum_view: {
         title: 'Overview',
         href: '/cms/curriculum/overview',
+        class: ''
+    },
+    sub_menu_curriculum_slider: {
+        title: 'Slider',
+        href: '/cms/slider',
         class: ''
     },
     sub_menu_curriculum_type: {

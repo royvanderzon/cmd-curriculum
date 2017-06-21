@@ -87,6 +87,7 @@ function hasContent(item){
             </nav>
 
             <main>
+
                 <div class="container max-container">
                     <div class="row">
                         <div class="col-xs-12">
@@ -139,6 +140,20 @@ function hasContent(item){
                         </div>
                     </div>
                 </div>
+
+                <% if(slider.length > 0){ %>
+                <div class="slider-container">
+                    <ul id="slides">
+                        <!-- <li class="slide showing">Slide 1</li> -->
+                        <% slider.forEach(function(slide,index){ %>
+                            <% if(slide.active == 'true'){ %>
+                                <li class="slide" style="background-image:url('/uploads/slider/<%= slide.path %>');"></li>
+                            <% } %>
+                        <% }) %>
+                    </ul>
+                </div>
+                <% } %>
+
             </main>
         </div>
     </div>
@@ -155,10 +170,13 @@ function hasContent(item){
 
     <script>
         var years = <%- JSON.stringify(years) %>
+        <% if(slider.length > 0){ %>
+        var slideActive = true
+        <% }else{ %>
+        var slideActive = false
+        <% } %>
     </script>
     <script type="text/javascript" src="https://cdn.rawgit.com/jackmu95/52b82e3ec79a2e2a30ddf37e71846711/raw/e1742e6e1b7ab73807c313c04e7b63f96f15c43b/quill.min.js"></script>
-
-    <dialog 
 
     <!-- SCRIPTS -->
     <!-- <script src="/site/js/jquery.js"></script> -->

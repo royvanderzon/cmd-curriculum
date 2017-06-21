@@ -66,6 +66,10 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.use('/', site_routes);
 app.use('/cms', cms_routes);
+app.use('*',function(req,res){
+	req.flash('toast','"Page not found.", 10000, "red"');
+	res.redirect('/cms')
+})
 
 require('./routes/auth.js')(app, passport);
 
