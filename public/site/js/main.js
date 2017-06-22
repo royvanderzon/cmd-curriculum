@@ -44,6 +44,7 @@
                 }
             },
             checkActivity: function() {
+                if(!slideActive) return;
                 if(sliderTimeout == null){
                     var IDLE_TIMEOUT = 60 * 10 //seconds (10 minutes)
                 }else{
