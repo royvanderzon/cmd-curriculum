@@ -70,7 +70,28 @@ __Back-end design__
 - guest user management
 
 ## Known issues
-- misplace html element when step back +4 times
+- misplace html element when step back +4 times (only styling issue)
+
+## .env file
+```
+PORT=port
+MYSQL_HOST=localhost
+MYSQL_USER=username
+MYSQL_PASSWORD=password
+MYSQL_DATABASE=databasename
+MYSQL_PORT=port
+MAIL_HOST=mail.com
+MAIL_PORT=port
+MAIL_SSL=Boolean
+MAIL_USER=username@email.com
+MAIL_PASSWORD=passpord
+SESSION_SECRET=supersecret
+SESSION_KEY=supersecret
+SESSION_SAVEUNINITIALIZED=Boolean
+SESSION_RESAVE=Boolean
+```
+
+
 
 ## Data life cycle
 ### Login
