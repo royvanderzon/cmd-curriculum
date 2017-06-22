@@ -180,7 +180,7 @@ function hasContent(item){
     <script>
         var years = <%- JSON.stringify(years) %>
         <% if(slider.length > 0){ %>
-        var sliderTimeout =  <%= settings.options.slider_activity %>
+        var sliderTimeout =  Number('<%= settings.options.slider_activity %>')
         var slideActive = true
         <% }else{ %>
         var slideActive = false
