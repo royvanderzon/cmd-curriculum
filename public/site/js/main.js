@@ -14,6 +14,7 @@
             self.function.initSlider()
             self.event.modal.init()
             self.event.item.init()
+            self.event.viewChange.init()
             self.event.hashChange.init()
             self.event.scroll.init()
             self.dom.setSameHeight('.curriculem-item')
@@ -44,7 +45,7 @@
                     obj.id = year.ID
                     obj.top = divOffset.top
                     menuItems.push(obj)
-                    $('#menu_item_' + year.ID + ' a').on('click', function() {
+                    $('#menu_item_' + year.ID + ' a').on('click', function(e) {
                         $('#year_container_' + year.ID).element.scrollIntoView({
                             behavior: 'smooth'
                         });
@@ -117,8 +118,6 @@
             },
             item: {
                 init: function() {
-
-
                     $('.item-modal').element.forEach(function(item) {
                         $(item).on('click', function() {
                             var id = $(this).attr('data-id')
@@ -131,6 +130,28 @@
                             self.helper.modal(thisItem, function() {
                                 $('.modal').show(200)
                             })
+                        })
+                    })
+                }
+            },
+            viewChange: {
+                init: function() {
+                    $('.view-button').element.forEach(function(button) {
+                        // $('.curriculem-wrapper')
+                        $(button).on('click',function(){
+                            var view = $(this).attr('data-view')
+                            $('.view-button').element.forEach(function(thisButton){
+                                $(thisButton).removeClass('pressed'); 
+                            })
+                            $(this).addClass('pressed');
+                            switch (view) {
+                                case 'list':
+                                    $('.curriculem-wrapper').addClass('list-view')
+                                    break;
+                                case 'table':
+                                    $('.curriculem-wrapper').removeClass('list-view')
+                                    break;
+                            }
                         })
                     })
                 }

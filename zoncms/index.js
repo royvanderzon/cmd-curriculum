@@ -98,8 +98,6 @@ var zoncms = {
                         zoncms.settings.page.application_name = result[0].application_name;
                         zoncms.settings.vars.settings_row_ID = result[0].ID;
                         console.log('db.setting    : found');
-
-                        console.log(result)
                     } else {
 
                         //db.setting default settings

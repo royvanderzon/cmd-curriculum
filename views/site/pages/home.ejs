@@ -72,6 +72,13 @@ function hasContent(item){
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="view-controls">
+                            <button class="view-button" data-view="list">LIST</button> | <button class="view-button pressed" data-view="table">TABLE</button>
+                        </div>
+                    </div>
+                </div>
                 <ul>
                     <% years.forEach(function(year,index){ %>
                     <% if(year.active == 'false') return; %>
@@ -90,7 +97,7 @@ function hasContent(item){
 
                 <div class="container max-container">
                     <div class="row">
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 curriculem-wrapper">
                             
                             <% years.forEach(function(year,indexYear){ %>
                                 <% console.log(year.active) %>
@@ -121,7 +128,7 @@ function hasContent(item){
                                                         <!-- height:<%= percentHeight %>%; -->
 
 
-                                                        <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
+                                                        <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %> <% if(item.title.length < 1){ %>empty-curriculem-item<% } %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
                                                             <span><%= getExcerpt(item.title) %></span>
                                                             <% if(hasContent(item)){ %><a class="info-icon bg-color-<%= getContrast50(item.color) %>" style="color:#<%= item.color %>;">i</a><% } %>
                                                         </div>

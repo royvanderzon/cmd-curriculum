@@ -38,7 +38,7 @@
             }
             .curriculem-item {
                 display: block;
-                max-height: 50px;
+                /*max-height: 50px;*/
                 /*margin-bottom: 5px;*/
                 /*margin-top: 5px;*/
                 padding: 10px;
@@ -78,6 +78,65 @@
         }
         h2 {
             margin-bottom: 10px;
+        }
+    }
+    @media screen and (max-width: $screen-sm-max) {
+        height: auto;
+        min-height: 0px;
+        padding-bottom: 15px;
+        &:last-child {
+            padding-bottom: 25px;
+        }
+        .curriculum-header {
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            border-bottom-width: 0px;
+            padding-top: 10px;
+            /*border-top-width: 15px;*/
+        }
+        .curriculem-row {
+            flex-wrap: wrap;
+            padding-bottom: 0px;
+            border-bottom-width: 0px;
+            .empty-curriculem-item {
+                display: none!important;
+            }
+        }
+    }
+}
+
+.curriculem-wrapper.list-view {
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    max-width: 800px;
+    float: none;
+    .curriculem-container {
+        height: auto;
+        min-height: 0px;
+        padding-bottom: 15px;
+        &:last-child {
+            padding-bottom: 25px;
+        }
+        .curriculum-header {
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            border-bottom-width: 0px;
+            padding-top: 10px;
+            /*border-top-width: 15px;*/
+        }
+        .curriculem-row {
+            flex-wrap: wrap;
+            padding-bottom: 0px;
+            border-bottom-width: 0px;
+            .empty-curriculem-item {
+                display: none!important;
+            }
+            .curriculem-column {
+                .curriculem-item {
+                    max-height: 50px;
+                }
+            }
         }
     }
 }
