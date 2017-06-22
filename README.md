@@ -1,7 +1,9 @@
 # CMD Amsterdam curriculum
 
 ## Front-view
-_Comming soon_
+[Front-end](http://socialscoutagency.com/)
+[Front-end (with slider)](http://socialscoutagency.com/)
+[Back-end](http://socialscoutagency.com/cms)
 
 ## Back-end
 
