@@ -85,7 +85,6 @@ function hasContent(item){
                     <li id="menu_item_<%= year.ID %>" class="menu-item">
                         <div class="nav-item">
                             <img src="/site/images/icon.png" alt="link icon">
-                            <!-- <%= JSON.stringify(year) %> -->
                             <a href="#year_container_<%= year.ID %>"><%= year.title %></a>
                         </div>
                     </li>
@@ -181,11 +180,13 @@ function hasContent(item){
     <script>
         var years = <%- JSON.stringify(years) %>
         <% if(slider.length > 0){ %>
+        var sliderTimeout =  <%= settings.options.slider_activity %>
         var slideActive = true
         <% }else{ %>
         var slideActive = false
         <% } %>
     </script>
+
     <script type="text/javascript" src="https://cdn.rawgit.com/jackmu95/52b82e3ec79a2e2a30ddf37e71846711/raw/e1742e6e1b7ab73807c313c04e7b63f96f15c43b/quill.min.js"></script>
 
     <!-- SCRIPTS -->
@@ -199,23 +200,3 @@ function hasContent(item){
 </body>
 
 </html>
-
-
-
-<!-- HEAD -->
-<%- include ../parts/head.ejs %>
-
-<!-- HEADER -->
-<%- include ../parts/header.ejs %>
-
-<!-- MAIN NAV -->
-<%- include ../parts/nav.ejs %>
-
-<!-- FOOTER -->
-<%- include ../parts/footer.ejs %>
-
-<!-- SCRIPTS -->
-<%- include ../parts/scripts.ejs %>
-
-<!-- END -->
-<%- include ../parts/end.ejs %>

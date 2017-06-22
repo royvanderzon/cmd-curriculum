@@ -60,6 +60,18 @@
                         </div>
                     </li>
                     <li class="collection-item avatar live-text">
+                        <i class="material-icons circle">timer</i>
+
+                        <div class="input-field col s11 password_input">
+                            <input id="slider_activity" name="slider_activity" value="<%= settings.slider_activity %>" data-name="slider_activity" type="number" min="1" class="validate">
+                            <label for="slider_activity">Restart slider in minutes (slider modus only)</label>
+                        </div>
+                        <div class="input-field col s1">
+                            <!-- <i id="status_application_name" class="material-icons tooltipped input_save_status prefix" data-position="right" data-delay="50" data-tooltip="Saved">checkmark</i> -->
+                            <i id="status_slider_activity" class="material-icons tooltipped input_save_status prefix"></i>
+                        </div>
+                    </li>
+                    <li class="collection-item avatar live-text">
                         <i class="material-icons circle">image</i>
 
                         <form action="" id="formContent" method="post" enctype="multipart/form-data">
@@ -157,6 +169,11 @@
             });
         });
 
+        $('.live-text input').keydown(function(){
+            var data = {};
+            data.key = $(this).attr('data-name');
+            $('#status_'+data.key).html('');
+        })
         $('.live-text input').keyup(function(){
 
             var data = {};
