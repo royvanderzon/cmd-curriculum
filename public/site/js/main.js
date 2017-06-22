@@ -44,7 +44,11 @@
                 }
             },
             checkActivity: function() {
-                var IDLE_TIMEOUT = 60 * 10; //seconds (10 minutes)
+                if(sliderTimeout == null){
+                    var IDLE_TIMEOUT = 60 * 10 //seconds (10 minutes)
+                }else{
+                    var IDLE_TIMEOUT = sliderTimeout * 60
+                }
                 var _idleSecondsCounter = 0;
                 document.onclick = function() {
                     _idleSecondsCounter = 0;
