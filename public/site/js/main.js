@@ -11,6 +11,7 @@
             self = this
             self.function.initNavPos()
             self.function.getClosestCurriculumContainer()
+            self.function.initSlider()
             self.event.modal.init()
             self.event.item.init()
             self.event.hashChange.init()
@@ -25,7 +26,7 @@
                 if (slideActive) {
                     var slides = document.querySelectorAll('#slides .slide');
                     var currentSlide = 0;
-                    var slideInterval = setInterval(nextSlide, 10000);
+                    var slideInterval = setInterval(nextSlide, 4000);
 
                     function nextSlide() {
                         slides[currentSlide].className = 'slide';
