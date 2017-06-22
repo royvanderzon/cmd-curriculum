@@ -1,6 +1,6 @@
 (function() {
 
-    console.log(years)
+    // console.log(years)
 
     $(document).ready(function() {
         app.init()
@@ -12,6 +12,7 @@
             self.function.initNavPos()
             self.function.getClosestCurriculumContainer()
             self.function.initSlider()
+            self.function.checkActivity()
             self.event.modal.init()
             self.event.item.init()
             self.event.viewChange.init()
@@ -26,13 +27,13 @@
             initSlider: function() {
                 if (slideActive) {
 
-                    $('.slider-container').on('click',function(){
+                    $('.slider-container').on('click', function() {
                         $(this).hide(200)
                     })
 
                     var slides = document.querySelectorAll('#slides .slide');
                     var currentSlide = 0;
-                    var slideInterval = setInterval(nextSlide, 4000);
+                    var slideInterval = setInterval(nextSlide, 2000);
 
                     function nextSlide() {
                         slides[currentSlide].className = 'slide';
@@ -40,6 +41,33 @@
                         slides[currentSlide].className = 'slide showing';
                     }
                     nextSlide()
+                }
+            },
+            checkActivity: function() {
+                var IDLE_TIMEOUT = 60 * 10; //seconds (10 minutes)
+                var _idleSecondsCounter = 0;
+                document.onclick = function() {
+                    _idleSecondsCounter = 0;
+                };
+                document.onmousemove = function() {
+                    _idleSecondsCounter = 0;
+                };
+                document.onkeypress = function() {
+                    _idleSecondsCounter = 0;
+                };
+
+                var myInterval = window.setInterval(CheckIdleTime, 1000);
+
+                function CheckIdleTime() {
+                    _idleSecondsCounter++;
+                    // console.log(IDLE_TIMEOUT - _idleSecondsCounter)
+                    if (_idleSecondsCounter >= IDLE_TIMEOUT) {
+                        _idleSecondsCounter = 0
+                        if($('.slider-container').element.style.visibility == 'hidden'){
+                            $('.slider-container').show(200)
+                            // console.log('showing slideshow')
+                        }
+                    }
                 }
             },
             initNavPos: function() {
@@ -57,7 +85,7 @@
                     })
                 })
                 self.options.menuItems = menuItems
-                console.log(self.options.menuItems)
+                // console.log(self.options.menuItems)
             },
             setNavActive: function(id) {
                 $('.menu-item').element.forEach(function(navItem) {
@@ -118,6 +146,7 @@
                         var hash = window.location.hash
                         var hashArray = hash.split('#')
                             // self.function.setNavActive(hashArray[1])
+                            $('.modal').show(200)
                     })
                 }
             },
@@ -143,10 +172,10 @@
                 init: function() {
                     $('.view-button').element.forEach(function(button) {
                         // $('.curriculem-wrapper')
-                        $(button).on('click',function(){
+                        $(button).on('click', function() {
                             var view = $(this).attr('data-view')
-                            $('.view-button').element.forEach(function(thisButton){
-                                $(thisButton).removeClass('pressed'); 
+                            $('.view-button').element.forEach(function(thisButton) {
+                                $(thisButton).removeClass('pressed');
                             })
                             $(this).addClass('pressed');
                             switch (view) {

@@ -77,6 +77,7 @@ function $(selector) {
                     (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
                 } else {
                     self.element.style.visibility = 'hidden'
+                    self.element.style.display = 'none'
                     if (typeof cb === 'function') {
                         cb()
                     }
@@ -97,7 +98,6 @@ function $(selector) {
         if (typeof speed === 'number') {
             self.element.style.display = 'block'
             self.element.style.visibility = 'visible'
-                // self.element.style.opacity = 0;
 
             var last = +new Date();
             var tick = function() {
@@ -106,6 +106,12 @@ function $(selector) {
 
                 if (+self.element.style.opacity < 1) {
                     (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+                } else {
+                    self.element.style.visibility = 'visible'
+                    self.element.style.display = 'block'
+                    if (typeof cb === 'function') {
+                        cb()
+                    }
                 }
             };
             tick();
