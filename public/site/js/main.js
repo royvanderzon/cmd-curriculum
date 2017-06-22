@@ -49,6 +49,7 @@
                 }else{
                     var IDLE_TIMEOUT = sliderTimeout * 60
                 }
+                console.log(IDLE_TIMEOUT)
                 var _idleSecondsCounter = 0;
                 document.onclick = function() {
                     _idleSecondsCounter = 0;
