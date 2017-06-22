@@ -13,8 +13,11 @@ All the inserted data will be converted to a fully responsive curriculum. The cu
 
 __Data modal__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/data.png)
+__DB scheme__
+![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/db.png)
 __Front-end design__
-![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/ontwerp.jpg)
+![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/ontwerp-v2.png)
+![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/ontwerp-v2-2.png)
 __Back-end design__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/Back-end.png)
 
@@ -49,7 +52,6 @@ __Back-end design__
 - slider whitch switch on after x time
 - fallbacks (no js)
 - build in documentation
-- 
 
 ### Could haves
 #### Back-end
