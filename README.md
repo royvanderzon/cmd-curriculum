@@ -15,6 +15,7 @@ __Data modal__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/data.png)
 __DB scheme__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/db.png)
+_The category and post table will not be used in V1_
 __Front-end design__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/ontwerp-v2.png)
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/ontwerp-v2-2.png)
