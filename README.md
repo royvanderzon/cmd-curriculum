@@ -13,12 +13,15 @@ All the inserted data will be converted to a fully responsive curriculum. The cu
 
 __Data modal__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/data.png)
+
 __DB scheme__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/db.png)
 _The category and post table will not be used in V1_
+
 __Front-end design__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/ontwerp-v2.png)
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/ontwerp-v2-2.png)
+
 __Back-end design__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/Back-end.png)
 
@@ -94,10 +97,43 @@ SESSION_SAVEUNINITIALIZED=Boolean
 SESSION_RESAVE=Boolean
 ```
 
-
-
 ## Data life cycle
-### Login
-- User register
-	- Mail
-- Form
+### User (frontend)
+No data, sessions or cookies
+### User (cms)
+1. User register
+   * Trough email
+   * Trough signup from login page
+2. User sets profile
+3. User sets curriculum
+### Admin
+1. Admin invite
+   * Create
+   * Extend
+   * Remove
+2. Admin users
+   * Create
+   * Delete
+   * Edit
+   * Set permissions
+
+### Process 
+1. Setup Ubuntu 14 server with NODEJS
+2. Setup MYSQL
+3. Setup Ubuntu 14 server with NGINX
+4. Create html and css
+5. Create Database scheme
+6. Create user management system
+7. Create mail functions
+8. Create curriculum edit page
+9. Create curriculum front-end view
+
+## Install
+#### NODEJS
+- clone repo `$ git clone THIS_REPO`
+- cd to cloned repo `$ cd TO_CLONED_REPO`
+- set envoirement variables `nano .env`
+- run `$ npm install`
+- run `$ nodemon app.js`
+#### Setup PM2
+*PM2 is the way to deploy this app to a online production server*
