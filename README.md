@@ -106,7 +106,7 @@ No data, sessions or cookies
    * Trough signup from login page
 2. User sets profile
 3. User sets curriculum
-### Admin
+### Admin (cms)
 1. Admin invite
    * Create
    * Extend

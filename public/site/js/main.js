@@ -25,6 +25,11 @@
         function: {
             initSlider: function() {
                 if (slideActive) {
+
+                    $('.slider-container').on('click',function(){
+                        $(this).hide(200)
+                    })
+
                     var slides = document.querySelectorAll('#slides .slide');
                     var currentSlide = 0;
                     var slideInterval = setInterval(nextSlide, 4000);
