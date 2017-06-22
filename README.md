@@ -2,7 +2,7 @@
 
 ## Front-view
 - [Front-end](http://socialscoutagency.com/)
-- [Front-end (with slider)](http://socialscoutagency.com/)
+- [Front-end (with slider)](http://socialscoutagency.com/slider)
 - [Back-end](http://socialscoutagency.com/cms)
 
 ## Back-end
