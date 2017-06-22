@@ -146,7 +146,7 @@
                         var hash = window.location.hash
                         var hashArray = hash.split('#')
                             // self.function.setNavActive(hashArray[1])
-                            $('.modal').show(200)
+                            // $('.modal').show(200)
                     })
                 }
             },
