@@ -131,6 +131,7 @@ var components = {
         html += '<div class="hide hidden" id="block_html_' + id + '">"[]"</div>'
         html += '<div class="hide hidden" id="block_color_' + id + '"></div>'
         html += '<div class="hide hidden" id="block_image_' + id + '"></div>'
+        html += '<div class="hide hidden" id="block_category_' + id + '"></div>'
         return html
     }
 }
@@ -235,6 +236,21 @@ $(document).ready(function() {
         $('#color_choise').material_select();
         // quill.root.innerHTML = $('#block_html_'+id).html()
         quill.setContents(JSON.parse($('#block_html_' + id).html()))
+
+        console.log('/////////////////////////////////////////')
+        console.log(($('#block_category_' + currentEditId).html()).split('|'))
+        var catsArray = ($('#block_category_' + currentEditId).html()).split('|')
+        if($('#block_category_' + currentEditId).html() == 'undefined'){
+            $('#category_choise').val('');
+            $('#category_choise').material_select('destroy');
+            $('#category_choise').material_select();
+        }else{
+            console.log('workdssss')
+            $('#category_choise').val(catsArray)
+            // console.log(JSON.parse(JSON.stringify($('#block_category_' + currentEditId).html())))
+            $('#category_choise').material_select('destroy');
+            $('#category_choise').material_select();
+        }
             // $('.ql-editor').html($('#block_html_'+id).html())
             // quill.container.firstChild.innerHTML = $('#block_html_'+id).html()
             //after load data, open modal
@@ -254,6 +270,20 @@ $(document).ready(function() {
         $('#block_color_' + currentEditId).html($('#color_choise').val())
             //set color type to block
         $('#block_content_' + currentEditId).css('backgroundColor', '#' + $('#color_choise').val())
+        var cats = $('#category_choise').val()
+        if(cats == null || cats.length < 1){
+            var storeCats = 'undefined'
+        }else{
+            var storeCats = ''
+            cats.forEach(function(cat,index){
+                if(index < cats.length-1){
+                    storeCats = storeCats + cat + '|'
+                }else{
+                    storeCats = storeCats + cat
+                }
+            })
+        }
+        $('#block_category_' + currentEditId).html(storeCats)
         saveView()
     })
 
@@ -342,6 +372,7 @@ $(document).ready(function() {
     $('.modal').modal();
     //init select
     $('#color_choise').material_select();
+    $('#category_choise').material_select();
 
     function KeyPress(e) {
         var evtobj = window.event ? event : e
@@ -456,6 +487,7 @@ var viewToJson = function() {
                 block.content = $('#block_html_' + block_id).html()
                 block.color = $('#block_color_' + block_id).html()
                 block.image = $('#block_image_' + block_id).html()
+                block.category = $('#block_category_' + block_id).html()
                 column.column.push(block)
             })
             row.push(column)
