@@ -66,6 +66,10 @@
                 border-top: 2.5px solid $white;
                 border-bottom: 2.5px solid $white;
                 position: relative;
+                transition: 200ms all ease-in;
+                &.supress-item {
+                    opacity: .15;
+                }
                 .info-icon {
                     position: absolute;
                     opacity: .5;

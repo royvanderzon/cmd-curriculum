@@ -30,6 +30,19 @@ function hasContent(item){
         return true
     }
 }
+function catListToArray(string){
+    if(string != undefined){
+        if(string == 'undefined'){
+            return []
+        }else{
+            var array = string.split('|')
+            array.pop()
+            return array
+        }
+    }else{
+        return []
+    }
+}
 %>
 <!DOCTYPE html>
 <html lang="nl">
@@ -101,6 +114,32 @@ function hasContent(item){
                         </div>
                     </li>
                 </ul>
+                <ul class="category_container">
+                    <li class="cat_control active" data-cat="all">
+                        <a>
+                            <img src="/site/images/enter.png" alt="">
+                            <span>Alles</span>
+                        </a>
+                    </li>
+                    <li class="cat_control" data-cat="code">
+                        <a>
+                            <img src="/site/images/code.png" alt="">
+                            <span>Code</span>
+                        </a>
+                    </li>
+                    <li class="cat_control" data-cat="design">
+                        <a>
+                            <img src="/site/images/design.png" alt="">
+                            <span>Design</span>
+                        </a>
+                    </li>
+                    <li class="cat_control" data-cat="interaction">
+                        <a>
+                            <img src="/site/images/interaction.png" alt="">
+                            <span>Interaction</span>
+                        </a>
+                    </li>
+                </ul>
             </nav>
 
             <main>
@@ -137,8 +176,15 @@ function hasContent(item){
                                                     <% column.column.forEach(function(item,indexItem){ %>
                                                         <!-- height:<%= percentHeight %>%; -->
 
+                                                        <%
+                                                        var cats = catListToArray(item.category)
+                                                        var labelClasses = ' '
+                                                        cats.forEach(function(cat){
+                                                            labelClasses = labelClasses + ' cat_' + cat
+                                                        })
+                                                        %>
 
-                                                        <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %> <% if(item.title.length < 1){ %>empty-curriculem-item<% } %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
+                                                        <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %> <% if(item.title.length < 1){ %>empty-curriculem-item<% } %> <%= labelClasses %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
                                                             <span><%= getExcerpt(item.title) %></span>
                                                             <% if(hasContent(item)){ %><a class="info-icon bg-color-<%= getContrast50(item.color) %>" style="color:#<%= item.color %>;">i</a><% } %>
                                                         </div>

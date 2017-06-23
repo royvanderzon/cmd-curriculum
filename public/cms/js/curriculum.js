@@ -240,6 +240,7 @@ $(document).ready(function() {
         console.log('/////////////////////////////////////////')
         console.log(($('#block_category_' + currentEditId).html()).split('|'))
         var catsArray = ($('#block_category_' + currentEditId).html()).split('|')
+        catsArray.pop()
         if($('#block_category_' + currentEditId).html() == 'undefined'){
             $('#category_choise').val('');
             $('#category_choise').material_select('destroy');
@@ -276,11 +277,7 @@ $(document).ready(function() {
         }else{
             var storeCats = ''
             cats.forEach(function(cat,index){
-                if(index < cats.length-1){
-                    storeCats = storeCats + cat + '|'
-                }else{
-                    storeCats = storeCats + cat
-                }
+                storeCats = storeCats + cat + '|'
             })
         }
         $('#block_category_' + currentEditId).html(storeCats)

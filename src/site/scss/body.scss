@@ -35,6 +35,36 @@ body {
     background-color: $orange;
     box-shadow: $shadow;
     overflow-y: auto;
+    .category_container {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        li.cat_control {
+            border-top-width: 0px;
+            flex-basis: 25%;
+            @media screen and (max-width: $screen-xl-max) {
+                flex-basis: 50%;
+            }
+            a {
+                display: block;
+                max-width: 100%;
+                text-align: center;
+                text-decoration: none;
+                font-size: 13px;
+                border-right: 1px solid rgba(0, 0, 0, 0.15);
+                span{
+                    font-weight: bolder;
+                    color: $grey;
+                }
+                img {
+                    max-width: 60%;
+                    padding: 3px;
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
     .view-controls {
         display: block;
         width: 100%;

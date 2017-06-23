@@ -16,6 +16,7 @@
             self.event.modal.init()
             self.event.item.init()
             self.event.viewChange.init()
+            self.event.categoryControl.init()
             self.event.hashChange.init()
             self.event.scroll.init()
             self.dom.setSameHeight('.curriculem-item')
@@ -98,7 +99,7 @@
                     menuItems.push(obj)
                 }
                 addLegenda()
-                
+
                 $('#menu_item_' + 'legenda' + ' a').on('click', function(e) {
                     $('#year_container_' + 'legenda').element.scrollIntoView({
                         behavior: 'smooth'
@@ -136,6 +137,20 @@
                     scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
                     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+            },
+            viewCategory: function(cat) {
+                //design - interaction - code - nothing
+                $('.curriculem-item').element.forEach(function(el) {
+                    if (cat == 'all') {
+                        $(el).removeClass('supress-item')
+                    } else {
+                        if (!$(el).element.classList.contains('cat_' + cat)) {
+                            $(el).addClass('supress-item')
+                        }else{
+                            $(el).removeClass('supress-item')
+                        }
+                    }
+                })
             }
         },
         dom: {
@@ -160,6 +175,20 @@
                     })
                 },
 
+            },
+            categoryControl: {
+                init : function(){
+                    $('.cat_control').element.forEach(function(el){
+                        $(el).on('click',function(){
+                            $('.cat_control').element.forEach(function(subEl){
+                                $(subEl).removeClass('active')
+                            })
+                            $(el).addClass('active')
+                            var cat = $(el).attr('data-cat')
+                            self.function.viewCategory(cat)
+                        })
+                    })
+                }
             },
             hashChange: {
                 init: function() {
