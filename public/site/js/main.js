@@ -212,7 +212,10 @@
                             var item = Number(idArray[3])
                             var thisItem = years[year].data.rows[row][column].column[item]
                             self.helper.modal(thisItem, function() {
-                                $('.modal').show(200)
+                                $('.modal').show(200,function(){
+                                    console.log('hoi')
+                                    $('.close-modal').element.focus();
+                                })
                             })
                         })
                     })
@@ -243,6 +246,9 @@
             modal: {
                 init: function() {
                     $('.overlay').on('click', function() {
+                        $('.modal').hide(200)
+                    })
+                    $('.close-modal').on('click', function() {
                         $('.modal').hide(200)
                     })
                 }

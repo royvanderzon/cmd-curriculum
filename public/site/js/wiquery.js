@@ -94,7 +94,7 @@ function $(selector) {
         }
     }
 
-    self.show = function(speed) {
+    self.show = function(speed,cb) {
         if (typeof speed === 'number') {
             self.element.style.display = 'block'
             self.element.style.visibility = 'visible'

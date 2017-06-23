@@ -71,6 +71,7 @@
                     opacity: .15;
                 }
                 .info-icon {
+                    border-width: 0px;
                     position: absolute;
                     opacity: .5;
                     display: block;
@@ -86,6 +87,8 @@
                     text-align: center;
                     right: 10px;
                     top: 10px;
+                    font-size: 14px;
+                    line-height: 14px;
                 }
             }
         }
@@ -94,8 +97,15 @@
         display: block;
         padding: 5px;
         .header-inner {
+            max-width: 50%;
             background-color: $white;
             padding: 1.5em;
+            @media screen and (max-width: $screen-xl-max) {
+                max-width: 75%;
+            }
+            @media screen and (max-width: $screen-md-max) {
+                max-width: 100%;
+            }
         }
         h2,
         p {

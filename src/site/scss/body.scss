@@ -45,14 +45,17 @@ body {
             @media screen and (max-width: $screen-xl-max) {
                 flex-basis: 50%;
             }
-            a {
+            button {
+                cursor: pointer;
+                background-color: transparent;
+                border-width: 0px;
                 display: block;
                 max-width: 100%;
                 text-align: center;
                 text-decoration: none;
                 font-size: 13px;
                 border-right: 1px solid rgba(0, 0, 0, 0.15);
-                span{
+                span {
                     font-weight: bolder;
                     color: $grey;
                 }
@@ -176,7 +179,7 @@ body {
         position: fixed;
         max-height: 70%;
         max-height: 70vh;
-        overflow-y: auto;
+        /*overflow-y: auto;*/
         left: 0;
         right: 0;
         margin: 0 auto;
@@ -187,6 +190,22 @@ body {
         width: 40em;
         background-color: white;
         box-shadow: $shadow;
+        button.close-btn {
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            cursor: pointer;
+            z-index: 1019;
+            border-width: 0px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            font-size: 30px;
+            font-weight: bolder;
+            height: 40px;
+            width: 40px;
+            border-radius: 100%;
+            line-height: 30px;
+        }
         header {
             background-image: url("/cms/images/noimg.png");
             background-size: cover;

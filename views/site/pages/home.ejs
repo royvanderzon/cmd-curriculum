@@ -57,17 +57,7 @@ function catListToArray(string){
 
     <title><%= settings.options.application_name %></title>
 
-    <link rel="stylesheet" href="/site/css/font-awesome.min.css">
-    <!-- Bootstrap Core CSS -->
-    <!-- <link href="/site/css/bootstrap.min.css" rel="stylesheet"> -->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <meta name="theme-color" content="#333">
     <link href="/site/css/main.css" rel="stylesheet">
 
 </head>
@@ -80,7 +70,7 @@ function catListToArray(string){
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xs-12">
-                            <img src="<%= settings.options.application_logo %>" alt="" class="responsive logo">
+                            <img src="<%= settings.options.application_logo %>" alt="cmd logo" class="responsive logo">
                             <h1 class="text-center"><%= settings.options.application_name %></h1>
                         </div>
                     </div>
@@ -103,39 +93,39 @@ function catListToArray(string){
                             <% }else{ %>
                                 <img src="/uploads/curriculum/<%= year.path %>" alt="link icon">
                             <% } %>
-                            <a href="#year_container_<%= year.ID %>"><%= year.title %></a>
+                            <a href="#year_container_<%= year.ID %>" alt="link to year <%= year.title %>"><%= year.title %></a>
                         </div>
                     </li>
                     <% }) %>
                     <li id="menu_item_legenda" class="menu-item">
                         <div class="nav-item">
                             <img src="/site/images/sign.png" alt="link icon">
-                            <a href="#year_container_legenda">LEGENDA</a>
+                            <a href="#year_container_legenda" alt="Bekijk LEGENDA">LEGENDA</a>
                         </div>
                     </li>
                 </ul>
                 <ul class="category_container">
                     <li class="cat_control active" data-cat="all">
-                        <a>
-                            <img src="/site/images/enter.png" alt="">
+                        <button>
+                            <img src="/site/images/enter.png" alt="only make all visible">
                             <span>Alles</span>
                         </a>
                     </li>
                     <li class="cat_control" data-cat="code">
-                        <a>
-                            <img src="/site/images/code.png" alt="">
+                        <button>
+                            <img src="/site/images/code.png" alt="only make code visible">
                             <span>Code</span>
                         </a>
                     </li>
                     <li class="cat_control" data-cat="design">
-                        <a>
-                            <img src="/site/images/design.png" alt="">
+                        <button>
+                            <img src="/site/images/design.png" alt="only make design visible">
                             <span>Design</span>
                         </a>
                     </li>
                     <li class="cat_control" data-cat="interaction">
-                        <a>
-                            <img src="/site/images/interaction.png" alt="">
+                        <button>
+                            <img src="/site/images/interaction.png" alt="only make interaction visible">
                             <span>Interaction</span>
                         </a>
                     </li>
@@ -186,7 +176,7 @@ function catListToArray(string){
 
                                                         <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %> <% if(item.title.length < 1){ %>empty-curriculem-item<% } %> <%= labelClasses %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
                                                             <span><%= getExcerpt(item.title) %></span>
-                                                            <% if(hasContent(item)){ %><a class="info-icon bg-color-<%= getContrast50(item.color) %>" style="color:#<%= item.color %>;">i</a><% } %>
+                                                            <% if(hasContent(item)){ %><button class="info-icon bg-color-<%= getContrast50(item.color) %>" title="curriculum item <%= getExcerpt(item.title) %>" alt="curriculum item <%= getExcerpt(item.title) %>" style="color:#<%= item.color %>;">i</button><% } %>
                                                         </div>
                                                     <% }) %>
                                                 </div>
@@ -223,7 +213,7 @@ function catListToArray(string){
                 <% if(slider.length > 0){ %>
                 <div class="slider-container">
                     <div class="slider-bar">
-                        <a class="hide-slides">Bekijk curriculum</a>
+                        <a class="hide-slides" alt="Bekijk curriculum">Bekijk curriculum</a>
                     </div>
                     <ul id="slides">
                         <!-- <li class="slide showing">Slide 1</li> -->
@@ -243,6 +233,7 @@ function catListToArray(string){
     <div class="modal hide">
         <div class="overlay"></div>
         <main>
+            <button class="close-btn close-modal" title="close modal" alt="close modal">&times;</button>
             <header>
                 <h2>Modal title</h2>
             </header>
@@ -265,12 +256,9 @@ function catListToArray(string){
     <script type="text/javascript" src="https://cdn.rawgit.com/jackmu95/52b82e3ec79a2e2a30ddf37e71846711/raw/e1742e6e1b7ab73807c313c04e7b63f96f15c43b/quill.min.js"></script>
 
     <!-- SCRIPTS -->
-    <!-- <script src="/site/js/jquery.js"></script> -->
-    <!-- <script src="/site/js/bootstrap.min.js"></script> -->
     <script src="/site/js/smoothscroll.js"></script>
     <script src="/site/js/wiquery.js"></script>
     <script src="/site/js/main.js"></script>
-    <!-- <script src="/site/js/app.bundle.js"></script> -->
 
 </body>
 
