@@ -44,10 +44,10 @@
                 }
             },
             checkActivity: function() {
-                if(!slideActive) return;
-                if(sliderTimeout == null){
+                if (!slideActive) return;
+                if (sliderTimeout == null) {
                     var IDLE_TIMEOUT = 60 * 10 //seconds (10 minutes)
-                }else{
+                } else {
                     var IDLE_TIMEOUT = sliderTimeout * 60
                 }
                 var _idleSecondsCounter = 0;
@@ -68,9 +68,9 @@
                     // console.log(IDLE_TIMEOUT - _idleSecondsCounter)
                     if (_idleSecondsCounter >= IDLE_TIMEOUT) {
                         _idleSecondsCounter = 0
-                        if($('.slider-container').element.style.visibility == 'hidden'){
+                        if ($('.slider-container').element.style.visibility == 'hidden') {
                             $('.slider-container').show(200)
-                            // console.log('showing slideshow')
+                                // console.log('showing slideshow')
                         }
                     }
                 }
@@ -89,8 +89,24 @@
                         });
                     })
                 })
+
+                function addLegenda() {
+                    var obj = {}
+                    var divOffset = self.function.offset($('#year_container_' + 'legenda').element);
+                    obj.id = 'legenda'
+                    obj.top = divOffset.top
+                    menuItems.push(obj)
+                }
+                addLegenda()
+                
+                $('#menu_item_' + 'legenda' + ' a').on('click', function(e) {
+                    $('#year_container_' + 'legenda').element.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                })
+
                 self.options.menuItems = menuItems
-                // console.log(self.options.menuItems)
+                    // console.log(self.options.menuItems)
             },
             setNavActive: function(id) {
                 $('.menu-item').element.forEach(function(navItem) {

@@ -49,7 +49,7 @@ var site = {
     connection: {
         new: function() {
             connectionCount++
-            console.log(connectionCount)
+            // console.log(connectionCount)
             var connection = mysql.createConnection(db_settings)
             return connection
         },
@@ -103,7 +103,7 @@ var site = {
                     addQuery += ' OR ID = ' + value.id
                 }
             })
-            console.log(addQuery)
+            // console.log(addQuery)
             var queryPromise = new Promise(
                 function(resolve, reject) {
                     if (true) {

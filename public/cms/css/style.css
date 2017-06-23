@@ -11,11 +11,12 @@ footer {
     /*overflow-x: auto;*/
     /*display: block;*/
 }
+
 .total-overview-container {
     /*overflow-x: auto;*/
 }
 
-.stretch{
+.stretch {
     max-width: 100%;
     width: 100%;
     display: block;
@@ -28,6 +29,12 @@ footer {
     footer {
         padding-left: 0;
     }
+}
+
+#change_img {
+    width: 150px;
+    max-width: 100%;
+    display: block;
 }
 
 #main-nav ul.side-nav.fixed li.logo {
@@ -47,7 +54,7 @@ footer {
 #logo-container img {
     max-width: 100%;
     display: block;
-    width: 175px;
+    /*width: 175px;*/
     margin: 0 auto;
 }
 
@@ -58,21 +65,25 @@ footer {
 .block-content {
     position: relative;
 }
-.edit_block,.move_block{
+
+.edit_block,
+.move_block {
     position: absolute;
     top: 10px;
 }
-.edit_block{
+
+.edit_block {
     right: 5px;
 }
-.move_block{
+
+.move_block {
     right: 30px;
 }
 
-/* Safari and Chrome */
-@-webkit-keyframes rotating
 
-{
+/* Safari and Chrome */
+
+@-webkit-keyframes rotating {
     from {
         -webkit-transform: rotate(0deg);
         -o-transform: rotate(0deg);

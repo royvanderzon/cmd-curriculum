@@ -1,6 +1,24 @@
 var express = require('express');
+var multer = require('multer');
+var path = require('path');
 var zoncms = require(appRoot + '/zoncms');
 var router = express.Router();
+
+var storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        console.log(file)
+        callback(null, global.appRoot + '/public/uploads/curriculum');
+    },
+    filename: function(req, file, callback) {
+        console.log('file')
+        console.log(file)
+        var tempType = String(file.mimetype).split("/");
+        var newType = tempType[tempType.length - 1];
+        callback(null, file.fieldname + '-' + Date.now() + '.' + newType);
+    }
+})
+
+var upload = multer({ storage: storage, limits: { fileSize: 3145728 } });
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ##################################################/////////////////////////////////////////////////////
@@ -115,11 +133,11 @@ router.get('/years', zoncms.user.isLoggedIn, zoncms.user.checkLevel([50]), funct
     });
 });
 
-router.post('/new_year', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), function(req, res) {
+router.post('/new_year', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), upload.any(), function(req, res) {
 
     var data = req.body;
     var active = 'false';
-    if(data.year_active == 'on'){
+    if (data.year_active == 'on') {
         active = 'true';
     }
 
@@ -128,7 +146,8 @@ router.post('/new_year', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), f
         insert: {
             title: data.new_curriculum_name,
             description: data.textarea_content,
-            active: active
+            active: active,
+            path: req.files[0].filename
         }
     }
 
@@ -138,11 +157,11 @@ router.post('/new_year', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), f
     })
 });
 
-router.post('/edit_year', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), function(req, res) {
+router.post('/edit_year', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), upload.any(), function(req, res) {
 
     var data = req.body;
     var active = 'false';
-    if(data.edit_year_active == 'on'){
+    if (data.edit_year_active == 'on') {
         active = 'true';
     }
     var obj = {
@@ -151,7 +170,8 @@ router.post('/edit_year', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), 
         update: {
             title: data.year_name,
             description: data.year_description,
-            active: active
+            active: active,
+            path: req.files[0].filename
         }
     }
 
@@ -194,7 +214,7 @@ router.get('/overview', zoncms.user.isLoggedIn, zoncms.user.checkLevel([50]), fu
     }
 
     zoncms.db.get(objYear, function(years) {
-        res.redirect('/cms/curriculum/overview/'+years[0].ID)
+        res.redirect('/cms/curriculum/overview/' + years[0].ID)
     })
 
 });
@@ -223,21 +243,21 @@ router.get('/overview/:id', zoncms.user.isLoggedIn, zoncms.user.checkLevel([50])
         zoncms.db.get(yearView, function(yearView) {
             zoncms.db.get(objType, function(types) {
 
-                    res.render('cms/pages/curriculum_overview', {
-                        toast: req.flash('toast'),
-                        menu: zoncms.menu.cms(req, res),
-                        user: req.user,
-                        page: {
-                            global: zoncms.settings.options,
-                            title: false,
-                            under_title: 'Overview',
-                            title_head: 'overview'
-                        },
-                        years: years,
-                        yearView: yearView,
-                        types : types,
-                        currentYear : req.params.id
-                    });
+                res.render('cms/pages/curriculum_overview', {
+                    toast: req.flash('toast'),
+                    menu: zoncms.menu.cms(req, res),
+                    user: req.user,
+                    page: {
+                        global: zoncms.settings.options,
+                        title: false,
+                        under_title: 'Overview',
+                        title_head: 'overview'
+                    },
+                    years: years,
+                    yearView: yearView,
+                    types: types,
+                    currentYear: req.params.id
+                });
 
             })
         })

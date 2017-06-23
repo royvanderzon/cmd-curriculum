@@ -8,44 +8,62 @@ var router = express.Router();
 router.get('/', function(req, res) {
 
     var objYear = {
-	    search: '*',
-	    db: 'year',
-	    query: ''
+        search: '*',
+        db: 'year',
+        query: ''
     }
 
- 	zoncms.db.getP(objYear).then(function(years){
-	    res.render('site/pages/home',{
-	    	years : years,
-	    	settings : zoncms.settings,
-	    	slider : []
-	    });
- 	})
+    var objType = {
+        search: '*',
+        db: 'type',
+        query: ''
+    }
+
+    zoncms.db.getP(objYear).then(function(years) {
+        zoncms.db.getP(objType).then(function(types) {
+            res.render('site/pages/home', {
+                years: years,
+                settings: zoncms.settings,
+                types: types,
+                slider: []
+            });
+        })
+    })
 
 });
 
 router.get('/slider', function(req, res) {
 
     var objYear = {
-	    search: '*',
-	    db: 'year',
-	    query: ''
+        search: '*',
+        db: 'year',
+        query: ''
     }
 
     var objSlider = {
-	    search: '*',
-	    db: 'slider',
-	    query: ''
+        search: '*',
+        db: 'slider',
+        query: ''
     }
 
- 	zoncms.db.getP(objYear).then(function(years){
-	 	zoncms.db.getP(objSlider).then(function(slider){
-		    res.render('site/pages/home',{
-		    	years : years,
-		    	settings : zoncms.settings,
-		    	slider : slider
-		    });
-	 	})
- 	})
+    var objType = {
+        search: '*',
+        db: 'type',
+        query: ''
+    }
+
+    zoncms.db.getP(objYear).then(function(years) {
+        zoncms.db.getP(objSlider).then(function(slider) {
+            zoncms.db.getP(objType).then(function(types) {
+                res.render('site/pages/home', {
+                    years: years,
+                    settings: zoncms.settings,
+                    types: types,
+                    slider: slider
+                });
+            })
+        })
+    })
 
 });
 

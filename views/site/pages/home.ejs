@@ -67,7 +67,7 @@ function hasContent(item){
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xs-12">
-                            <img src="/site/images/logo.png" alt="" class="responsive logo">
+                            <img src="<%= settings.options.application_logo %>" alt="" class="responsive logo">
                             <h1 class="text-center"><%= settings.options.application_name %></h1>
                         </div>
                     </div>
@@ -82,13 +82,24 @@ function hasContent(item){
                 <ul>
                     <% years.forEach(function(year,index){ %>
                     <% if(year.active == 'false') return; %>
+                    <% //if(year.data === null) return; %>
                     <li id="menu_item_<%= year.ID %>" class="menu-item">
                         <div class="nav-item">
-                            <img src="/site/images/icon.png" alt="link icon">
+                            <% if(year.path == 'false'){ %>
+                                <img src="/site/images/icon.png" alt="link icon">
+                            <% }else{ %>
+                                <img src="/uploads/curriculum/<%= year.path %>" alt="link icon">
+                            <% } %>
                             <a href="#year_container_<%= year.ID %>"><%= year.title %></a>
                         </div>
                     </li>
                     <% }) %>
+                    <li id="menu_item_legenda" class="menu-item">
+                        <div class="nav-item">
+                            <img src="/site/images/sign.png" alt="link icon">
+                            <a href="#year_container_legenda">Legenda</a>
+                        </div>
+                    </li>
                 </ul>
             </nav>
 
@@ -99,7 +110,7 @@ function hasContent(item){
                         <div class="col-xs-12 curriculem-wrapper">
                             
                             <% years.forEach(function(year,indexYear){ %>
-                                <% console.log(year.active) %>
+                                <% if(year.data === null) return; %>
                                 <% if(year.active == 'false') return; %>
                                 <% year.data = JSON.parse(year.data) %>
                                 <div class="curriculem-container" id="year_container_<%= year.ID %>">
@@ -143,6 +154,22 @@ function hasContent(item){
                                 </div>
                             <% }) %>
 
+                            <!-- LEGENDA -->
+                            <div class="curriculem-container" id="year_container_legenda">
+                                <div class="curriculum-inner">
+                                    <div class="curriculem-row curriculum-header">
+                                        <div class="header-inner">
+                                            <h2>Legenda</h2>
+                                            <ul class="types_explanation">
+                                                <% types.forEach(function(type){ %>
+                                                    <li class="color-<%= getContrast50(type.color) %>" style="background-color:#<%= type.color %>;"><%= type.title %></li>
+                                                <% }) %>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -179,6 +206,8 @@ function hasContent(item){
 
     <script>
         var years = <%- JSON.stringify(years) %>
+        var types = <%- JSON.stringify(types) %>
+        console.log(types)
         <% if(slider.length > 0){ %>
         var sliderTimeout =  Number('<%= settings.options.slider_activity %>')
         var slideActive = true

@@ -4,6 +4,27 @@
     min-height: 100vh;
     /*display: flex;*/
     flex-wrap: wrap;
+    .types_explanation {
+        list-style-type: none;
+        display: flex;
+        height: 100%;
+        flex-wrap: wrap;
+        vertical-align: middle;
+        width: 100%;
+        background-color: $white;
+        margin: 0;
+        padding: 0;
+        li {
+            width: 48%;
+            flex-basis: 48%;
+            padding: 15px;
+            margin: 1%;
+            @media screen and (max-width: $screen-sm-max) {
+                width: 90%;
+                flex-basis: 90%;
+            }
+        }
+    }
     .curriculum-inner {
         display: flex;
         height: 100%;

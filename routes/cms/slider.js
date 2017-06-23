@@ -1,24 +1,24 @@
 var express = require('express');
-var zoncms = require(appRoot + '/zoncms');
 var multer = require('multer');
 var path = require('path');
+var zoncms = require(appRoot + '/zoncms');
 var router = express.Router();
 
 var storage = multer.diskStorage({
-    destination: function (req, file, callback) {
+    destination: function(req, file, callback) {
         console.log(file)
-        callback(null, global.appRoot+'/public/uploads/slider');
+        callback(null, global.appRoot + '/public/uploads/slider');
     },
-    filename: function (req, file, callback) {
+    filename: function(req, file, callback) {
         console.log('file')
         console.log(file)
         var tempType = String(file.mimetype).split("/");
-        var newType = tempType[tempType.length-1];
+        var newType = tempType[tempType.length - 1];
         callback(null, file.fieldname + '-' + Date.now() + '.' + newType);
     }
 })
 
-var upload = multer({ storage : storage,limits:{ fileSize: 3145728 } });
+var upload = multer({ storage: storage, limits: { fileSize: 3145728 } });
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ##################################################/////////////////////////////////////////////////////
@@ -50,11 +50,11 @@ router.get('/', zoncms.user.isLoggedIn, zoncms.user.checkLevel([50]), function(r
     });
 });
 
-router.post('/new', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]),upload.any(), function(req, res) {
+router.post('/new', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), upload.any(), function(req, res) {
 
     var data = req.body;
     var active = 'false';
-    if(data.slider_active == 'on'){
+    if (data.slider_active == 'on') {
         active = 'true';
     }
 
@@ -77,7 +77,7 @@ router.post('/edit', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), funct
 
     var data = req.body;
     var active = 'false';
-    if(data.edit_slider_active == 'on'){
+    if (data.edit_slider_active == 'on') {
         active = 'true';
     }
     var obj = {
