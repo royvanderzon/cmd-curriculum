@@ -58,6 +58,7 @@ function catListToArray(string){
     <title><%= settings.options.application_name %></title>
 
     <meta name="theme-color" content="#333">
+    <link rel="stylesheet" href="/cms/css/quill.snow.css" />
     <link href="/site/css/main.css" rel="stylesheet">
 
 </head>
@@ -234,10 +235,12 @@ function catListToArray(string){
         <div class="overlay"></div>
         <main>
             <button class="close-btn close-modal" title="close modal" alt="close modal">&times;</button>
-            <header>
-                <h2>Modal title</h2>
-            </header>
-            <div class="content"></div>
+            <div class="content-wrapper ql-editor">
+                <header>
+                    <h2>Modal title</h2>
+                </header>
+                <div class="content"></div>
+            </div>
         </main>
     </div>
 

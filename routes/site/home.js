@@ -2,7 +2,7 @@ var express = require('express');
 var zoncms = require(global.appRoot + '/zoncms');
 var site = require(global.appRoot + '/zoncms/site.js');
 // var zoncms = require('../../zoncms');
-console.log(global.appRoot)
+// console.log(global.appRoot)
 var router = express.Router();
 
 router.get('/', function(req, res) {

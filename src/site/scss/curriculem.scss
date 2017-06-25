@@ -136,6 +136,9 @@
             .empty-curriculem-item {
                 display: none!important;
             }
+            .curriculem-item {
+                flex-basis: 100% !important;
+            }
         }
     }
 }
@@ -159,7 +162,7 @@
             border-bottom-width: 0px;
             padding-top: 10px;
             /*border-top-width: 15px;*/
-            .header-inner{
+            .header-inner {
                 max-width: 100%;
             }
         }
@@ -173,6 +176,7 @@
             .curriculem-column {
                 .curriculem-item {
                     max-height: 50px;
+                    flex-basis: 100% !important;
                 }
             }
         }

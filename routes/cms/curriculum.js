@@ -6,12 +6,9 @@ var router = express.Router();
 
 var storage = multer.diskStorage({
     destination: function(req, file, callback) {
-        console.log(file)
         callback(null, global.appRoot + '/public/uploads/curriculum');
     },
     filename: function(req, file, callback) {
-        console.log('file')
-        console.log(file)
         var tempType = String(file.mimetype).split("/");
         var newType = tempType[tempType.length - 1];
         callback(null, file.fieldname + '-' + Date.now() + '.' + newType);
@@ -69,6 +66,42 @@ router.post('/new_type', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), f
 
 router.post('/edit_type', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), function(req, res) {
 
+    var obj_year = {
+        search: '*',
+        db: 'year',
+        query: ''
+    }
+
+    zoncms.db.get(obj_year, function(years) {
+        var new_color = (data.type_description).split('#')[1];
+        var old_color = (data.type_description_old).split('#')[1];
+        years.forEach(function(year) {
+            year.data = JSON.parse(year.data)
+            year.data.rows.forEach(function(row) {
+                row.forEach(function(column) {
+                    column.column.forEach(function(item) {
+                        if (item.color == old_color) {
+                            item.color = new_color
+                        }
+                    })
+                })
+            })
+            year.data = JSON.stringify(year.data)
+
+            var update_year_obj = {
+                id: year.ID,
+                db: 'year',
+                update: {
+                    data: year.data
+                }
+            }
+            zoncms.db.set(update_year_obj, function() {})
+
+        })
+
+
+    });
+
     var data = req.body;
     var obj = {
         id: data.type_id,
@@ -87,8 +120,6 @@ router.post('/edit_type', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), 
 });
 
 router.get('/remove_type/:id', zoncms.user.isLoggedIn, zoncms.user.checkLevel([21]), function(req, res) {
-
-    console.log(req.body)
 
     var data = req.body;
     var obj = {
@@ -164,15 +195,25 @@ router.post('/edit_year', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), 
     if (data.edit_year_active == 'on') {
         active = 'true';
     }
-    var obj = {
-        id: data.year_id,
-        db: 'year',
-        update: {
+    var updateObj = {}
+    if (req.files.length > 0) {
+        updateObj = {
             title: data.year_name,
             description: data.year_description,
             active: active,
             path: req.files[0].filename
         }
+    } else {
+        updateObj = {
+            title: data.year_name,
+            description: data.year_description,
+            active: active
+        }
+    }
+    var obj = {
+        id: data.year_id,
+        db: 'year',
+        update: updateObj
     }
 
     zoncms.db.set(obj, function() {
@@ -183,8 +224,6 @@ router.post('/edit_year', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), 
 });
 
 router.get('/remove_year/:id', zoncms.user.isLoggedIn, zoncms.user.checkLevel([21]), function(req, res) {
-
-    console.log(req.body)
 
     var data = req.body;
     var obj = {

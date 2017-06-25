@@ -38,7 +38,7 @@ var zoncms = {
     connection: {
         new: function() {
             connectionCount++
-            console.log(connectionCount)
+            // console.log(connectionCount)
             var connection = mysql.createConnection(db_settings)
             return connection
         },
