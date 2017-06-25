@@ -75,8 +75,29 @@
                         <i class="material-icons circle">image</i>
 
                         <form action="" id="formContent" method="post" enctype="multipart/form-data">
-                            <label for="application_logo">Header image</label>
-                            <input type="file" name="application_logo" required="" id="application_logo">
+                            <div class="row">
+                                <div class="col s12">
+                                    <label for="application_logo">Header image</label>
+                                </div>
+                                <div class="col s12">
+                                    <input type="file" name="application_logo" required="" id="application_logo">
+                                </div>
+                            </div>
+                            <!-- <button class="submitI" >Upload Image</button>  -->
+                        </form>
+                    </li>
+                    <li class="collection-item avatar live-text">
+                        <i class="material-icons circle">image</i>
+
+                        <form action="" id="formContent_2" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col s12">
+                                    <label for="background_image">Background image</label>
+                                </div>
+                                <div class="col s12">
+                                    <input type="file" name="background_image" required="" id="background_image">
+                                </div>
+                            </div>
                             <!-- <button class="submitI" >Upload Image</button>  -->
                         </form>
                     </li>
@@ -136,6 +157,56 @@
                         // success
                         console.log(data)
                         $('#font-page-logo').attr('src',data.value)
+                        Materialize.toast('Upload success!', 3000, 'green')
+                        console.log('uploading success')
+                    },function(){
+                        // failure
+                        Materialize.toast('Upload failed..', 3000, 'red')
+                        console.log('uploading failed')
+                    });
+                },
+                error: function() {
+                    console.log('something went wrong uploading...')
+                }
+            });
+        });
+
+        $("#background_image").change(function() {
+            console.log('uploaddinggg')
+            $('#formContent_2').submit()
+                // return false;
+        });
+
+        $("#formContent_2").submit(function(e) {
+            e.preventDefault();
+
+            var formdata = new FormData(this);
+
+            $.ajax({
+                url: "/cms/storage/upload_simple",
+                type: "POST",
+                data: formdata,
+                mimeTypes: "multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+
+                    var response = JSON.parse(data)
+                    // $('#block_image_' + currentEditId).html(response.link)
+                    console.log(response)
+                    var data = {};
+                    data.key = 'background_image';
+                    data.value = response.link;
+
+                    //sendData post:
+                    //1# data
+                    //2# succes callback
+                    //3# failure callback
+                    sendData(data,function(){
+                        // success
+                        console.log(data)
+                        // $('#font-page-logo').attr('src',data.value)
                         Materialize.toast('Upload success!', 3000, 'green')
                         console.log('uploading success')
                     },function(){

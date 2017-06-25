@@ -32,7 +32,7 @@ router.get('/', function(req, res) {
 
     zoncms.db.get_content(false,function(content){
 
-        console.log(content)
+        // console.log(content)
         
         res.render('cms/pages/home',
         	{
