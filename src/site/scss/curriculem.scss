@@ -159,6 +159,9 @@
             border-bottom-width: 0px;
             padding-top: 10px;
             /*border-top-width: 15px;*/
+            .header-inner{
+                max-width: 100%;
+            }
         }
         .curriculem-row {
             flex-wrap: wrap;

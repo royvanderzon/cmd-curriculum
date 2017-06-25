@@ -77,6 +77,24 @@
                 }
             },
             initNavPos: function() {
+                var menuItems = self.function.calcNavPos()
+                years.forEach(function(year) {
+                    $('#menu_item_' + year.ID + ' a').on('click', function(e) {
+                        $('#year_container_' + year.ID).element.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    })
+                })
+
+                $('#menu_item_' + 'legenda' + ' a').on('click', function(e) {
+                    $('#year_container_' + 'legenda').element.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                })
+
+                self.options.menuItems = menuItems
+            },
+            calcNavPos: function() {
                 var menuItems = []
                 years.forEach(function(year) {
                     var obj = {}
@@ -84,11 +102,6 @@
                     obj.id = year.ID
                     obj.top = divOffset.top
                     menuItems.push(obj)
-                    $('#menu_item_' + year.ID + ' a').on('click', function(e) {
-                        $('#year_container_' + year.ID).element.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    })
                 })
 
                 function addLegenda() {
@@ -100,14 +113,7 @@
                 }
                 addLegenda()
 
-                $('#menu_item_' + 'legenda' + ' a').on('click', function(e) {
-                    $('#year_container_' + 'legenda').element.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                })
-
-                self.options.menuItems = menuItems
-                    // console.log(self.options.menuItems)
+                return menuItems
             },
             setNavActive: function(id) {
                 $('.menu-item').element.forEach(function(navItem) {
@@ -146,7 +152,7 @@
                     } else {
                         if (!$(el).element.classList.contains('cat_' + cat)) {
                             $(el).addClass('supress-item')
-                        }else{
+                        } else {
                             $(el).removeClass('supress-item')
                         }
                     }
@@ -177,10 +183,10 @@
 
             },
             categoryControl: {
-                init : function(){
-                    $('.cat_control').element.forEach(function(el){
-                        $(el).on('click',function(){
-                            $('.cat_control').element.forEach(function(subEl){
+                init: function() {
+                    $('.cat_control').element.forEach(function(el) {
+                        $(el).on('click', function() {
+                            $('.cat_control').element.forEach(function(subEl) {
                                 $(subEl).removeClass('active')
                             })
                             $(el).addClass('active')
@@ -212,7 +218,7 @@
                             var item = Number(idArray[3])
                             var thisItem = years[year].data.rows[row][column].column[item]
                             self.helper.modal(thisItem, function() {
-                                $('.modal').show(200,function(){
+                                $('.modal').show(200, function() {
                                     console.log('hoi')
                                     $('.close-modal').element.focus();
                                 })
@@ -239,6 +245,8 @@
                                     $('.curriculem-wrapper').removeClass('list-view')
                                     break;
                             }
+                            self.options.menuItems = []
+                            self.options.menuItems = self.function.calcNavPos()
                         })
                     })
                 }

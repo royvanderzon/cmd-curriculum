@@ -9,8 +9,6 @@ var app = express();
 
 var mysql = require('mysql');
 var myConnection = require('express-myconnection');
-console.log(process.env.PORT)
-var port = process.env.PORT || 3000; //8080
 var passport = require('passport');
 var flash = require('connect-flash');
 var path = require('path');
@@ -67,8 +65,8 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/', site_routes);
 app.use('/cms', cms_routes);
 app.use('*',function(req,res){
-	req.flash('toast','"Page not found.", 10000, "red"');
-	res.redirect('/cms')
+    req.flash('toast','"Page not found.", 10000, "red"');
+    res.redirect('/cms')
 })
 
 require('./routes/auth.js')(app, passport);
@@ -83,6 +81,6 @@ app.use(function(err, req, res, next) {
 // test db =====================================================================
 zoncms.db.test_connection();
 // launch ======================================================================
-zoncms.init.start(app, port);
+zoncms.init.start(app, process.env.PORT || 3000);
 
 // https://stackoverflow.com/questions/28973453/mysql2error-incorrect-string-value-xe2-x80-xa8-x09
