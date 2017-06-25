@@ -1,4 +1,4 @@
-// server.js
+//// server.js
 global.__base = __dirname + '/';
 require('dotenv').config()
 
