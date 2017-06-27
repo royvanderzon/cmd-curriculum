@@ -67,175 +67,174 @@ function catListToArray(string){
 
     <div class="wrapper">
 
-            <nav>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <img src="<%= settings.options.application_logo %>" alt="cmd logo" class="responsive logo">
-                            <h1 class="text-center"><%= settings.options.application_name %></h1>
-                        </div>
-                    </div>
-                </div>
+        <nav>
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="view-controls">
-                            <button class="view-button" data-view="list">LIST</button> | <button class="view-button pressed" data-view="table">TABLE</button>
-                        </div>
+                        <img src="<%= settings.options.application_logo %>" alt="cmd logo" class="responsive logo">
+                        <h1 class="text-center"><%= settings.options.application_name %></h1>
                     </div>
                 </div>
-                <ul>
-                    <% years.forEach(function(year,index){ %>
-                    <% if(year.active == 'false') return; %>
-                    <% //if(year.data === null) return; %>
-                    <li id="menu_item_<%= year.ID %>" class="menu-item">
-                        <div class="nav-item">
-                            <% if(year.path == 'false'){ %>
-                                <img src="/site/images/icon.png" alt="link icon">
-                            <% }else{ %>
-                                <img src="/uploads/curriculum/<%= year.path %>" alt="link icon">
-                            <% } %>
-                            <a href="#year_container_<%= year.ID %>" title="link to year <%= year.title %>"><%= year.title %></a>
-                        </div>
-                    </li>
-                    <% }) %>
-                    <li id="menu_item_legenda" class="menu-item">
-                        <div class="nav-item">
-                            <img src="/site/images/sign.png" alt="link icon">
-                            <a href="#year_container_legenda" title="Bekijk LEGENDA">LEGENDA</a>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="category_container">
-                    <li class="cat_control active" data-cat="all">
-                        <button>
-                            <img src="/site/images/enter.png" alt="only make all visible">
-                            <span>Alles</span>
-                        </button>
-                    </li>
-                    <li class="cat_control" data-cat="code">
-                        <button>
-                            <img src="/site/images/code.png" alt="only make code visible">
-                            <span>Code</span>
-                        </button>
-                    </li>
-                    <li class="cat_control" data-cat="design">
-                        <button>
-                            <img src="/site/images/design.png" alt="only make design visible">
-                            <span>Design</span>
-                        </button>
-                    </li>
-                    <li class="cat_control" data-cat="interaction">
-                        <button>
-                            <img src="/site/images/interaction.png" alt="only make interaction visible">
-                            <span>Interaction</span>
-                        </button>
-                    </li>
-                </ul>
-                <div id="qrcode"></div>
-            </nav>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="view-controls">
+                        <button class="view-button" data-view="list">LIST</button> | <button class="view-button pressed" data-view="table">TABLE</button>
+                    </div>
+                </div>
+            </div>
+            <ul>
+                <% years.forEach(function(year,index){ %>
+                <% if(year.active == 'false') return; %>
+                <% //if(year.data === null) return; %>
+                <li id="menu_item_<%= year.ID %>" class="menu-item">
+                    <div class="nav-item">
+                        <% if(year.path == 'false'){ %>
+                            <img src="/site/images/icon.png" alt="link icon">
+                        <% }else{ %>
+                            <img src="/uploads/curriculum/<%= year.path %>" alt="link icon">
+                        <% } %>
+                        <a href="#year_container_<%= year.ID %>" title="link to year <%= year.title %>"><%= year.title %></a>
+                    </div>
+                </li>
+                <% }) %>
+                <li id="menu_item_legenda" class="menu-item">
+                    <div class="nav-item">
+                        <img src="/site/images/sign.png" alt="link icon">
+                        <a href="#year_container_legenda" title="Bekijk LEGENDA">LEGENDA</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="category_container">
+                <li class="cat_control active" data-cat="all">
+                    <button>
+                        <img src="/site/images/enter.png" alt="only make all visible">
+                        <span>Alles</span>
+                    </button>
+                </li>
+                <li class="cat_control" data-cat="code">
+                    <button>
+                        <img src="/site/images/code.png" alt="only make code visible">
+                        <span>Code</span>
+                    </button>
+                </li>
+                <li class="cat_control" data-cat="design">
+                    <button>
+                        <img src="/site/images/design.png" alt="only make design visible">
+                        <span>Design</span>
+                    </button>
+                </li>
+                <li class="cat_control" data-cat="interaction">
+                    <button>
+                        <img src="/site/images/interaction.png" alt="only make interaction visible">
+                        <span>Interaction</span>
+                    </button>
+                </li>
+            </ul>
+            <div id="qrcode"></div>
+        </nav>
 
-            <main>
-                <div class="background" style="background-image: url('<%= settings.options.background_image %>');"></div>
-                <div class="container max-container">
-                    <div class="row">
-                        <div class="col-xs-12 curriculem-wrapper">
-                            
-                            <% years.forEach(function(year,indexYear){ %>
-                                <% if(year.data === null) return; %>
-                                <% if(year.active == 'false') return; %>
-                                <% year.data = JSON.parse(year.data) %>
-                                <div class="curriculem-container" id="year_container_<%= year.ID %>">
+        <main>
+            <div class="background" style="background-image: url('<%= settings.options.background_image %>');"></div>
+            <div class="container max-container">
+                <div class="row">
+                    <div class="col-xs-12 curriculem-wrapper">
+                        
+                        <% years.forEach(function(year,indexYear){ %>
+                            <% if(year.data === null) return; %>
+                            <% if(year.active == 'false') return; %>
+                            <% year.data = JSON.parse(year.data) %>
+                            <div class="curriculem-container" id="year_container_<%= year.ID %>">
 
-                                    <div class="curriculum-inner">
-                                        <div class="curriculem-row curriculum-header">
-                                            <div class="header-inner">
-                                                <h2><%= year.title %></h2>
-                                                <p><%= year.description %></p>
-                                            </div>
-                                        </div>
-
-                                        <% year.data.rows.forEach(function(row,indexRow){ %>
-                                        <div class="curriculem-row">
-
-
-                                            <% row.forEach(function(column,indexColumn){ %>
-                                                
-                                                <div class="curriculem-column">
-                                                    <%
-                                                    var totalItems = column.column.length
-                                                    var percentHeight = 100 * 1 / totalItems
-                                                    %>
-                                                    <% column.column.forEach(function(item,indexItem){ %>
-                                                        <!-- height:<%= percentHeight %>%; -->
-
-                                                        <%
-                                                        var cats = catListToArray(item.category)
-                                                        var labelClasses = ' '
-                                                        cats.forEach(function(cat){
-                                                            labelClasses = labelClasses + ' cat_' + cat
-                                                        })
-                                                        %>
-
-                                                        <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %> <% if(item.title.length < 1){ %>empty-curriculem-item<% } %> <%= labelClasses %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
-                                                            <span><%= getExcerpt(item.title) %></span>
-                                                            <% if(hasContent(item)){ %><button class="info-icon bg-color-<%= getContrast50(item.color) %>" title="curriculum item <%= getExcerpt(item.title) %>" name="curriculum item <%= getExcerpt(item.title) %>" style="color:#<%= item.color %>;">i</button><% } %>
-                                                        </div>
-                                                    <% }) %>
-                                                </div>
-
-                                            <%}) %>
-
-                                        </div>
-                                        <% }) %>
-
-                                    </div>
-                                </div>
-                            <% }) %>
-
-                            <!-- LEGENDA -->
-                            <div class="curriculem-container" id="year_container_legenda">
                                 <div class="curriculum-inner">
                                     <div class="curriculem-row curriculum-header">
                                         <div class="header-inner">
-                                            <h2>Legenda</h2>
-                                            <ul class="types_explanation">
-                                                <% types.forEach(function(type){ %>
-                                                    <li class="color-<%= getContrast50(type.color) %>" style="background-color:#<%= type.color %>;"><%= type.title %></li>
-                                                <% }) %>
-                                            </ul>
+                                            <h2><%= year.title %></h2>
+                                            <p><%= year.description %></p>
                                         </div>
+                                    </div>
+
+                                    <% year.data.rows.forEach(function(row,indexRow){ %>
+                                    <div class="curriculem-row">
+
+
+                                        <% row.forEach(function(column,indexColumn){ %>
+                                            
+                                            <div class="curriculem-column">
+                                                <%
+                                                var totalItems = column.column.length
+                                                var percentHeight = 100 * 1 / totalItems
+                                                %>
+                                                <% column.column.forEach(function(item,indexItem){ %>
+                                                    <!-- height:<%= percentHeight %>%; -->
+
+                                                    <%
+                                                    var cats = catListToArray(item.category)
+                                                    var labelClasses = ' '
+                                                    cats.forEach(function(cat){
+                                                        labelClasses = labelClasses + ' cat_' + cat
+                                                    })
+                                                    %>
+
+                                                    <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %> <% if(item.title.length < 1){ %>empty-curriculem-item<% } %> <%= labelClasses %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
+                                                        <span><%= getExcerpt(item.title) %></span>
+                                                        <% if(hasContent(item)){ %><button class="info-icon bg-color-<%= getContrast50(item.color) %>" title="curriculum item <%= getExcerpt(item.title) %>" name="curriculum item <%= getExcerpt(item.title) %>" style="color:#<%= item.color %>;">i</button><% } %>
+                                                    </div>
+                                                <% }) %>
+                                            </div>
+
+                                        <%}) %>
+
+                                    </div>
+                                    <% }) %>
+
+                                </div>
+                            </div>
+                        <% }) %>
+
+                        <!-- LEGENDA -->
+                        <div class="curriculem-container" id="year_container_legenda">
+                            <div class="curriculum-inner">
+                                <div class="curriculem-row curriculum-header">
+                                    <div class="header-inner">
+                                        <h2>Legenda</h2>
+                                        <ul class="types_explanation">
+                                            <% types.forEach(function(type){ %>
+                                                <li class="color-<%= getContrast50(type.color) %>" style="background-color:#<%= type.color %>;"><%= type.title %></li>
+                                            <% }) %>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+
                     </div>
                 </div>
+            </div>
 
-                <% if(slider.length > 0){ %>
-                <div class="slider-container">
-                    <div class="slider-bar">
-                        <a class="hide-slides" alt="Bekijk curriculum">Bekijk curriculum</a>
-                    </div>
-                    <ul id="slides">
-                        <!-- <li class="slide showing">Slide 1</li> -->
-                        <% slider.forEach(function(slide,index){ %>
-                            <% if(slide.active == 'true'){ %>
-                                <li class="slide" style="background-image:url('/uploads/slider/<%= slide.path %>');"></li>
-                            <% } %>
-                        <% }) %>
-                    </ul>
+            <% if(slider.length > 0){ %>
+            <div class="slider-container">
+                <div class="slider-bar">
+                    <a class="hide-slides" alt="Bekijk curriculum">Bekijk curriculum</a>
                 </div>
-                <% } %>
+                <ul id="slides">
+                    <!-- <li class="slide showing">Slide 1</li> -->
+                    <% slider.forEach(function(slide,index){ %>
+                        <% if(slide.active == 'true'){ %>
+                            <li class="slide" style="background-image:url('/uploads/slider/<%= slide.path %>');"></li>
+                        <% } %>
+                    <% }) %>
+                </ul>
+            </div>
+            <% } %>
 
-            </main>
-        </div>
+        </main>
     </div>
 
     <div class="modal hide">
         <div class="overlay"></div>
         <main>
-            <button class="close-btn close-modal" title="close modal" alt="close modal">&times;</button>
+            <button class="close-btn close-modal" title="close modal" >&times;</button>
             <div class="content-wrapper ql-editor">
                 <header>
                     <h2>Modal title</h2>
