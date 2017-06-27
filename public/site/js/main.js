@@ -14,6 +14,7 @@
             self.function.initSlider()
             self.function.checkActivity()
             self.function.background.init()
+            self.function.qr()
             self.event.modal.init()
             self.event.item.init()
             self.event.viewChange.init()
@@ -33,6 +34,14 @@
             }
         },
         function: {
+            qr : function(){
+                var url = ((window.location.href).split('#'))[0]
+                var qrcode = new QRCode("qrcode");
+                qrcode.makeCode(url);
+                $('.set-site-url').html(url)
+                $('.set-site-url').attr('href',url)
+
+            },
             background: {
                 init: function() {
                     var body = document.body,

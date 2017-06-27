@@ -131,7 +131,6 @@ function catListToArray(string){
                     </button>
                 </li>
             </ul>
-            <div id="qrcode"></div>
         </nav>
 
         <main>
@@ -204,6 +203,11 @@ function catListToArray(string){
                                             <% }) %>
                                         </ul>
                                     </div>
+                                    <div class="header-inner">
+                                        <h2>Bekijk curriculum</h2>
+                                        <div id="qrcode"></div>
+                                        <a class="set-site-url" href="#" title="website link"></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -258,11 +262,6 @@ function catListToArray(string){
 
     <script type="text/javascript" src="https://cdn.rawgit.com/jackmu95/52b82e3ec79a2e2a30ddf37e71846711/raw/e1742e6e1b7ab73807c313c04e7b63f96f15c43b/quill.min.js"></script>
     <script type="text/javascript" src="http://davidshimjs.github.io/qrcodejs/qrcode.min.js"></script>
-
-    <script>
-        var qrcode = new QRCode("qrcode");
-        qrcode.makeCode('www.google.nl');
-    </script>
 
     <!-- SCRIPTS -->
     <script src="/site/js/smoothscroll.js"></script>
