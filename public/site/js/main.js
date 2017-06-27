@@ -13,6 +13,7 @@
             self.function.getClosestCurriculumContainer()
             self.function.initSlider()
             self.function.checkActivity()
+            self.function.background.init()
             self.event.modal.init()
             self.event.item.init()
             self.event.viewChange.init()
@@ -22,9 +23,41 @@
             self.dom.setSameHeight('.curriculem-item')
         },
         options: {
-            menuItems: []
+            menuItems: [],
+            window: {
+                height: 0,
+                width: 0
+            },
+            document: {
+                height: 0
+            }
         },
         function: {
+            background: {
+                init: function() {
+                    var body = document.body,
+                        html = document.documentElement
+                    var documentHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
+                    self.options.window.height = window.innerHeight
+                    self.options.window.width = window.innerWidth
+                    self.options.document.height = documentHeight
+
+                    console.log(self.options)
+                },
+                move: function(scrollTop) {
+
+                    var totalScrollable = self.options.document.height - self.options.window.height
+                    var basis = 0;
+
+                    var scrollDown = 
+
+                    // 0px | 3500px
+                    // 100px
+
+                    console.log(scrollTop)
+
+                }
+            },
             initSlider: function() {
                 if (slideActive) {
 
@@ -121,8 +154,7 @@
                 })
                 $('#menu_item_' + id).addClass('active')
             },
-            getClosestCurriculumContainer: function() {
-                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            getClosestCurriculumContainer: function(scrollTop) {
 
                 function getNearestNumber(a, n) {
                     if ((l = a.length) < 2)
@@ -177,7 +209,10 @@
             scroll: {
                 init: function() {
                     $(window).on('scroll', function() {
-                        self.function.getClosestCurriculumContainer()
+                        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                        self.function.getClosestCurriculumContainer(scrollTop)
+                        self.function.background.move(scrollTop)
+
                     })
                 },
 

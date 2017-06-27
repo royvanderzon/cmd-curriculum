@@ -61,12 +61,6 @@ function catListToArray(string){
     <link rel="stylesheet" href="/cms/css/quill.snow.css" />
     <link href="/site/css/main.css" rel="stylesheet">
 
-    <style>
-        .wrapper>main:before {
-            background-image: url('<%= settings.options.background_image %>');
-        }
-    </style>
-
 </head>
 
 <body>
@@ -100,7 +94,7 @@ function catListToArray(string){
                             <% }else{ %>
                                 <img src="/uploads/curriculum/<%= year.path %>" alt="link icon">
                             <% } %>
-                            <a href="#year_container_<%= year.ID %>" alt="link to year <%= year.title %>"><%= year.title %></a>
+                            <a href="#year_container_<%= year.ID %>" title="link to year <%= year.title %>"><%= year.title %></a>
                         </div>
                     </li>
                     <% }) %>
@@ -137,10 +131,11 @@ function catListToArray(string){
                         </a>
                     </li>
                 </ul>
+                <div id="qrcode"></div>
             </nav>
 
             <main>
-
+                <div class="background" style="background-image: url('<%= settings.options.background_image %>');"></div>
                 <div class="container max-container">
                     <div class="row">
                         <div class="col-xs-12 curriculem-wrapper">
@@ -183,7 +178,7 @@ function catListToArray(string){
 
                                                         <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %> <% if(item.title.length < 1){ %>empty-curriculem-item<% } %> <%= labelClasses %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
                                                             <span><%= getExcerpt(item.title) %></span>
-                                                            <% if(hasContent(item)){ %><button class="info-icon bg-color-<%= getContrast50(item.color) %>" title="curriculum item <%= getExcerpt(item.title) %>" alt="curriculum item <%= getExcerpt(item.title) %>" style="color:#<%= item.color %>;">i</button><% } %>
+                                                            <% if(hasContent(item)){ %><button class="info-icon bg-color-<%= getContrast50(item.color) %>" title="curriculum item <%= getExcerpt(item.title) %>" name="curriculum item <%= getExcerpt(item.title) %>" style="color:#<%= item.color %>;">i</button><% } %>
                                                         </div>
                                                     <% }) %>
                                                 </div>
@@ -263,6 +258,12 @@ function catListToArray(string){
     </script>
 
     <script type="text/javascript" src="https://cdn.rawgit.com/jackmu95/52b82e3ec79a2e2a30ddf37e71846711/raw/e1742e6e1b7ab73807c313c04e7b63f96f15c43b/quill.min.js"></script>
+    <script type="text/javascript" src="http://davidshimjs.github.io/qrcodejs/qrcode.min.js"></script>
+
+    <script>
+        var qrcode = new QRCode("qrcode");
+        qrcode.makeCode('www.google.nl');
+    </script>
 
     <!-- SCRIPTS -->
     <script src="/site/js/smoothscroll.js"></script>
