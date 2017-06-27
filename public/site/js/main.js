@@ -122,6 +122,7 @@
                 var menuItems = self.function.calcNavPos()
                 years.forEach(function(year) {
                     $('#menu_item_' + year.ID + ' a').on('click', function(e) {
+                        $('#burger-shower').element.checked = false
                         $('#year_container_' + year.ID).element.scrollIntoView({
                             behavior: 'smooth'
                         });
@@ -129,6 +130,7 @@
                 })
 
                 $('#menu_item_' + 'legenda' + ' a').on('click', function(e) {
+                    $('#burger-shower').element.checked = false
                     $('#year_container_' + 'legenda').element.scrollIntoView({
                         behavior: 'smooth'
                     });
@@ -230,6 +232,7 @@
                 init: function() {
                     $('.cat_control').element.forEach(function(el) {
                         $(el).on('click', function() {
+                            $('#burger-shower').element.checked = false
                             $('.cat_control').element.forEach(function(subEl) {
                                 $(subEl).removeClass('active')
                             })
@@ -245,7 +248,7 @@
                     $(window).on('hashchange', function() {
                         var hash = window.location.hash
                         var hashArray = hash.split('#')
-                        $('#burger-shower').element.checked = false
+                        // $('#burger-shower').element.checked = false
                             // self.function.setNavActive(hashArray[1])
                             // $('.modal').show(200)
                     })
