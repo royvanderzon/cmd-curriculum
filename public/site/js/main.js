@@ -245,6 +245,7 @@
                     $(window).on('hashchange', function() {
                         var hash = window.location.hash
                         var hashArray = hash.split('#')
+                        $('#burger-shower').element.checked = false
                             // self.function.setNavActive(hashArray[1])
                             // $('.modal').show(200)
                     })
