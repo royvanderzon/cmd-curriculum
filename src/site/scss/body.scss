@@ -45,6 +45,7 @@ body {
             @media screen and (max-width: $screen-xl-max) {
                 flex-basis: 50%;
             }
+            border-right: 1px solid rgba(0, 0, 0, 0.15);
             button {
                 cursor: pointer;
                 background-color: transparent;
@@ -54,7 +55,6 @@ body {
                 text-align: center;
                 text-decoration: none;
                 font-size: 13px;
-                border-right: 1px solid rgba(0, 0, 0, 0.15);
                 span {
                     font-weight: bolder;
                     color: $grey;
@@ -122,7 +122,7 @@ body {
     }
     .hamburger {
         width: 52px;
-        display: block;
+        display: none;
         position: fixed;
         z-index: 10000;
         top: 15px;
@@ -140,6 +140,9 @@ body {
             border-width: 1.5px;
             margin-top: 5px;
             margin-bottom: 5px;
+        }
+        @media screen and (max-width: $screen-md-max) {
+            display: block;
         }
     }
 }
@@ -374,7 +377,7 @@ body {
     }
 }
 
-@media (max-width: $screen-sm-max) {
+@media (max-width: $screen-md-max) {
     .wrapper nav {
         position: fixed;
         z-index: 9999;

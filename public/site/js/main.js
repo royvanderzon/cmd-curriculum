@@ -35,7 +35,8 @@
         },
         function: {
             qr : function(){
-                var url = ((window.location.href).split('#'))[0]
+                if(!slideActive) return
+                var url = ((window.location.href).split('slider'))[0]
                 var qrcode = new QRCode("qrcode");
                 qrcode.makeCode(url);
                 $('.set-site-url').html(url)
@@ -58,7 +59,7 @@
                     var totalScrollable = self.options.document.height - self.options.window.height
                     var basis = 0;
 
-                    var scrollDown = 
+                    // var scrollDown = 
 
                     // 0px | 3500px
                     // 100px

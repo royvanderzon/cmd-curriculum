@@ -305,7 +305,10 @@
                 // $('#input_name option[name='+data[2]+']').prop('selected', true);
                 // console.log($('#input_name option'))
                 // console.log($('#input_name option').removeAttr('selected').filter('[name='+data[2]+']'))
-                var role_value = $('#input_name option').removeAttr('selected').filter('[name='+data[2]+']').val();
+                // var role_value = $('#input_name option').removeAttr('selected').filter('[name='+data[2]+']').val();
+                var role_value = $('#input_name option').filter('[name='+data[2]+']').val();
+                console.log(role_value)
+                console.log(data[2])
                 $('#input_name').val(role_value);
                 $('#input_name').material_select();
 
