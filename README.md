@@ -30,8 +30,16 @@ All the inserted data will be converted to a fully responsive curriculum. The cu
 - Critical CSS
 - Gzipped CSS
 - Optimized images
+- Zero issues W3C HTML validator
 
 ## Usabillity testing
+![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/test.jpg)
+__Conclusions__
+- Set the curriculum content to bottom of the page (slider view)
+- Link not clickable (slider view)
+- Inverse list control buttons
+
+__Poster__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/poster.jpg)
 
 __Data modal__
