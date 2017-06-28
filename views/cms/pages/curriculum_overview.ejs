@@ -72,7 +72,7 @@ var contentBlockIterator = 0
                 <% row.forEach(function(column,column_index){ %>
                 <% blockColumnIterator++ %>
 
-                    <div class="col s12 m3 block-row-column" id="row_container_<%= blockColumnIterator %>">
+                    <div class="col s12 m3 block-row-column" id="row_container_<%= blockColumnIterator %>" data-width="<%= column.dataWidth %>">
                         <div class="overview-container">
                             <ul class="block-container collection with-header" id="block-container_<%= blockColumnIterator %>">
 
@@ -99,6 +99,7 @@ var contentBlockIterator = 0
                                 <div class="fixed-action-btn horizontal relative-action-btn">
                                     <a class="btn-floating btn-large blue"> <i class="large material-icons">menu</i> </a>
                                     <ul>
+                                        <li><a class="btn-floating grey edit_flex_sub_column" data-id="<%= blockColumnIterator %>"><i class="material-icons">settings_overscan</i></a></li>
                                         <li><a class="btn-floating blue move_sub_column move" data-id="<%= blockColumnIterator %>"><i class="material-icons">open_with</i></a></li>
                                         <li><a class="btn-floating red delete_column" data-id="<%= blockColumnIterator %>"><i class="material-icons">delete</i></a></li>
                                         <li><a class="btn-floating green add_sub_column" data-id="<%= blockColumnIterator %>"><i class="material-icons">add</i></a></li>
