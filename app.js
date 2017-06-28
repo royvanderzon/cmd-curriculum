@@ -1,9 +1,6 @@
-//// server.js
 global.__base = __dirname + '/';
 require('dotenv').config()
 
-// set up ======================================================================
-// get all the tools we need
 var express = require('express');
 var app = express();
 
@@ -30,27 +27,21 @@ var moment = require('moment');
 
 global.appRoot = path.resolve(__dirname);
 
-// set router ================================================================
 var cms_routes = require('./routes/cms/home');
 var site_routes = require('./routes/site/home');
 
-// Uploaden
 var upload = multer({ dest: 'public/uploads/' });
-// Puplic
-app.use(express.static('public')); // to add CSS
+app.use(express.static('public'));
 
-// set up our express application
-app.use(morgan('dev')); // log every request to the console
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(bodyParser());
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
-// Ejs
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs'); // set up ejs for templating
+app.set('view engine', 'ejs');
 
-// required for passport
 app.use(session({
     secret: process.env.SESSION_SECRET,
     saveUninitialized: process.env.SESSION_SAVEUNINITIALIZED,
@@ -59,13 +50,13 @@ app.use(session({
 }));
 
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(passport.session());
+app.use(flash());
 
 app.use('/', site_routes);
 app.use('/cms', cms_routes);
-app.use('*',function(req,res){
-    req.flash('toast','"Page not found.", 10000, "red"');
+app.use('*', function(req, res) {
+    req.flash('toast', '"Page not found.", 10000, "red"');
     res.redirect('/cms')
 })
 
@@ -73,14 +64,9 @@ require('./routes/auth.js')(app, passport);
 
 app.use(function(err, req, res, next) {
     if (err.code !== 'EBADCSRFTOKEN') return next(err);
-    // handle CSRF token errors here 
     res.status(403);
     res.send('Wrong token. If this happens a lot, please reset your browser cache!');
 });
 
-// test db =====================================================================
 zoncms.db.test_connection();
-// launch ======================================================================
 zoncms.init.start(app, process.env.PORT || 3000);
-
-// https://stackoverflow.com/questions/28973453/mysql2error-incorrect-string-value-xe2-x80-xa8-x09
