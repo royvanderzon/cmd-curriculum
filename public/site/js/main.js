@@ -54,7 +54,7 @@ NodeList.prototype.forEach = Array.prototype.forEach;
                     self.options.window.width = window.innerWidth
                     self.options.document.height = documentHeight
 
-                    console.log(self.options)
+                    // console.log(self.options)
                 },
                 move: function(scrollTop) {
 
@@ -66,7 +66,7 @@ NodeList.prototype.forEach = Array.prototype.forEach;
                     // 0px | 3500px
                     // 100px
 
-                    console.log(scrollTop)
+                    // console.log(scrollTop)
 
                 }
             },
@@ -270,7 +270,6 @@ NodeList.prototype.forEach = Array.prototype.forEach;
                             var thisItem = years[year].data.rows[row][column].column[item]
                             self.helper.modal(thisItem, function() {
                                 $('.modal').show(200, function() {
-                                    console.log('hoi')
                                     $('.close-modal').element.focus();
                                 })
                             })
