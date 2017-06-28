@@ -10,7 +10,7 @@
 ## What is this?
 This is the curriculum website from Communication Multimedia Design reinvented. The old website, (cmd-amsterdam.nl/curriculum) is difficult to maintain. With this CMS the curriculum can be maintained easily, everywhere! There is an special url for exposing the curriculum website on the touch table. This website is touch table friendly!
 
-This app is a NodeJS driven CMS where all intrested users can see the whole curriculum for a study. In the back-end users can add new years, make custom labels, and make years that will automatically will be rendered to the front-view of the appliation.
+This app is a NodeJS driven CMS where all interested users can see the whole curriculum for a study. In the back-end users can add new years, make custom labels, and make years that will automatically will be rendered to the front-view of the application.
 All the inserted data will be converted to a fully responsive curriculum. The curriculum is designed for all devices. The font-view is touch friendly, fast, responsive and works on every device.
 
 ## Feature list
