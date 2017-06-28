@@ -72,7 +72,7 @@ var contentBlockIterator = 0
                 <% row.forEach(function(column,column_index){ %>
                 <% blockColumnIterator++ %>
 
-                    <div class="col s12 m3 block-row-column" id="row_container_<%= blockColumnIterator %>" data-width="<%= column.dataWidth %>">
+                    <div class="col s12 m3 block-row-column" id="row_container_<%= blockColumnIterator %>" data-width="<%= column.flexBasis %>">
                         <div class="overview-container">
                             <ul class="block-container collection with-header" id="block-container_<%= blockColumnIterator %>">
 

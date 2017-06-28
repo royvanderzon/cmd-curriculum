@@ -71,7 +71,7 @@ var components = {
     $blockRow: function(id) {
         //create column html
         var html = ''
-        html += '<div class="col s12 m3 block-row-column" id="row_container_' + id + '" style="display:none;">'
+        html += '<div class="col s12 m3 block-row-column" id="row_container_' + id + '" style="display:none;" data-width="100">'
         html += '    <div class="overview-container">'
         html += '        <ul class="block-container collection with-header" id="block-container_' + id + '">'
             //blocks will be rendered here
@@ -83,6 +83,7 @@ var components = {
         html += '                <i class="large material-icons">menu</i>'
         html += '            </a>'
         html += '            <ul>'
+        html += '                <li><a class="btn-floating grey edit_flex_sub_column" data-id="' + id + '"><i class="material-icons">settings_overscan</i></a></li>'
         html += '                <li><a class="btn-floating blue move_sub_column move" data-id="' + id + '"><i class="material-icons">open_with</i></a></li>' //data will be saved here
         html += '                <li><a class="btn-floating red delete_column" data-id="' + id + '"><i class="material-icons">delete</i></a></li>' //data will be saved here
         html += '                <li><a class="btn-floating green add_sub_column" data-id="' + id + '"><i class="material-icons">add</i></a></li>' //data will be saved here
@@ -183,6 +184,16 @@ $(document).ready(function() {
         storeChange()
         var id = $(this).attr('data-id')
         createBlock(id)
+        saveView()
+    })
+
+    //add row in column
+    $('.total-overview-container').on('click', '.edit_flex_sub_column', function() {
+        storeChange()
+        var columnId = $(this).attr('data-id')
+        var rowColumn = $('#row_container_'+ columnId)
+        var flexBasis = prompt('What size (%), of 100? (default = 100)')
+        $(rowColumn).attr('data-width',flexBasis)
         saveView()
     })
 
@@ -426,9 +437,9 @@ $(document).ready(function() {
 
     makeSortable()
 
-    $(".edit_flex_sub_column").click(function(){
-        console.log($(this))
-    })
+    // $(".edit_flex_sub_column").click(function(){
+    //     console.log($(this))
+    // })
 
     // $( ".draggable" ).draggable({
     //   connectToSortable: "#sortable",
@@ -450,6 +461,7 @@ var viewToJson = function() {
         var row = []
         $(elRow).find('.block-row-column').each(function(index, elColumn) {
             var column = {
+                flexBasis: $(this).attr('data-width'),
                 column: []
             }
             $(elColumn).find('.block-content').each(function(index, elBlock) {

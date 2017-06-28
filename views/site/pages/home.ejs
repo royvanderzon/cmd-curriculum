@@ -170,7 +170,7 @@ function catListToArray(string){
 
                                         <% row.forEach(function(column,indexColumn){ %>
                                             
-                                            <div class="curriculem-column">
+                                            <div class="curriculem-column" style="<% if(column.flexBasis != 'undefined'){ %>flex-basis:<%= column.flexBasis %>%;<% } %>">
                                                 <%
                                                 var totalItems = column.column.length
                                                 var percentHeight = 100 * 1 / totalItems

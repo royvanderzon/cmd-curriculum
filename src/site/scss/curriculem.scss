@@ -91,6 +91,9 @@
                     line-height: 14px;
                 }
             }
+            @media screen and (max-width: $screen-md-max) {
+                flex-basis: 100%!important;
+            }
         }
     }
     .curriculum-header {
