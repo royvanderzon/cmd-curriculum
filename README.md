@@ -15,7 +15,7 @@ All the inserted data will be converted to a fully responsive curriculum. The cu
 
 ## Feature list
 - Fully configurable cms
-- Custom slideshow
+- Custom slideshow (comes back after x minutes)
 - Custom headers
 - Custom types
 - Custom backgrounds

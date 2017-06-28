@@ -16,19 +16,17 @@
                     <ul class="collection with-header">
                         <% years.forEach(function(el){ %>
                             <li class="collection-item <% if(currentYear == el.ID){ %>active<% } %>">
-                                <div>
-                                    <!--
-                                    <% if(el.active == "false"){ %>
-                                        <i class="material-icons normal-font">visibility_off</i>
-                                    <% }else{ %>
-                                        <i class="material-icons normal-font">visibility</i>
-                                    <% } %>
-                                    -->
-                                    <%= el.title %>
-                                    <a href="/cms/curriculum/overview/<%= el.ID %>" class="secondary-content">
-                                        <i class="material-icons">edit</i>
-                                    </a>
-                                </div>
+                                <!--
+                                <% if(el.active == "false"){ %>
+                                    <i class="material-icons normal-font">visibility_off</i>
+                                <% }else{ %>
+                                    <i class="material-icons normal-font">visibility</i>
+                                <% } %>
+                                -->
+                                <%= el.title %>
+                                <a href="/cms/curriculum/overview/<%= el.ID %>" class="secondary-content">
+                                    <i class="material-icons">edit</i>
+                                </a>
                             </li>
                         <% }) %>
                     </ul>

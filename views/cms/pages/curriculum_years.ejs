@@ -22,14 +22,11 @@
                         <li class="collection-header"><h4>Year list</h4></li>
                         <% if(year.length < 1){ %>
                             <li class="collection-item">
-                                <div>
                                     <strong>There are no years</strong>
-                                </div>
                             </li>  
                         <% }else{ %>
                             <% for(var i = 0;i<year.length;i++){ %>
                             <li class="collection-item tooltipped" data-position="left" data-delay="50" data-tooltip="ID(<%= year[i].ID %>)">
-                                <div>
                                     <span class="level-badge">
                                     <%= year[i].title %>
                                     </span>
@@ -40,7 +37,6 @@
                                     <% } %>
                                     <!-- <strong><%= year[i].description %></strong> -->
                                     <a href="#" class="secondary-content edit_year" data-order="<%= i %>"><i class="material-icons">edit</i></a>
-                                </div>
                             </li>
                             <% }; %>
                         <% }; %>

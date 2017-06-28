@@ -22,20 +22,16 @@
                         <li class="collection-header"><h4>Type list</h4></li>
                         <% if(types.length < 1){ %>
                             <li class="collection-item">
-                                <div>
                                     <strong>There are no types</strong>
-                                </div>
                             </li>  
                         <% }else{ %>
                             <% for(var i = 0;i<types.length;i++){ %>
                             <li class="collection-item tooltipped" data-position="left" data-delay="50" data-tooltip="ID(<%= types[i].ID %>)">
-                                <div>
                                     <span class="level-badge">
                                     <%= types[i].title %>
                                     </span>
                                     <strong><input type="color" disabled value="#<%= types[i].color %>"> #<%= types[i].color %></strong>
                                     <a href="#" class="secondary-content edit_type" data-order="<%= i %>"><i class="material-icons">edit</i></a>
-                                </div>
                             </li>
                             <% }; %>
                         <% }; %>
