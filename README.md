@@ -3,13 +3,29 @@
 ## Front-view
 - [Front-end](http://socialscoutagency.com/)
 - [Front-end (with slider)](http://socialscoutagency.com/slider)
-- [Back-end](http://socialscoutagency.com/cms)
 
 ## Back-end
+- [Back-end](http://socialscoutagency.com/cms)
 
 ## What is this?
+This is the curriculum website from Communication Multimedia Design reinvented. The old website, (cmd-amsterdam.nl/curriculum) is difficult to maintain. With this CMS the curriculum can be maintained easily, everywhere! There is an special url for exposing the curriculum website on the touch table. This website is touch table friendly!
 This app is a NodeJS driven CMS where all intrested users can see the whole curriculum for a study. In the back-end users can add new years, make custom labels, and make years that will automatically will be rendered to the front-view of the appliation.
 All the inserted data will be converted to a fully responsive curriculum. The curriculum is designed for all devices. The font-view is touch friendly, fast, responsive and works on every device.
+
+## Feature list
+- Fully configurable cms
+- Custom slideshow
+- Custom headers
+- Custom types
+- Custom backgrounds
+- Two different curriculum views
+- Filter in course interests
+- Flexible curriculum structure
+- Optional modals
+- Optional WYSIWYG content
+- Smart permission system
+- Dynamic menu’s
+- Email forget password
 
 __Data modal__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/data.png)
