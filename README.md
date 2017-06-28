@@ -28,10 +28,11 @@ All the inserted data will be converted to a fully responsive curriculum. The cu
 - Dynamic menu’s
 - Email forget password
 - Critical CSS
+- Gzipped CSS
 - Optimized images
 
 ## Usabillity testing
-![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/poster.png)
+![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/poster.jpg)
 
 __Data modal__
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/data.png)
