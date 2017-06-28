@@ -1,3 +1,5 @@
+//set forEach nodelist for safari
+NodeList.prototype.forEach = Array.prototype.forEach;
 (function() {
 
     // console.log(years)
