@@ -421,3 +421,7 @@ body {
     display: none;
     visibility: hidden;
 }
+
+body.slider-view,body.slider-view *{
+    cursor: none !important;
+}
