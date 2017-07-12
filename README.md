@@ -14,23 +14,23 @@ This app is a NodeJS driven CMS where all interested users can see the whole cur
 All the inserted data will be converted to a fully responsive curriculum. The curriculum is designed for all devices. The font-view is touch friendly, fast, responsive and works on every device.
 
 ## Feature list
-- Fully configurable cms
-- Custom slideshow (comes back after x minutes)
-- Custom headers
-- Custom types
-- Custom backgrounds
-- Two different curriculum views
-- Filter in course interests
-- Flexible curriculum structure
-- Optional modals
-- Optional WYSIWYG content
-- Smart permission system
-- Dynamic menu’s
-- Email forget password
-- Critical CSS
-- Gzipped CSS
-- Optimized images
-- Zero issues W3C HTML validator
+- [x] Fully configurable cms
+- [x] Custom slideshow (comes back after x minutes)
+- [x] Custom headers
+- [x] Custom types
+- [x] Custom backgrounds
+- [x] Two different curriculum views
+- [x] Filter in course interests
+- [x] Flexible curriculum structure
+- [x] Optional modals
+- [x] Optional WYSIWYG content
+- [x] Smart permission system
+- [x] Dynamic menu’s
+- [x] Email forget password
+- [x] Critical CSS
+- [x] Gzipped CSS
+- [x] Optimized images
+- [x] Zero issues W3C HTML validator
 
 ## Usabillity testing
 ![Flow](https://raw.githubusercontent.com/royvanderzon/cmd-curriculum/master/images/test.jpg)
@@ -59,46 +59,46 @@ __Back-end design__
 ## MoSCoW
 ### Must haves
 #### Back-end
-- dynamic labels
-- dynamic years
-- dynamic curriculum divided for each year
-- responsive
-- add featured images
-- user management
-- forget password
-- hashed passwords
+- [x] dynamic labels
+- [x] dynamic years
+- [x] dynamic curriculum divided for each year
+- [x] responsive
+- [x] add featured images
+- [x] user management
+- [x] forget password
+- [x] hashed passwords
 #### Front-end
-- responsive
-- optimezed for modern browsers
-- touch friendly
-- 100% works on touchtable
+- [x] responsive
+- [x] optimized for modern browsers
+- [x] touch friendly
+- [x] 100% works on touchtable
 
 ### Should haves
 #### Back-end
-- autosave on changes
-- draggable curriculum elements
-- wysiwyg editor with images upload
-- slideshow
-- user permissions
-- custom profile management
-- disable/enable years
+- [x] autosave on changes
+- [x] draggable curriculum elements
+- [x] wysiwyg editor with images upload
+- [x] slideshow
+- [x] user permissions
+- [x] custom profile management
+- [x] disable/enable years
 #### Front-end
-- 100% functionallity in every browser
-- slider whitch switch on after x time
-- fallbacks (no js)
-- build in documentation
+- [x] 100% functionallity in every browser
+- [x] slider whitch switch on after x time
+- [x] fallbacks (no js)
+- [x] build in documentation
 
 ### Could haves
 #### Back-end
 - api
-- (ctrl + z && cmd + z) step back
+- [x] (ctrl + z && cmd + z) step back
 - auto image optimization
 - spelling control
 - duplicate curriculum elements
 #### Front-end
 - google analytics integration
-- QR code redirect helper
-- highlight labels
+- [x] QR code redirect helper
+- [x] highlight labels
 
 ### Won't haves
 - extra information pages
