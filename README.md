@@ -90,24 +90,24 @@ __Back-end design__
 
 ### Could haves
 #### Back-end
-- api
+- [ ] api
 - [x] (ctrl + z && cmd + z) step back
-- auto image optimization
-- spelling control
-- duplicate curriculum elements
+- [ ] auto image optimization
+- [ ] spelling control
+- [ ] duplicate curriculum elements
 #### Front-end
-- google analytics integration
+- [ ] google analytics integration
 - [x] QR code redirect helper
 - [x] highlight labels
 
 ### Won't haves
-- extra information pages
-- contact forms
-- game elements
-- guest user management
+- [ ] extra information pages
+- [ ] contact forms
+- [ ] game elements
+- [ ] guest user management
 
 ## Known issues
-- misplace html element when step back +4 times (only styling issue)
+- [ ] misplace html element when step back +4 times (only styling issue)
 
 ## .env file
 ```
