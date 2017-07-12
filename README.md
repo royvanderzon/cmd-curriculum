@@ -95,6 +95,7 @@ __Back-end design__
 - [ ] auto image optimization
 - [ ] spelling control
 - [ ] duplicate curriculum elements
+- [x] https live site
 #### Front-end
 - [ ] google analytics integration
 - [x] QR code redirect helper
