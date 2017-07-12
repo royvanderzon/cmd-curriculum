@@ -1,3 +1,48 @@
+if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope:', registration.scope);
+    }).catch(function(error) {
+        console.log('ServiceWorker registration failed:', error);
+    });
+}
+
+// all urls will be added to cache
+function cacheAssets(assets) {
+    return new Promise(function(resolve, reject) {
+        // open cache
+        caches.open('cmd-core')
+            .then(cache => {
+                // the API does all the magic for us
+                cache.addAll(assets)
+                    .then(() => {
+                        console.log('all assets added to cache')
+                        resolve()
+                    })
+                    .catch(err => {
+                        console.log('error when syncing assets', err)
+                        reject()
+                    })
+            }).catch(err => {
+                console.log('error when opening cache', err)
+                reject()
+            })
+    });
+}
+
+var assets = []; // list of urls to be cached
+document.querySelectorAll('img').forEach(function(img,index){
+    // console.log(img.src)
+    assets.push(img.src)
+
+})
+
+
+// cache responses of provided urls
+cacheAssets(assets)
+    .then(() => {
+        console.log('All assets cached')
+    });
+
 //set forEach nodelist for safari
 NodeList.prototype.forEach = Array.prototype.forEach;
 (function() {
@@ -36,13 +81,13 @@ NodeList.prototype.forEach = Array.prototype.forEach;
             }
         },
         function: {
-            qr : function(){
-                if(!slideActive) return
+            qr: function() {
+                if (!slideActive) return
                 var url = ((window.location.href).split('slider'))[0]
                 var qrcode = new QRCode("qrcode");
                 qrcode.makeCode(url);
                 $('.set-site-url').html(url)
-                $('.set-site-url').attr('href',url)
+                $('.set-site-url').attr('href', url)
 
             },
             background: {
@@ -251,7 +296,7 @@ NodeList.prototype.forEach = Array.prototype.forEach;
                     $(window).on('hashchange', function() {
                         var hash = window.location.hash
                         var hashArray = hash.split('#')
-                        // $('#burger-shower').element.checked = false
+                            // $('#burger-shower').element.checked = false
                             // self.function.setNavActive(hashArray[1])
                             // $('.modal').show(200)
                     })

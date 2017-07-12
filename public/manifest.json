@@ -1,0 +1,16 @@
+{
+	"name" : "CMD Curriculium",
+	"short_name" : "CMD",
+	"start_url" : "/?homescreen = 1",
+	"display" : "standalone",
+	"orientation" : "portrait",
+	"theme_color" : "#ffcc00",
+	"background_color": "#FFFFFF",
+	"icons" : [
+		{
+			"src" : "/site/images/icon.png",
+			"sizes" : "1024x1024",
+			"type":"image/png"
+		}
+	]
+}
