@@ -7,10 +7,10 @@ if (navigator.serviceWorker) {
 }
 
 // all urls will be added to cache
-function cacheAssets(assets) {
+function cacheAssets(cacheStorage, assets) {
     return new Promise(function(resolve, reject) {
         // open cache
-        caches.open('cmd-core')
+        caches.open(cacheStorage)
             .then(cache => {
                 // the API does all the magic for us
                 cache.addAll(assets)
@@ -30,7 +30,7 @@ function cacheAssets(assets) {
 }
 
 var assets = []; // list of urls to be cached
-document.querySelectorAll('img').forEach(function(img,index){
+document.querySelectorAll('img').forEach(function(img, index) {
     // console.log(img.src)
     assets.push(img.src)
 
@@ -38,10 +38,22 @@ document.querySelectorAll('img').forEach(function(img,index){
 
 
 // cache responses of provided urls
-cacheAssets(assets)
+cacheAssets('cmd-core', assets)
     .then(() => {
         console.log('All assets cached')
     });
+
+
+var online = navigator.onLine;
+if(online){
+    var currentdate = new Date();
+    var datetime = "Laatste update: " + currentdate.getDate() + "/" + (currentdate.getMonth() + 1) + "/" + currentdate.getFullYear() + " @ " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+    localStorage.lastSync = datetime
+}else{
+    console.log('not online! ' + localStorage.lastSync)
+    $('.offline').show()
+    $('.offline span').html('You are offline, '+localStorage.lastSync)
+}
 
 //set forEach nodelist for safari
 NodeList.prototype.forEach = Array.prototype.forEach;
