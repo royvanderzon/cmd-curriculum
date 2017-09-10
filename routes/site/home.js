@@ -37,7 +37,7 @@ router.get('/slider', function(req, res) {
     var objYear = {
         search: '*',
         db: 'year',
-        query: ''
+        query: ' WHERE active = "true"'
     }
 
     var objSlider = {
