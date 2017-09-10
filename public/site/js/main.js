@@ -317,22 +317,6 @@ NodeList.prototype.forEach = Array.prototype.forEach;
             item: {
                 init: function() {
                     if(typeof $('.item-modal').element == 'string') return;
-                    if(typeof $('.item-modal').element.length == "undefined"){
-                        $($('.item-modal').element).on('click', function() {
-                            var id = $(this).attr('data-id')
-                            var idArray = id.split('-')
-                            var year = Number(idArray[0])
-                            var row = Number(idArray[1])
-                            var column = Number(idArray[2])
-                            var $('.item-modal').element = Number(idArray[3])
-                            var thisItem = years[year].data.rows[row][column].column[$('.item-modal').element]
-                            self.helper.modal(thisItem, function() {
-                                $('.modal').show(200, function() {
-                                    $('.close-modal').element.focus();
-                                })
-                            })
-                        })
-                    }
                     $('.item-modal').element.forEach(function(item) {
                         $(item).on('click', function() {
                             var id = $(this).attr('data-id')
