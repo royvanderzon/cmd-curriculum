@@ -316,7 +316,7 @@ NodeList.prototype.forEach = Array.prototype.forEach;
             },
             item: {
                 init: function() {
-                    if(typeof ('.item-modal').element.length == 'string') return;
+                    if(typeof ('.item-modal').element == 'string') return;
                     $('.item-modal').element.forEach(function(item) {
                         $(item).on('click', function() {
                             var id = $(this).attr('data-id')
