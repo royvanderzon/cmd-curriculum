@@ -209,7 +209,10 @@ function catListToArray(string){
                                                     })
                                                     %>
 
-                                                    <div class="curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %> <% if(item.title.length < 1){ %>empty-curriculem-item<% } %> <%= labelClasses %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
+                                                    <div class="<% if(item.extendBlock == 'true'){ %>hide-xs<% } %> curriculem-item color-<%= getContrast50(item.color) %> <% if(hasContent(item)){ %>item-modal<% } %> <% if(item.title.length < 1){ %>empty-curriculem-item<% } %> <%= labelClasses %>" data-id="<%= (indexYear + '-' + indexRow + '-' + indexColumn + '-' +  indexItem) %>" style="background-color:#<%= item.color %>;">
+                                                        <% if(item.extendBlock == 'true'){ %>
+                                                            <span class="extend" style="background-color:#<%= item.color %>;"></span>
+                                                        <% } %>
                                                         <span><%= getExcerpt(item.title) %></span>
                                                         <% if(hasContent(item)){ %><button class="info-icon bg-color-<%= getContrast50(item.color) %>" title="curriculum item <%= getExcerpt(item.title) %>" name="curriculum item <%= getExcerpt(item.title) %>" style="color:#<%= item.color %>;">i</button><% } %>
                                                     </div>

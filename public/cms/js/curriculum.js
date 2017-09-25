@@ -206,8 +206,26 @@ $(document).ready(function() {
         var id = $(this).attr('data-id')
         currentEditId = id
         var blockTitle = $('#block_content_' + id).find('.data-title').html()
-            //fill data based on id
+        //fill data based on id
         $('.block_title').val(blockTitle)
+
+        var extendBlock = $('#block_extend_block_' + id).html()
+        $('#extend_block').val(extendBlock)
+        if(extendBlock == 'true'){
+            $('#extend_block').prop('checked', true);
+        }else{
+            $('#extend_block').prop('checked', false);
+        }
+
+
+        var hideXs = $('#block_show_xs_' + id).html()
+        $('#hide_mobile').val(hideXs)
+        if(hideXs == 'true'){
+            $('#hide_mobile').prop('checked', true);
+        }else{
+            $('#hide_mobile').prop('checked', false);
+        }
+
         console.log($('#block_image_' + id).html())
         if ($('#block_image_' + id).html() == 'undefined' || $('#block_image_' + id).html().length < 1) {
             $('.image-header').css('backgroundImage', 'url(\'/cms/images/noimg.png\')')
@@ -220,8 +238,6 @@ $(document).ready(function() {
         // quill.root.innerHTML = $('#block_html_'+id).html()
         quill.setContents(JSON.parse($('#block_html_' + id).html()))
 
-        console.log('/////////////////////////////////////////')
-        console.log(($('#block_category_' + currentEditId).html()).split('|'))
         var catsArray = ($('#block_category_' + currentEditId).html()).split('|')
         catsArray.pop()
         if($('#block_category_' + currentEditId).html() == 'undefined'){
@@ -229,7 +245,6 @@ $(document).ready(function() {
             $('#category_choise').material_select('destroy');
             $('#category_choise').material_select();
         }else{
-            console.log('workdssss')
             $('#category_choise').val(catsArray)
             // console.log(JSON.parse(JSON.stringify($('#block_category_' + currentEditId).html())))
             $('#category_choise').material_select('destroy');
@@ -247,6 +262,8 @@ $(document).ready(function() {
         e.preventDefault()
         storeChange()
         $('#block_content_' + currentEditId).find('.data-title').html($('.block_title').val())
+        $('#block_extend_block_' + currentEditId).html($('#extend_block').is(":checked"))
+        $('#block_show_xs_' + currentEditId).html($('#hide_mobile').is(":checked"))
             // console.log(quill.getContents())
         $('#block_html_' + currentEditId).html(JSON.stringify(quill.getContents()))
             // $('#block_html_'+currentEditId).html(quill.root.innerHTML)
@@ -473,6 +490,8 @@ var viewToJson = function() {
                 block.color = $('#block_color_' + block_id).html()
                 block.image = $('#block_image_' + block_id).html()
                 block.category = $('#block_category_' + block_id).html()
+                block.extendBlock = $('#block_extend_block_' + block_id).html()
+                block.showXs = $('#block_show_xs_' + block_id).html()
                 column.column.push(block)
             })
             row.push(column)

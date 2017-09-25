@@ -93,6 +93,18 @@
                     font-size: 14px;
                     line-height: 14px;
                 }
+                @media screen and (min-width: 768px) {
+                    .extend {
+                        display: block;
+                        position: absolute;
+                        top: 0.5px;
+                        width: 20px;
+                        right: -20px;
+                        z-index: 0;
+                        height: 100%;
+                        height: calc(100% - 0.5px);
+                    }
+                }
             }
             @media screen and (max-width: $screen-md-max) {
                 flex-basis: 100%!important;
@@ -197,10 +209,20 @@ body.slider-view {
         justify-content: center;
         align-items: center;
     }
-    .view-controls{
+    .view-controls {
         display: none;
     }
-    .back-to-cmd{
+    .back-to-cmd {
         display: none;
+    }
+}
+
+.hide-xs{
+    display: block;
+}
+
+@media screen and (max-width: 767px){
+    .hide-xs{
+        display: none !important;
     }
 }

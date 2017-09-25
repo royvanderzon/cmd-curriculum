@@ -87,6 +87,8 @@ var contentBlockIterator = 0
                                     </div>
                                 </li>
                                 <div class="hide hidden" id="block_html_<%= contentBlockIterator %>"><%= block.content %></div>
+                                <div class="hide hidden" id="block_extend_block_<%= contentBlockIterator %>"><%= block.extendBlock %></div>
+                                <div class="hide hidden" id="block_show_xs_<%= contentBlockIterator %>"><%= block.showXs %></div>
                                 <div class="hide hidden" id="block_color_<%= contentBlockIterator %>"><%= block.color %></div>
                                 <div class="hide hidden" id="block_image_<%= contentBlockIterator %>"><%= block.image %></div>
                                 <div class="hide hidden" id="block_category_<%= contentBlockIterator %>"><%= block.category %></div>
@@ -191,6 +193,25 @@ var contentBlockIterator = 0
                         </select>
                         <label>Choose categories</label>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="input-field col s12">
+                        <input type="checkbox" class="filled-in" id="extend_block" name="extend_block"/>
+                        <label for="extend_block">Extend block</label>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="input-field col s12">
+                        <input type="checkbox" class="filled-in" id="hide_mobile" name="hide_mobile"/>
+                        <label for="hide_mobile">Hide mobile</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <hr>
                 </div>
             </div>
             <div class="row">
