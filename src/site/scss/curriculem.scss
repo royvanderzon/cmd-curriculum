@@ -97,12 +97,12 @@
                     .extend {
                         display: block;
                         position: absolute;
-                        top: 0.5px;
+                        top: 0px;
                         width: 20px;
                         right: -20px;
                         z-index: 0;
                         height: 100%;
-                        height: calc(100% - 0.5px);
+                        /*height: calc(100% - 0.5px);*/
                     }
                 }
             }
