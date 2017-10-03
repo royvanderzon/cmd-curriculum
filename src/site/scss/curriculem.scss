@@ -65,11 +65,12 @@
                 /*max-height: 50px;*/
                 /*margin-bottom: 5px;*/
                 /*margin-top: 5px;*/
-                padding: 10px;
-                border-top: 2.5px solid $white;
-                border-bottom: 2.5px solid $white;
+                padding: 2.5px 5px;
+                border-top: 1px solid $white;
+                border-bottom: 1px solid $white;
                 position: relative;
                 transition: 200ms all ease-in;
+
                 &.supress-item {
                     opacity: .15;
                 }
@@ -89,12 +90,12 @@
                     cursor: pointer;
                     text-align: center;
                     right: 10px;
-                    top: 10px;
+                    top: 4.5px;
                     font-size: 14px;
                     line-height: 14px;
                 }
                 @media screen and (min-width: 768px) {
-                    .extend {
+                    /*.extend {
                         display: block;
                         position: absolute;
                         top: 0px;
@@ -103,6 +104,19 @@
                         z-index: 0;
                         height: 100%;
                         height: calc(100% + 0.5px);
+                    }*/
+                    &.extend {
+                        .item-inner {
+                            position: absolute;
+                            display: block;
+                            height: 100%;
+                            width: 100%;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            width: calc(100% * 2 + 20px);
+                            padding: 2.5px 5px;
+                        }
                     }
                 }
             }
@@ -113,12 +127,18 @@
     }
     .curriculum-header {
         display: block;
+        /*text-align: center;*/
+        margin: 0 auto;
         padding: 5px;
         padding-bottom: 15px;
         .header-inner {
-            max-width: 50%;
+            max-width: 100%;
             background-color: $white;
-            padding: 1.5em;
+            padding: 1em;
+            margin: 0;
+            h2{
+                margin: 0;
+            }
             @media screen and (max-width: $screen-xl-max) {
                 max-width: 75%;
             }
@@ -217,12 +237,19 @@ body.slider-view {
     }
 }
 
-.hide-xs{
-    display: block;
+.hide-xs {
+    display: block !important;
 }
 
-@media screen and (max-width: 767px){
-    .hide-xs{
+.show-sm {
+    display: none !important;
+}
+
+@media screen and (max-width: 767px) {
+    .hide-xs {
         display: none !important;
+    }
+    .show-sm {
+        display: block !important;
     }
 }

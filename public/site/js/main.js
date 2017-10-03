@@ -1,58 +1,58 @@
-if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('/sw.js').then(function(registration) {
-        console.log('ServiceWorker registration successful with scope:', registration.scope);
-    }).catch(function(error) {
-        console.log('ServiceWorker registration failed:', error);
-    });
-}
+// if (navigator.serviceWorker) {
+//     navigator.serviceWorker.register('/sw.js').then(function(registration) {
+//         console.log('ServiceWorker registration successful with scope:', registration.scope);
+//     }).catch(function(error) {
+//         console.log('ServiceWorker registration failed:', error);
+//     });
+// }
 
 // all urls will be added to cache
-function cacheAssets(cacheStorage, assets) {
-    return new Promise(function(resolve, reject) {
-        // open cache
-        caches.open(cacheStorage)
-            .then(cache => {
-                // the API does all the magic for us
-                cache.addAll(assets)
-                    .then(() => {
-                        console.log('all assets added to cache')
-                        resolve()
-                    })
-                    .catch(err => {
-                        console.log('error when syncing assets', err)
-                        reject()
-                    })
-            }).catch(err => {
-                console.log('error when opening cache', err)
-                reject()
-            })
-    });
-}
+// function cacheAssets(cacheStorage, assets) {
+//     return new Promise(function(resolve, reject) {
+//         // open cache
+//         caches.open(cacheStorage)
+//             .then(cache => {
+//                 // the API does all the magic for us
+//                 cache.addAll(assets)
+//                     .then(() => {
+//                         console.log('all assets added to cache')
+//                         resolve()
+//                     })
+//                     .catch(err => {
+//                         console.log('error when syncing assets', err)
+//                         reject()
+//                     })
+//             }).catch(err => {
+//                 console.log('error when opening cache', err)
+//                 reject()
+//             })
+//     });
+// }
 
-var assets = []; // list of urls to be cached
-document.querySelectorAll('img').forEach(function(img, index) {
-    // console.log(img.src)
-    assets.push(img.src)
+// var assets = []; // list of urls to be cached
+// document.querySelectorAll('img').forEach(function(img, index) {
+//     // console.log(img.src)
+//     assets.push(img.src)
 
-})
+// })
 
 
 // cache responses of provided urls
-cacheAssets('cmd-core', assets)
-    .then(() => {
-        console.log('All assets cached')
-    });
+// cacheAssets('cmd-core', assets)
+//     .then(() => {
+//         console.log('All assets cached')
+//     });
 
 
 var online = navigator.onLine;
-if(online){
+if (online) {
     var currentdate = new Date();
     var datetime = "Laatste update: " + currentdate.getDate() + "/" + (currentdate.getMonth() + 1) + "/" + currentdate.getFullYear() + " @ " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
     localStorage.lastSync = datetime
-}else{
+} else {
     console.log('not online! ' + localStorage.lastSync)
     $('.offline').show()
-    $('.offline span').html('You are offline, '+localStorage.lastSync)
+    $('.offline span').html('You are offline, ' + localStorage.lastSync)
 }
 
 //set forEach nodelist for safari
@@ -81,6 +81,7 @@ NodeList.prototype.forEach = Array.prototype.forEach;
             self.event.hashChange.init()
             self.event.scroll.init()
             self.dom.setSameHeight('.curriculem-item')
+            self.yearInfo.init()
         },
         options: {
             menuItems: [],
@@ -173,7 +174,7 @@ NodeList.prototype.forEach = Array.prototype.forEach;
                         _idleSecondsCounter = 0
                         if ($('.slider-container').element.style.visibility == 'hidden') {
                             $('.slider-container').show(200)
-                                // console.log('showing slideshow')
+                            // console.log('showing slideshow')
                         }
                     }
                 }
@@ -308,15 +309,15 @@ NodeList.prototype.forEach = Array.prototype.forEach;
                     $(window).on('hashchange', function() {
                         var hash = window.location.hash
                         var hashArray = hash.split('#')
-                            // $('#burger-shower').element.checked = false
-                            // self.function.setNavActive(hashArray[1])
-                            // $('.modal').show(200)
+                        // $('#burger-shower').element.checked = false
+                        // self.function.setNavActive(hashArray[1])
+                        // $('.item_modal.modal').show(200)
                     })
                 }
             },
             item: {
                 init: function() {
-                    if(typeof $('.item-modal').element == 'string') return;
+                    if (typeof $('.item-modal').element == 'string') return;
                     $('.item-modal').element.forEach(function(item) {
                         $(item).on('click', function() {
                             var id = $(this).attr('data-id')
@@ -327,8 +328,8 @@ NodeList.prototype.forEach = Array.prototype.forEach;
                             var item = Number(idArray[3])
                             var thisItem = years[year].data.rows[row][column].column[item]
                             self.helper.modal(thisItem, function() {
-                                $('.modal').show(200, function() {
-                                    $('.close-modal').element.focus();
+                                $('.item_modal.modal').show(200, function() {
+                                    $('.item_modal .close-modal').element.focus();
                                 })
                             })
                         })
@@ -361,11 +362,11 @@ NodeList.prototype.forEach = Array.prototype.forEach;
             },
             modal: {
                 init: function() {
-                    $('.overlay').on('click', function() {
-                        $('.modal').hide(200)
+                    $('.item_modal .overlay').on('click', function() {
+                        $('.item_modal.modal').hide(200)
                     })
-                    $('.close-modal').on('click', function() {
-                        $('.modal').hide(200)
+                    $('.item_modal .close-modal').on('click', function() {
+                        $('.item_modal.modal').hide(200)
                     })
                 }
             }
@@ -380,15 +381,37 @@ NodeList.prototype.forEach = Array.prototype.forEach;
                     return tempCont.getElementsByClassName("ql-editor")[0].innerHTML;
                 }
 
-                $('.modal .content').html(quillGetHTML(wysiwyg))
-                $('.modal header h2').html(content.title)
+                $('.item_modal.modal .content').html(quillGetHTML(wysiwyg))
+                $('.item_modal.modal header h2').html(content.title)
                 if (content.image.length > 0) {
-                    $('.modal header').element.style.backgroundImage = 'url("' + content.image + '")'
+                    $('.item_modal.modal header').element.style.backgroundImage = 'url("' + content.image + '")'
                 } else {
-                    $('.modal header').element.style.backgroundImage = 'url("/cms/images/noimg.png")'
+                    $('.item_modal.modal header').element.style.backgroundImage = 'url("/cms/images/noimg.png")'
                 }
 
                 if (typeof cb === 'function') cb()
+            }
+        },
+        yearInfo: {
+            init: function() {
+                app.yearInfo.listen()
+            },
+            listen: function() {
+                $('.open-year-info').element.forEach(function(yearInfo){
+                    var year_ID = $(yearInfo).attr('year-id');
+                    $(yearInfo).on('click', function(e) {
+                        $('.modal_year_'+year_ID).show(200)
+                    })
+
+                    $('.modal_year_'+year_ID+' .close-modal').on('click', function() {
+                        $('.modal_year_'+year_ID).hide(200)
+                    })
+
+                    $('.modal_year_'+year_ID+' .overlay').on('click', function() {
+                        $('.modal_year_'+year_ID).hide(200)
+                    })
+                    
+                })
             }
         }
     }

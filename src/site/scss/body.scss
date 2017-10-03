@@ -41,7 +41,10 @@ body {
         flex-wrap: wrap;
         li.cat_control {
             border-top-width: 0px;
-            flex-basis: 25%;
+            flex-basis: 33.33332%;
+            &:last-child{
+                border-right-width: 0px;
+            }
             @media screen and (max-width: $screen-xl-max) {
                 flex-basis: 50%;
             }
