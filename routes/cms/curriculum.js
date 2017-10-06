@@ -108,6 +108,7 @@ router.post('/edit_type', zoncms.user.isLoggedIn, zoncms.user.checkLevel([51]), 
         db: 'type',
         update: {
             title: data.type_name,
+            active: req.body.type_active,
             color: (data.type_description).split('#')[1]
         }
     }

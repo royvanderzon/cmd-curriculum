@@ -163,11 +163,14 @@ function catListToArray(string){
                     </li> -->
                 </ul>
                 <div class="nav_legenda">
-                    <ul class="nav_legende_list">
+                    <p class="text-center"><strong>Legenda</strong></p>
+                    <div class="nav_legende_list">
                         <% types.forEach(function(type){ %>
-                            <li class="color-<%= getContrast50(type.color) %>" style="background-color:#<%= type.color %>;"><%= type.title %></li>
+                            <% if(type.active == 'true'){ %>
+                            <div class="legenda-item color-<%= getContrast50(type.color) %>" style="background-color:#<%= type.color %>;"><%= type.title %></div>
+                            <% } %>
                         <% }) %>
-                    </ul>
+                    </div>
                 </div>
                 </div>
             </div>
@@ -188,7 +191,7 @@ function catListToArray(string){
                                 <div class="curriculum-inner">
                                     <div class="curriculem-row curriculum-header open-year-info" year-id="<%= year.ID %>">
                                         <div class="header-inner">
-                                            <h2><%= year.title %></h2>
+                                            <h2><%= year.title %> <button class="info-button">i</button></h2>
                                         </div>
                                     </div>
 
@@ -249,7 +252,9 @@ function catListToArray(string){
                                         <h2>Legenda</h2>
                                         <ul class="types_explanation">
                                             <% types.forEach(function(type){ %>
+                                                <% if(type.active == 'true'){ %>
                                                 <li class="color-<%= getContrast50(type.color) %>" style="background-color:#<%= type.color %>;"><%= type.title %></li>
+                                                <% } %>
                                             <% }) %>
                                         </ul>
                                     </div>
@@ -306,11 +311,10 @@ function catListToArray(string){
         <div class="modal-content">
             <button class="close-btn close-modal" title="close modal" >&times;</button>
             <div class="content-wrapper ql-editor">
-                <header>
-                    <h2><%= year.title %></h2>
-                </header>
+                <img src="/uploads/curriculum/<%= year.path %>" alt="jaar icoon" class="year-modal-icon">
+                <h2><%= year.title %></h2>
                 <div class="content">
-                    <p><%= year.description %></p>
+                    <p><%- year.description %></p>
                 </div>
             </div>
         </div>

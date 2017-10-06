@@ -183,6 +183,7 @@ NodeList.prototype.forEach = Array.prototype.forEach;
                 var menuItems = self.function.calcNavPos()
                 years.forEach(function(year) {
                     $('#menu_item_' + year.ID + ' a').on('click', function(e) {
+                        e.preventDefault()
                         $('#burger-shower').element.checked = false
                         $('#year_container_' + year.ID).element.scrollIntoView({
                             behavior: 'smooth'

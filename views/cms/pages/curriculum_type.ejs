@@ -31,6 +31,13 @@
                                     <%= types[i].title %>
                                     </span>
                                     <strong><input type="color" disabled value="#<%= types[i].color %>"> #<%= types[i].color %></strong>
+
+                                    <% if(types[i].active == 'true'){ %>
+                                    <i class="material-icons normal-font">visibility</i>
+                                    <% }else{ %>
+                                    <i class="material-icons normal-font">visibility_off</i>
+                                    <% } %>
+                                    
                                     <a href="#" class="secondary-content edit_type" data-order="<%= i %>"><i class="material-icons">edit</i></a>
                             </li>
                             <% }; %>
@@ -94,6 +101,14 @@
                     <input type="color" value="" id="type_description_old" name="type_description_old" hidden class="type_description hide none">
                 </div>
             </div>
+            <div class="row">
+                <div class="col s12 input-field">
+                    <select name="type_active" id="type_active" class="browser-default">
+                        <option value="true">Active</option>
+                        <option value="false">Hidden</option>
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <a class="modal-action modal-close waves-effect waves-green btn-flat left" data-target="remove_type" id="remove_type">Remove</a>
@@ -123,6 +138,8 @@
             $('.html_name').html(this_type.title);
             $('.insert_type_id').val(this_type.ID);
             $('.type_name').val(this_type.title);
+            $('#type_active').val(this_type.active);
+            console.log(this_type)
             $('.type_description').val('#'+this_type.color);
             $('#edit_type').modal('open');
             $('#remove_type').attr('href','/cms/curriculum/remove_type/'+this_type.ID)
