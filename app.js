@@ -71,7 +71,7 @@ app.use(function(err, req, res, next) {
 function test() {
     zoncms.db.get({
         search: '*',
-        db: 'year'
+        db: 'year',
         query: ' WHERE ID = 16'
     },function(result){
     	console.log(result)
