@@ -68,9 +68,11 @@ app.use(function(err, req, res, next) {
     res.send('Wrong token. If this happens a lot, please reset your browser cache!');
 });
 
-async function(){
+async function test(){
 	console.log('hoi')
 }
+
+test()
 
 zoncms.db.test_connection();
 zoncms.init.start(app, process.env.PORT || 3000);
