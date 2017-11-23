@@ -68,8 +68,14 @@ app.use(function(err, req, res, next) {
     res.send('Wrong token. If this happens a lot, please reset your browser cache!');
 });
 
-function test(){
-	console.log('hoi')
+function test() {
+    zoncms.db.get({
+        search: '*',
+        db: 'year'
+        query: ' WHERE ID = 16'
+    },function(result){
+    	console.log(result)
+    })
 }
 
 test()
