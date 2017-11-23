@@ -68,7 +68,7 @@ app.use(function(err, req, res, next) {
     res.send('Wrong token. If this happens a lot, please reset your browser cache!');
 });
 
-async function test(){
+function test(){
 	console.log('hoi')
 }
 
